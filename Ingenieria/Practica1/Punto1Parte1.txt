@@ -1,0 +1,32 @@
+Obtención de los requerimientos
+
+Parte I Definiciones.
+1- Definir brevemente qué es un requerimiento.
+2- Definir requerimientos funcionales y no funcionales.
+3- Definir que es un stakeholder.
+4- Definir las fuentes más importantes para la obtención de información.
+5- Indicar los puntos de vista (de manera genérica) que se pueden reconocer en un proyecto de software.
+6- Enumerar tres problemas de comunicación que pueden existir en la elicitación de requisitos.
+
+1- Requerimiento: Las necesidades del cliente, en terminos mas tecnicos son los requerimientos. un Requerimiento o (requisito) es una cartacteristica del sistema o una descripcion de algo que el sistema es capaz de hacer con el objeto de satisfacer el proposito del sistema. 
+Definicion mas tecnica: Condición o capacidad que necesita el usuario para resolver un problema o alcanzar un objetivo.
+
+2-  Requrimientos funcionales: son las cartacteristicas y funciones que el sistema debe realizar. Describen que debe hacer el sistema para cumplir con las necesidades del usuario o negocio. 
+    Requrimientos no funcionales: Describen como el sistema debe comportarse y abarcan cartacteristicas de calidad y restricciones del
+sistema. No se refieren a funciones especificas, sino a atributos.
+
+3- El termino stakeholder se utiliza para referirse a cualquier persona o grupo que se vera afectado por el sistema, directa o indirectamente. (Usuarios finales, ingenieros, gerentes, expertos del domino) Aportan diferentes visiones del problema. 
+
+4- Fuentes de requerimientos: stakeholder, Documentacion y Especificaciones de sistemas similares.
+
+5- Puntos de vista: 
+Punto de vista de los interactuadores: Representan a las personas u otros sistemas que interactuan directamente con el sistema. Pueden influir en los requerimientos del sistema de algun modo. 
+Punto de vista indirecto: Representan a los stakeholders que no utilizan el sistema ellos mismos pero que influyen en los requerimientos de algun modo. 
+Punto de vista del dominio: Representan las cartacteristicas y restricciones del dominio que influyen en los requerimientos del sistema. 
+
+6- elicitación de requerimientos:Es el proceso de adquirir (“eliciting”) [sonsacar] todo el conocimiento relevante necesario para producir un modelo de los requerimientos de un dominio de problema.
+Problemas de comunicación en esta etapa: 
+- Utilizar un lenguaje muy sofisticado para el cliente, o inversamente no entender el lenguaje del dominio en el cual vamos a trabajar, debemos estar informados e igualmente encontrar un punto en la forma de comunicacion.
+- Problemas desde el lado del cliente, para no saber expresar lo que quiere o ni siquiera saber lo que quiere o entender que lo que quiere no es lo que necesita. 
+- Miedo a parecer incompetentes por ignorancia tecnológica o no tomar decisiones por no poder prever las consecuencias, no entender las alternativas o no tener una visión global. 
+Se pueden clasificar entres grandes grupos: Limitaciones cognitivas (del desarrollador) - Conducta humana - Tecnicos. 

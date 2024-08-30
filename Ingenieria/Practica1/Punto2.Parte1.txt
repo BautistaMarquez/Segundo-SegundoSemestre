@@ -1,0 +1,40 @@
+Entrevistas
+
+Parte I Definiciones.
+1. Describir qué tipo de información puede obtenerse en una entrevista.
+2. Enumerar y describir brevemente las etapas de la preparación de una entrevista.
+3. Enumerar y describir brevemente qué tipos de preguntas puede contener una entrevista. Detalle ventajas y
+desventajas de cada una.
+4. Enumerar y describir brevemente qué tipo de estructuras y organización existen para el armado de una
+entrevista.
+5. Analizar un formato de la planilla adecuado al momento de armar una entrevista.
+6. Analizar un formato de la planilla adecuado al momento de terminar una entrevista.
+
+1- Informacion que se puede obtener de una entrevista: Opiniones, objetivos, procedimientos informales y sentimientos. 
+
+2- Etapas de la preparacion:
+- Leer los antecendentes: Buscar un vocabulario en comun, imprescindible para poder entender al entrevistado. 
+- Establecer los objetivos de la entrevista: Usando los antecendentes, los directivos suelen proporcionar una vision general mientras que los futuros usuarios una mas detallada. 
+- Seleccionar los entrevistados: se debe minimizar el numero de entrevistas, estos deben conocer el objetivo de la entrevista y las preguntas que se le va a hacer. 
+- Planificacion de la entrevista y preparacion del entrevistado: Establecer fecha, hora, lugar y duracion de cada entrevista de acuerdo con el entrevistado.
+- Seleccion del tipo de preguntas a usar y su estructura: 
+
+3- Tipos de preguntas: 
+Abiertas: Permite al encuestado responder de cualquier manera. 
+    Ventajas: Revelan nueva linea de preguntas, hacen mas interesante la entrevista y permiten espontaneidad. 
+    Desventajas: Pueden dar muchos detalles irrelevantes, se puede perder el control de la entrevista y parece que el entrevistador no tiene los objetivos claros. 
+
+Cerradas: Las respuestas son directas, cortas o de seleccion especifica.
+    Ventajas: Ahorran tiempo, se mantiene mas facil el control de la entrevista y se consiguen datos relevantes. 
+    Desventajas: Pueden aburrir al encuestado, no se obtienen detalles.
+
+Sondeo: Permite obtener mas detalle sobre un tema puntual.
+
+4- Tipos de estructuras:
+Piramidal (Inductivo): Se comienza la entrevista con preguntas cerradas y se termina con preguntas abiertas. 
+
+Embudo (Deductivo): Se comienza con preguntas abiertas y se termina con cerradas
+
+Diamante (Combinacion de las anteriores): Se comienza con preguntas cerradas, en la mitad se abren las preguntas y se finaliza con preguntas cerradas devuelta. 
+
+5y6- Debe poseer los datos de la entrevista(lugar, horario, entrevistado, tema), las preguntas, el tiempo asignado para cada pregunta y un espacio para la respuesta del entrevistado, tiempo asignado para la entrevista en total y un espacio para comentarios generales y notas especificas. 

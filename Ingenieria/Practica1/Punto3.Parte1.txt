@@ -1,0 +1,23 @@
+Cuestionarios
+
+Parte I Definiciones.
+1- Describir qué tipo de información se busca mediante la aplicación de cuestionarios.
+2- Describir bajo qué circunstancia considera apropiado utilizar cuestionarios.
+3- Describir los dos tipos de cuestionarios.
+
+1- Permite recabar info y opiniones de los encuestados, Recolectar hechos de un gran numero de personas, detectar un sentimiento generalizado,detectar problemas entre usuarios y cuantificar respuestas. 
+Entre los tipos de info obtenida se encuentran: 
+- actitud: lo que las personas dicen que quieren.
+- creencias: lo que las personas creen que es verdad. 
+- comportamiento: lo que realmente hacen. 
+- caracteristicas: de las personas o cosas. 
+
+2- 
+- Cuando las personas estan dispersas geograficamente: Diferentes oficinas o ciudades. 
+- Cuando hay muchas personas involucradas: clientes o usuarios. 
+- Cuando queremos obtener opiniones generales: 
+- Cuando queremos identificar problemas generales: 
+
+3- Los tipos de cuestionarios dependene de las preguntas que se realicen en estos: 
+- Preguntas abiertas: son las que dejan abiertas todas las posibles opciones de respuesta. 
+- Preguntas cerradas: son las que limitan las opciones de respuestas disponibles. 

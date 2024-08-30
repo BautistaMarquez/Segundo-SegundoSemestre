@@ -1,0 +1,36 @@
+Parte II Problemas.
+
+a- Indicar para cada problema quiénes podrían ser los Stakeholders, los puntos de vista y las fuentes de
+información.
+
+1. En un sistema de registro de asistencia a través de técnicas biométricas (huella digital) de estudiantes
+universitarios para la cátedra de Ingeniería I. Este sistema se alimentará de un listado otorgado por la oficina
+de alumnos de la facultad. Además, necesita la autorización del Jefe de Trabajos Prácticos del turno
+correspondiente para luego los alumnos poder registrar el presente. También, el profesor a cargo de la
+materia podrá consultar y listar el estado de cada alumno perteneciente a su cátedra. El sistema sólo se
+utilizará en el ámbito de la facultad de Informática y deberá adecuarse a la reglamentación sobre privacidad
+de los datos en el ámbito de la misma.
+
+2. Se desea desarrollar un sistema para gestionar y administrar la atención de pacientes en una clínica privada
+especializada en tratamientos alérgicos. Cuando un paciente nuevo es ingresado a la clínica el empleado
+registra todos sus datos personales, posteriormente un enfermero registra los controles y realiza las
+anotaciones habituales (temperatura, presión, peso, reacciones alérgicas etc.). Luego, el paciente es derivado
+con alguno de los doctores de la clínica, quién registra qué tratamientos deberá realizar. El médico también
+se encarga de registrar si el paciente debe quedar internado y debe mantener su historia clínica durante el
+período que dure el tratamiento. Se sabe que el director de la clínica puede consultar las historias clínicas de
+todos los pacientes. El sistema debe adecuarse a las normativas impuestas por el ministerio de salud de la
+provincia de Bs As.
+
+b- Habiendo resuelto los problemas presentados, ¿por qué considera que los requerimientos de los distintos
+stakeholders podrían entrar en conflicto?
+
+1-
+a. 
+Posibles Stakeholders: alumnos, jtps, profesores, oficina de alumnos, decano, administrativos de la facultad.(los encargados del sistema entran?) 
+
+Posibles puntos de vista:
+-Punto de vista de los interactuadores: alumnos, jtps, profesores, el sistema que se use para obtener la huella digital, el sistema que se utilize para guardas las huellas,sistema utilizado para almacenar todos los datos en general, los encargados de crear el sistema. 
+-Punto de vista indirecto: oficina de alumnos(ya que poseen los datos),decano, administrativos de la facultad. 
+-Punto de vista del dominio: reglamentacion de la facultad de informatica.
+
+Posibles fuentes de informacion: reglamentacion sobre privacidad de la facultad, listado de la oficina de alumnos. (tambien entiendo que se podria utilizar info de sistemas similares utilizados anteriormente sin importar que sean para otro ambito, pero esto lo veo como algo mas general que podria entrar en cualquier caso.)
