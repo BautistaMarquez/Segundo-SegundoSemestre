@@ -1,0 +1,143 @@
+Problema 2: Posgrado
+
+Suponga que trabaja en el área de sistemas de la Facultad de Informática y se le solicitó la automatización del pago de
+carreras de posgrado. Inicialmente se coordinó una reunión con el director del posgrado y se obtuvo la siguiente
+información:
+Ya que no se desea seguir cobrando el dinero en la secretaría, es necesario que los alumnos puedan pagar las carreras vía
+web. Como el director de posgrado no realiza tareas administrativas nos recomendó hablar con el secretario académico.
+De la entrevista con el secretario académico se obtuvo la siguiente información:
+Es necesario cargar las carreras a un sistema. En esta primera versión del sistema sólo se nos pidió esta funcionalidad, sin
+la modificación ni eliminación. De cada carrera se conoce: nombre de la carrera (no puede repetirse), duración en años (a
+partir de la consulta del estatuto de posgrado se obtuvo que como máximo son 5 años), costo y cantidad máxima de cuotas
+para el pago. La carga de las carreras no la realiza el secretario académico sino un empleado administrativo.
+Al preguntarle por la dinámica del sistema, el secretario académico nos derivó con el jefe del área administrativa, con el
+cual hicimos otra entrevista y pudimos obtener la siguiente información:
+El requerimiento fue que el alumno ingrese a la web de posgrado y pueda registrarse ingresando: nombre, apellido,
+nombre de usuario (único) y contraseña (más de 6 dígitos). Cualquier alumno previamente registrado, puede iniciar sesión
+con su nombre de usuario y contraseña, habilitándose la inscripción a alguna de las carreras. Para ejemplificar esta
+funcionalidad nos otorgaron acceso al sistema SIGEF, el cual realiza funcionalidades similares para las carreras de grado.
+Para inscribirse, el alumno deberá seleccionar la carrera, ingresar la cantidad de cuotas a pagar, ingresar el número de
+tarjeta y, en caso de que la tarjeta sea válida y tenga fondos, se hará efectivo el cobro y la inscripción. La tarjeta de crédito
+se valida a través de un servicio del banco con el cual la universidad tiene convenio. Luego de efectuado el cobro, el
+sistema debe imprimir dos comprobantes, uno de inscripción y otro de pago. La única forma que tiene el alumno de pagar
+es con tarjeta de crédito.
+
+Resolucion: 
+Rol de usuarios: 
+    administrador
+    alumno
+
+Historias de usuario:
+    cargar carreras al sistema 
+    registrar alumno
+    iniciar sesion (alumno)
+    inscribirse a una carrera
+
+Reglas de negocio:
+    no se puede repetir el nombre de la carrera y duracion NO mayor a 5
+    nombre de usuario unico y contraseña mayor a 6 digitos 
+    la tarjeta debe ser valida y tener fondos 
+
+    
+1.
+ID: cargar carrera 
+Titulo: como administrador quiero cargar la carrera para que puedan inscribirse los alumnos 
+reglas de negocio: 
+    - el nombre de la carrera no se puede repetir 
+    - la duracion de la carrera no puede ser mayor a 5 años 
+
+reverso: 
+
+Criterios de aceptacion (cargar carrera): 
+
+Escenario 1: carga exitosa 
+DADO que el nombre "Ingenieria Espacial" no se encuentra registrado y su duracion es menor a 5 años 
+CUANDO el administrador ingrese: "Ingenieria Espacial", 4 años, 2000 USD, 12 cuotas y presione "cargar"
+ENTONCES el sistema habilita y carga la carrera al sistema 
+
+Escenario 2: carga fallida por nombre repetido 
+DADO que el nombre "Seguridad Informática" se encuentra registrado 
+CUANDO el administrador ingrese: "Seguridad Informática", 3 años, 1000 USD, 6 cuotas y presione "cargar"
+ENTONCES el sistema informa que ya existe una carrera con ese nombre en el sistema 
+
+Escenario 3: carga fallida por duracion mayor a la permitida 
+DADO que el nombre "Informatica Nuclear" no se encuentra registrado y su duracion NO es menor a 5 años 
+CUANDO el administrador ingrese: "Informatica Nuclear", 6 años, 2200 USD, 18 cuotas y presione "cargar"
+ENTONCES el sistema informa que la duracion de la carrera no puede ser mayor a 5 años 
+
+2.
+ID: registrar alumno
+Titulo: como alumno quiero registrarme al sistema para poder inscribirme a las carreras 
+Reglas de negocio: 
+    - El nombre de usuario debe ser unico y no se puede repetir 
+    - La contraseña debe ser mayor a 6 digitos
+
+reverso: 
+
+criterios de aceptacion (registrar usuario):
+
+Escenario 1: registro exitoso 
+DADO que el nombre Bautista01 y la contraseña posee mas de 6 digitos 
+CUANDO el alumno ingrese: Bautista, Marquez Odera, Bautista01, Pirulin123 y presione "registrar"
+ENTONCES el sistema registrara al alumno.
+
+Escenario 2: registro fallido por nombre de usuario repetido
+DADO que el nombre Juanito01
+CUANDO el alumno ingrese: Juan, Lopez, Juanito01, Pirulin y presione "registrar"
+ENTONCES el sistema informa que el nombre de usuario ingresado ya se encuentra registrado.
+
+Escenario 3: registro fallido por error con la contraseña 
+DADO que el nombre Bautista01 y la contraseña NO posee mas de 6 digitos 
+CUANDO el alumno ingrese: Bautista, Marquez Odera, Bautista01, 1234 y presione "registrar"
+ENTONCES el sistema informa que la contraseña debe poseer mas de 6 digitos. 
+
+3. 
+ID: Iniciar sesion de alumno 
+Titulo: como alumno quiero iniciar sesion para poder inscribirme a las materias 
+Reglas de negocio: 
+    (En este caso no hay reglas de negocio, lo cual me genera dudas de si es una historia de usuario)(Vi un ejemplo que se podia) 
+
+Reverso: 
+
+criterios de aceptacion (Iniciar sesion de alumno)
+
+Escenario 1: registro exitoso 
+DADO que el nombre Bautista01 se encuentra registrado y la contraseña Pirulin123 es correcta
+CUANDO el alumno ingrese: Bautista01, Pirulin123 y presione "iniciar sesion"
+ENTONCES el sistema inicia la sesion del usuario, habilitando la inscripcion a alguna carrera 
+
+Escenario 2: registro fallido por usuario no registrado 
+DADO que el nombre Bautista00 NO se encuentra registrado 
+CUANDO el alumno ingrese Bautista00, Pirulin412 y presione "iniciar sesion" 
+ENTONCES el sistema informa que el nombre de usuario no se encuentra registrado en el sistema 
+
+Escenario 3: registro fallido por contraseña erronea 
+DADO que el nombre Bautista 01 se encuentra registrado y la constraseña 1234 NO es correcta 
+CUANDO el alumno ingrese: Bautista 01, 1234 y presione "iniciar sesion" 
+ENTONCES el sistema informara que la contraseña no es correcta 
+
+4. 
+ID: Inscribir alumno a carrera
+Titulo: como alumno quiero inscribirme a una carrera para obtener conocimiento 
+Reglas de negocio: 
+    - El numero de la tarjeta debe ser valido 
+    - La tarjeta debe poseer fondos suficientes 
+
+reverso: 
+
+criterios de aceptacion (inscribir alumno a carrera)
+
+Escenario 1: Inscripcion exitosa 
+DADO que el numero de la tarjeta 1234 es valido y posee fondos suficientes
+CUANDO el alumno seleccione la carrera "Ingenieria Espacial" e ingrese 12, 1234 y presione "pagar" 
+ENTONCES el sistema, espera respuesta, inscribe al alumno y emite los comprobantes de inscripcion y pago. 
+
+Escenario 2: Inscripcion fallida por numero de tarjeta invalido
+DADO que el numero de la tarjeta 1234 NO es valido
+CUANDO el alumno seleccione la carrera "Ingenieria Espacial" e ingrese 12, 4213 y presione "pagar" 
+ENTONCES el sistema, espera respuesta e informa que el numero de tarjeta es invalido
+
+Escenario 3: Inscripcion fallida por tarjeta con fondos insuficiente
+DADO que el numero de la tarjeta 4321 es valido y NO posee fondos suficientes
+CUANDO el alumno seleccione la carrera "Ingenieria Espacial" e ingrese 12, 4321 y presione "pagar" 
+ENTONCES el sistema, espera respuesta e informa que la tarjeta no posee fondos suficientes. 

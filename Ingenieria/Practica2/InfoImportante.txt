@@ -1,0 +1,62 @@
+Importante idenficar: 
+Rol de Usuarios:
+• Persona (no inscripta en el instituto)
+• Matriculado
+Historias de Usuario:
+• Matricular persona
+• Inscribir matriculado a curso
+• Pagar con tarjeta
+
+Plantilla de una historia de usuario
+
+ID: Identificador unívoco de la historia expresado como texto generalmente de la forma <verbo> <sustantivo>
+TÍTULO: Descripción de la historia de la forma: Como <rol> quiero <algo> para <beneficio>. (normalmente el beneficio es verso).
+REGLAS DE NEGOCIO: Conjunto de reglas, normas, políticas, etc. que condicionan el modo de operación. 
+
+Reverso: 
+CRITERIOS DE ACEPTACIÓN: Criterios por los cuales una historia cumple con las expectativas del cliente. 
+Escenario 1: título del criterio.
+    Dado <un contexto inicial>,
+    Cuando <ocurre un evento>,
+    Entonces <garantiza uno o mas resultados>.
+
+
+Ejemplo: 
+
+Id: Matricular persona
+Título: Como persona quiero matricularme al instituto para poder hacer los cursos
+Reglas de Negocio:
+• Un DNI no puede estar registrado dos veces con diferentes matrículas
+
+Reverso: 
+Criterios de Aceptación (Matricular persona):
+Escenario 1: Matriculación exitosa
+DADO que el DNI 22.222.222 no se encuentra matriculado y las condiciones son las adecuadas para un pago
+exitoso.
+CUANDO la persona ingresa: “Juan Perez”, DNI 22.222.222, dirección 7 #123 y presiona “Matricularse”
+ENTONCES el sistema redirige al usuario al pago de matrícula con tarjeta de crédito, espera respuesta,matrícula a la persona y genera su número de matrícula.
+
+Escenario 2: Matriculación fallida por matriculado existente
+DADO que el DNI 12.123.123 se encuentra matriculado
+CUANDO la persona ingresa: “Ana Díaz”, DNI 12.123.123 y dirección 51 #1321 y presiona “Matricularse”
+ENTONCES el sistema informa que la persona ya se encuentra matriculada
+
+Escenario 3: Matriculación fallida por error en pago
+DADO que el DNI 22.222.222 no se encuentra matriculado y las condiciones no son las adecuadas para un pago exitoso.
+CUANDO la persona ingresa: “Juan Perez”, DNI 22.222.222, dirección 7 #123 y presiona “Matricularse”
+ENTONCES el sistema redirige al usuario al pago de matrícula con tarjeta de crédito, espera respuesta e
+informa que el pago no ha sido correcto por lo que no se pudo matricular a la persona.
+
+
+Rol de usuarios: 
+    cliente
+Historias de usuario:
+    registrar cliente
+    iniciar sesion de cliente
+    comprar productos
+    calcular precio 
+Reglas de negocio:
+    mail unico para el registro y edad mayor a 18
+    si el usuario es premiun se le hace un descuento del 20%
+    monto superior a 4500 = a 10% de descuento 
+    los descuentos puede sumarse 
