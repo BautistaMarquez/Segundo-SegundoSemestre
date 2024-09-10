@@ -1,0 +1,29 @@
+1. Editor de textos:
+(a) Nombre al menos 3 editores de texto que puede utilizar desde la línea de comandos.
+(b) ¿En qué se diferencia un editor de texto de los comandos cat, more o less? Enumere
+los modos de operación que posee el editor de textos vi.
+(c) Nombre los comandos más comunes que se le pueden enviar al editor de textos vi.
+
+a. Vim - Emacs - Nano. 
+
+b.
+Diferencias: 
+- Un editor de texto permite modificar el contenido de los archivos, a diferencia de los comandos que estan diseñados para mostrar el contenido de los archivos en la terminal. 
+- Un editor de texto tiene diferentes modos de operacion, a diferencia de los comandos que solo tienen visualizacion. 
+- Un editor de texto ofrece una interfaz interactiva en varios aspectos, los comandos no poseen caracteristicas interactivas. 
+
+modos de operacion: 
+1. modo normal (desde otro modo con ESC)
+2. modo de insercion (i)
+3. modo de linea de comandos (:)
+4. modo visual (v)
+5. modo ex (q)
+
+c. 
+w: escribir cambios
+q ´o q!: salir del editor
+dd: cortar
+y: copiar al portapapeles
+p: pegar desde el portapapeles
+u: deshacer
+/frase: busca “frase” dentro del archivo

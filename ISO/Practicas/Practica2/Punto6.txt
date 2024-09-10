@@ -1,0 +1,76 @@
+6. Procesos:
+
+(a) ¿Qué es un proceso? ¿A que hacen referencia las siglas PID y PPID? ¿Todos los procesos tienen estos atributos en GNU/Linux? Justifique. Indique qué otros atributos tiene un proceso.
+
+a.
+- Un proceso es una instancia en ejecución de un programa. En sistemas operativos como GNU/Linux, un proceso es una entidad que se gestiona para ejecutar un conjunto de instrucciones (código ejecutable) junto con el contexto necesario para su ejecución, como la memoria asignada, el estado de ejecución, las variables de entorno y los recursos del sistema. Cada proceso se ejecuta en un espacio de direcciones de memoria separado y tiene su propio conjunto de recursos. 
+- PID (Process ID): Es un numero entero unico que el SO asigna a cada proceso en ejecucion. Sirve para identificar de manera unica a cada proceso en el sistema.
+- PPID (Parent Process ID): Es el identificador del proceso padre de un proceso dado. El PPID permite rastrear la jerarquia de los procesos. 
+- Sí, todos los procesos en GNU/Linux tienen un PID y un PPID. El PID es obligatorio para identificar y gestionar cada proceso de forma única en el sistema. El PPID también es necesario, ya que indica el origen o el proceso padre de cada proceso. Incluso el proceso raíz del sistema (PID 1) tiene un PPID, que en este caso es 0, porque no tiene un proceso padre; es el primer proceso iniciado por el kernel.
+- Otros atributos: UID (User ID) y GID (Group ID), EUID (Effective User ID) y EGID (Effective Group ID), estado del proceso, prioridad y valor del nice, uso de memoria, tiempos de CPU, contexto de ejecucion, archivos abiertos, direccion de trabajo actual y variables del entorno. 
+
+(b) Indique qué comandos se podrían utilizar para ver qué procesos están en ejecución en un sistema GNU/Linux.
+
+b. 
+. ps(process status): muestra una instantanea de los procesos en ejecucion. (ps aux : Muestra todos los procesos en el sistema)
+. top: proporciona una vista dinamica de los procesos en ejecucion, actualizandose cada pocos segundos. 
+. pstree: muestra los procesos en ejecucion en forma de arbol, mostrando la jerarquia y relaciones de procesos padres e hijos.
+Entre muchos mas. 
+
+(c) ¿Qué significa que un proceso se está ejecutando en Background? ¿Y en Foreground?
+
+c. 
+. Un proceso en background: significa que es un proceso que se ejecuta en segundo plano, no bloquea la terminal y permite seguir ejecutando otros comando. 
+. Un proceso en foreground: significa que es un proceso que se ejecuta en primer plano, ocupa y bloquea la terminal. 
+
+(d) ¿Cómo puedo hacer para ejecutar un proceso en Background? ¿Como puedo hacer para pasar un proceso de background a foreground y viceversa?
+
+d. 
+- Para ejecutar un proceso en background en GNU/Linux, se utiliza el símbolo & al final del comando. Esto permite que el proceso se ejecute en segundo plano y que la terminal quede disponible para otros comandos.
+- Pasar de background a foreground: usando el comando jobs se listan los trabajos actuales que estan en 2do plano. Esto muestra una lista de procesos con un numero de trabajo asociado, como 1, 2,etc. Usando el comando fg seguido del numero de trabajo que se quiere mover el primer plano se puede pasar el proceso a foreground.
+Pasar de foreground a background: primero se suspende el proceso con ctrl + Z, esto lo coloca en estado suspendido. Usando el comando bg se reanuda el proceso suspendido y se ejecuta en segundo plano. 
+
+(e) Pipe ( | ). ¿Cuál es su finalidad? Cite ejemplos de su utilización.
+
+e.
+La pipe (o tubería) es un mecanismo en los sistemas operativos tipo UNIX, como GNU/Linux, que permite redireccionar la salida de un comando como entrada de otro comando. Su finalidad principal es encadenar comandos, de manera que el resultado producido por un comando se pueda procesar inmediatamente con otro, creando flujos de procesamiento de datos más complejos y potentes sin necesidad de utilizar archivos intermedios.
+Ejemplos: ( ls -l | grep ".txt" | wc -l ) Esto lista todos los archivos con detalles, filtra solo los archivos que contienen ".txt" en su nombre y cuenta cuantos archivos cumplen con el criterio. 
+( cat archivo.txt | sort -rn | head -5 ) Esto imprime el archivo, ordena las lineas por longitud de mayor a menor y muestra las primeras 5 lineas del resultado ordenado.
+
+(f) Redirección. ¿Qué tipo de redirecciones existen? ¿Cuál es su finalidad? Cite ejemplos de utilización.
+
+f.
+Las redirecciones se utilizan para enviar la salida de un comando a un archivo o a otro comando, y también para tomar la entrada de un archivo o de otro comando en lugar de la entrada estándar (teclado).
+tipos: 
+. Redirección de salida (> y >>): Guarda la salida de comandos en archivos, sobrescribiendo o añadiendo.
+. Redirección de entrada (<): Usa archivos como entrada para comandos.
+. Redirección de error (2> y 2>>): Guarda o añade errores a archivos.
+. Redirección combinada (&> y &>>): Redirige tanto salida estándar como errores a archivos.
+. Redirección a /dev/null: Descartar salidas o errores no deseados.
+
+(g) Comando kill. ¿Cuál es su funcionalidad? Cite ejemplos.
+
+g. 
+El comando kill en GNU/Linux se utiliza para enviar señales a procesos indentificados por su PID. Las señales que puede mandar son:
+. Terminar el proceso (kill PID)
+. Forzar la terminación del proceso (kill -9 PID) 
+. Enviar otras señales a un proceso (kill -s SIGSTOP PID)
+
+(h) Investigue la funcionalidad y parámetros de los siguientes comandos relacionados con
+el manejo de procesos en GNU/Linux. Además, compárelos entre ellos:
+ps   //ya esta
+kill //ya esta 
+pstree //ya esta
+killall
+top //ya esta
+nice
+
+h.
+. killall:( killall [opciones] nombreProceso ) se utiliza para enviar señales a todos los procesos que coincidan con un nombre de proceso específico. A diferencia del comando kill, que requiere el PID (identificador de proceso), killall utiliza el nombre del proceso para identificar a todos los procesos que coincidan con ese nombre y les envía una señal.
+    -s: envia señales especificas
+    -i: pide confirmacion
+    -r: usa expresiones regulares
+
+. nice: ( nice [opciones] comando [argumentos] )ejecuta un comando con una prioridad de CPU modificada.  
+    -n: establece el valor de "amabilidad" va desde -20 (mayor prioridad) a 19, por defecto nice aumenta el valor en 10. 
+    ej: nice -n 5 comando.

@@ -1,0 +1,39 @@
+11. Indique qué comando sería necesario ejecutar para realizar cada una de las siguientes acciones:
+
+(a) Cree un directorio cuyo nombre sea su número de legajo e ingrese a él.
+
+a. mkdir 232298
+
+(b) Cree un archivo utilizando el editor de textos vi, e introduzca su información personal:
+Nombre, Apellido, Número de alumno y dirección de correo electrónico. El archivo
+debe llamarse "LEAME".
+
+b. vi LEAME
+
+(c) Cambie los permisos del archivo LEAME, de manera que se puedan ver reflejados los
+siguientes permisos:
+Dueño: ningún permiso
+Grupo: permiso de ejecución
+Otros: todos los permisos
+
+c. chmod 017 LEAME
+
+(d) Vaya al directorio /etc y verifique su contenido. Cree un archivo dentro de su directorio
+personal cuyo nombre sea leame donde el contenido del mismo sea el listado de todos
+los archivos y directorios contenidos en /etc. ¿Cuál es la razón por la cuál puede crear
+este archivo si ya existe un archivo llamado "LEAME.en este directorio?.
+
+d. no me permite copiar los directorios de /etc nose porque y tampoco me deja crear otro archivo LEAME
+
+(e) ¿Qué comando utilizaría y de qué manera si tuviera que localizar un archivo dentro
+del filesystem? ¿Y si tuviera que localizar varios archivos con características similares?
+Explique el concepto teórico y ejemplifique.
+
+e. Para buscar un archivo específico: find / -name "nombre_archivo" y Para buscar varios archivos con características similares: Usa find con opciones como -name, -size, -mtime
+
+(f) Utilizando los conceptos aprendidos en el punto e-, busque todos los archivos cuya extensión sea .so y almacene el resultado de esta búsqueda en un archivo dentro del directorio creado en a-. El archivo deberá llamarse .ejercicio_f".
+
+f. find -name .so > LEAME entiendo que esto funcionaria yo hice find / > LEAME y me funciono
+
+
+BUSCAR = find / -name *so

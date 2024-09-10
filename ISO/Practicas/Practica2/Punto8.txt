@@ -1,0 +1,52 @@
+8. Indique qué acción realiza cada uno de los comandos indicados a continuación considerando
+su orden. Suponga que se ejecutan desde un usuario que no es root ni pertenece al grupo
+de root. (Asuma que se encuentra posicionado en el directorio de trabajo del usuario con el
+que se logueó). En caso de no poder ejecutarse el comando, indique la razón:
+
+.ls −l > prueba
+escribe en prueba la salida del comando ls -l
+
+.ps > PRUEBA
+escribe la salida de ps en PRUEBA
+
+.chmod 710 prueba
+el comando chmod es el encargado de modificar los permisos del archivo y el numero 710 seria 7(habilita todos los permisos) 1(solo ejecucion) 0(ninguno) y debido a los estandares la primer pos seria el dueño, la segunda el grupo, y la tercera el usuario.
+
+.chown r o o t : r o o t PRUEBA
+Deberia cambiar el propieario de PRUEBA pero no lo permite o por los permisos o nose.(Operacion no permitida.)
+
+.chmod 777 PRUEBA
+al igual que el segundo pero ahora permite la ejecucion a todos.
+
+.chmod 700 / e t c / passwd
+entiendo que no me permite cambiar los permisos ya que solo el root puede o directamente es imposible cambiar los permisos de la direcc etc. 
+
+.passwd r o o t
+resultado: no debe ver ni cambiar la informacion de la contraseña del root.
+
+.rm PRUEBA
+elimina el archivo
+
+.man / e t c / shadow
+me dice que la orden man no se encuentra, recuerdo que el man era lo del manual pero nose porque no anda.
+
+. f i n d / −name ∗ . c o n f
+El find era para buscar algo pero con lo que le sigue a la barra me dice que no lo encuentra (Puse find / y me salieron mil millones de lineas JASJASJADJ supongo que busca y muestra los comandos que tienen eso.)
+
+.usermod r o o t −d /home/ newroot −L
+resultado: user root is currently by process 1, no entendi esto  (tuve que ingresarlo desde el root, desde mi user no me lo permitio)
+
+.cd / r o o t
+Realizandolo desde el user root, entiendo que solamente te posiciona en ese lugar, ya que esa es la funcion del cd
+
+.rm ∗
+entiendo que borraria todo, pero no me aparecio que no podia borrar un archivo por ser directorio. Con rmdir si los pude eliminar.
+
+.cd / e t c
+me posiciono en etc (al poner el ls -l, me salen todos los permisos entiendo que de todo lo que esta dentro de etc) (con ls me salen ordenados)
+
+.cp ∗ /home −R
+con el cp copio los archivos y al poner el -R es de forma recursiva en la direccion osea HOME. 
+
+.shutdown
+resultado: failed to connect to bus: no existe el fichero o el directorio.

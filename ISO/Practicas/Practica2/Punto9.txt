@@ -1,0 +1,46 @@
+Indique qué comando sería necesario ejecutar para realizar cada una de las siguientes acciones:
+
+(a) Terminar el proceso con PID 23.
+
+a. kill 23
+
+(b) Terminar el proceso llamado init o systemd. ¿Qué resultados obtuvo?
+
+b. deberia saber el PID, pero me imagino que esos procesos no pueden ser "terminados". Despues de buscar vi que el init es el 1, pero al ejecutar el comando no paso nada.
+
+
+(c) Buscar todos los archivos de usuarios en los que su nombre contiene la cadena “.conf”
+
+c. seria FIND /.conf tengo entendido.
+
+(d) Guardar una lista de procesos en ejecución el archivo /home/<su nombre de usuario>/procesos
+
+d. ps aux > /home/<su nombre de usuario>/procesos
+
+(e) Cambiar los permisos del archivo /home/<su nombre de usuario>/xxxx a:
+Usuario: Lectura, escritura, ejecución
+Grupo: Lectura, ejecución
+Otros: ejecución
+
+e. chmod 741 /home/bau, entiendo que asi estaria bien, pero cuando lo hice no parecio realizar cambio alguno. 
+
+(f) Cambiar los permisos del archivo /home/<su nombre de usuario>/yyyy a:
+Usuario: Lectura, escritura.
+Grupo: Lectura, ejecución
+Otros: Ninguno
+
+f. chmod 640 /home/<su nombre de usuario>/yyyy
+
+(g) Borrar todos los archivos del directorio /tmp
+
+g. seria rm/ -rf tmp/* (el -rf significa: r = eliminación recursiva, necesaria para borrar directorios y su contenido. f = fuerza la eliminación sin pedir confirmación.) yo lo habia probado sin eso y no me dejaba
+
+(h) Cambiar el propietario del archivo /opt/isodata al usuario iso2010
+
+h. chown  iso2010 /opt/isodata (entiendo asi seria)
+
+(i) Guardar en el archivo /home/<su nombre de usuario>/donde el directorio donde
+me encuentro en este momento, en caso de que el archivo exista no se debe eliminar
+su contenido anterior.
+
+i. no entiendo muy bien la consigna pero seria algo asi como pwd > archivo, ya que el pwd me da la poscicion (pwd > PRUEBA funciono)

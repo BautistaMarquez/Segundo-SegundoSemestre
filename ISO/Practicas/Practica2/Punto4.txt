@@ -1,0 +1,91 @@
+4. Usuarios:
+
+(a) ¿Qué archivos son utilizados en un sistema GNU/Linux para guardar la información de los usuarios?
+
+a. 
+En un sistema GNU/Linux, la información de los usuarios se almacena en varios archivos clave en el directorio /etc. Existen varios, entre ellos:
+    - /etc/passwd
+    - /etc/shadow
+    - /etc/group
+    - /etc/gshadow
+    - /etc/login.defs
+
+(b) ¿A qué hacen referencia las siglas UID y GID? ¿Pueden coexistir UIDs iguales en un sistema GNU/Linux? Justifique.
+
+b. 
+Las siglas UID y GID hacen referencia a los identificadores únicos de usuarios y grupos en un sistema GNU/Linux:
+No, los UIDs no pueden coexistir como iguales en un sistema GNU/Linux debido a que cada UID debe ser unico, si hubiera dos usuarios con el mismo UID, ambos tendrían acceso a los mismos archivos y directorios con los mismos permisos, lo que podría generar confusión y problemas de control de acceso. Los UIDs duplicados provocarían inconsistencias en los archivos /etc/passwd y /etc/shadow, ya que dependen de la unicidad de UIDs y GIDs.
+
+(c) ¿Qué es el usuario root? ¿Puede existir más de un usuario con este perfil en GNU/Linux? ¿Cuál es la UID del root?
+
+c. 
+El usuario root es el administrador del sistema con privilegios completos. Solo puede haber un usuario llamado "root", pero es posible que otros usuarios tengan privilegios similares. La UID del root es 0. 
+
+(d) Agregue un nuevo usuario llamado iso2017 a su instalación de GNU/Linux, especifique que su home sea creada en /home/iso_2017, y hágalo miembro del grupo catedra (si no existe, deberá crearlo). Luego, sin iniciar sesión como este usuario cree un archivo en su home personal que le pertenezca. Luego de todo esto, borre el usuario y verifique que no queden registros de él en los archivos de información de los usuarios y grupos.
+
+d.
+
+(e) Investigue la funcionalidad y parámetros de los siguientes comandos:
+. useradd ó adduser
+. usermod
+. userdel
+. su
+. groupadd
+. who
+. groupdel
+. passwd
+
+e. 
+.useradd o adduser: ambos comandos se utilizan para crear nuevos usuarios en el sistema. Entre sus parametros mas comunes estan:
+    -m: Crea el directorio personal del usuario (home directory).
+    -d <directorio>: Define un directorio personal específico para el usuario.
+    -s <shell>: Especifica la shell por defecto del usuario (por ejemplo, /bin/bash).
+    -g <grupo>: Asigna al usuario a un grupo primario.
+    -G <grupo(s)>: Asigna al usuario a uno o varios grupos secundarios.
+    -e <fecha>: Fecha de expiración de la cuenta en formato YYYY-MM-DD.
+    -u <UID>: Especifica el UID (User IDentifier) del usuario.
+
+.usermod: este comando modifica las propiedades de un usuario ya existente. Entre sus parametros mas comunes estan: 
+    -l <nuevo_nombre>: Cambia el nombre de usuario.
+    -d <nuevo_directorio>: Cambia el directorio personal del usuario.
+    -m: Mueve los contenidos del directorio personal al nuevo directorio (se utiliza con -d).
+    -s <shell>: Cambia la shell predeterminada del usuario.
+    -g <grupo>: Cambia el grupo primario del usuario.
+    -G <grupo(s)>: Asigna al usuario a uno o varios grupos secundarios.
+    -aG <grupo(s)>: Añade al usuario a uno o más grupos secundarios (sin eliminar grupos anteriores).
+    -L: Bloquea la cuenta del usuario (deshabilita la contraseña).
+    -U: Desbloquea la cuenta del usuario (habilita la contraseña).   
+
+.userdel: este comando elimina un usario del sistema. Parametros:
+    -r: Elimina el usuario y su directorio personal, incluyendo todos los archivos en ese directorio.
+
+.su: este comando permite cambiar de usuario en la sesion actual, de forma predeterminada cambia al usuario ROOT si no se especifica uno. Parametros:
+
+    -: Equivalente a -l o --login, inicia una sesión de login, cargando las variables de entorno del usuario al que se cambia.
+    -c "<comando>": Ejecuta un comando específico como otro usuario y luego retorna al usuario original.
+    <usuario>: Especifica el nombre del usuario al que se desea cambiar.
+
+.groupadd: este comando crea un nuevo grupo en el sistema. Parametros: 
+
+    -g <GID>: Especifica el GID (Group IDentifier) del grupo.
+    -f: Si el grupo ya existe, no se produce ningún error.
+
+.who: este comando muestra informacion sobre los usuarios actualmente conectados al sistema. Parametros:
+
+    -a: Muestra toda la información disponible.
+    -b: Muestra la última vez que se reinició el sistema.
+    -u: Muestra los usuarios actualmente conectados.
+    -q: Muestra un resumen de todos los usuarios conectados.
+
+.groupdel: este comando elimina un grupo existente del sistema. Parametros: 
+
+    <grupo>: Nombre del grupo a eliminar.
+
+.passwd: este comando cambia la contraseña de un usuario. Parametros: 
+
+    <usuario>: Cambia la contraseña del usuario especificado.
+    -d: Elimina la contraseña del usuario (deshabilita la autenticación con contraseña).
+    -l: Bloquea la cuenta del usuario (deshabilita la contraseña).
+    -u: Desbloquea la cuenta del usuario.
+    -e: Fuerza al usuario a cambiar su contraseña en el próximo inicio de sesión.
+    -S: Muestra el estado de la cuenta (bloqueada/desbloqueada).

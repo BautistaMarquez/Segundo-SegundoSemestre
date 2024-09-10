@@ -1,0 +1,38 @@
+7. Particiones:
+(a) Definición. Tipos de particiones. Ventajas y Desventajas.
+(b) ¿Cómo se identifican las particiones en GNU/Linux? (Considere discos IDE, SCSI y
+SATA).
+(c) ¿Cuántas particiones son necesarias como mínimo para instalar GNU/Linux? Nómbrelas indicando tipo de partición, identificación, tipo de File System y punto de montaje.
+(d) Ejemplifique diversos casos de particionamiento dependiendo del tipo de tarea que se
+deba realizar en su sistema operativo.
+(e) ¿Qué tipo de software para particionar existe? Menciónelos y compare.
+
+a- Es una forma de dividir logicamente el disco fisico.Tipos:
+    Primaria: division cruda del disco (puede haber 4 por disco). Se almacena informacion de la misma en el MBR. 
+    Extendida: sirve para contener unidades logicas en su interior. Solo puede existir una particion de este tipo por disco. No se define un tipo de FS directamente sobre ella. 
+    Logica: ocupa la totalidad o parte de la particion extendida y se le define un tipo de FS. Las particiones de este tipo se conectan como una lista enlazada. 
+
+b-  En GNU/Linux, las particiones se identifican siguiendo un esquema de nombres basado en el tipo de disco y el número de la partición. El sistema asigna nombres a los discos y particiones según su tipo de interfaz (IDE, SCSI, SATA, NVMe, etc.) y su orden en el sistema.
+IDE (PATA): hdX, donde X es una letra (ej., hda, hdb).
+SCSI, SATA, USB: sdX, donde X es una letra (ej., sda, sdb).
+NVMe: nvmeXnYpZ, donde X, Y y Z identifican el controlador, el disco, y la partición respectivamente (ej., nvme0n1p1).
+
+c- Como minimo es necesario una particion para el /, pero es recomendable crear al menos 2 una para el / y otra para el SWAP (espacio de intercambio).  
+    /: utiliza un tipo de particion logica o primaria, la identificacion depende del disco(ej: sda1 o nvme0n1p1), tipo de file system ext4 que es el comunmente usado (tambien puede ser XFS, btrfs o ext3), el punto de montaje es / osea root. Esta particion contiene todo el SO, incluyendo kernel, los binarios, configuraciones y los archivos de los programas.
+    SWAP: un tipo de particion logica o primaria, la identificacion depende del disco(ej: sda1 o nvme0n1p1), tipo de file system Swap (ya que es un espacio de intercambio, no un sistema de archivos tradicional), no posee punto de montaje ya que es usada directamente por el sistema y sirve como memoria virtual, utilizada cuando la RAM se llena. Es especialmente útil en sistemas con poca memoria RAM o cuando se necesita hibernar el sistema.
+
+d- Posibildades: 
+Instalacion basica para uso general: la anteriormente dicha
+Sistema de servidor con separacion de datos y sistema:Para un servidor donde es importante separar el sistema operativo y los datos para mejorar el rendimiento y la gestión. 
+    particion root (/), particion /var, particion /home, particion swap.
+Sistema para Desarrollo con Particiones Adicionales: Para un entorno de desarrollo donde se requiere espacio separado para código fuente, bases de datos, y archivos temporales.
+    particion root (/), particion /var, particion /home, particion /srv, particion swap.
+entre otras posibilidades.
+
+e- Existen varios tipos de software y cada herramienta tiene su propio enfoque y características, por lo que la elección dependerá de las necesidades del usuario, el tipo de disco, y su preferencia por una interfaz gráfica o de línea de comandos: 
+Gparted: es intuitiva y posee un amplio soporte, es menos adecuada para usuarios de linea de comandos. 
+Parted: es potente y flexible, adecuado para scripts, posee una interfaz menos amigable para principiantes. 
+fdisk: es simple y ampliamente disponible, pero no maneja discos GPT. 
+GNU Parted: soporta GPT y amplia la gama de operaciones, pero posee una interfaz de linea de comandos que puede ser dificil para principiantes. 
+entre otras. 
+Cada una posee sus ventas y desventajas y claramente todas fueron creadas con un enfoque distinto. 

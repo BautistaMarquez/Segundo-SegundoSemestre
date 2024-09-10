@@ -1,0 +1,54 @@
+7. Otros comandos de Linux (Indique funcionalidad y parámetros):
+
+(a) ¿A qué hace referencia el concepto de empaquetar archivos en GNU/Linux?
+
+a.
+El concepto de empaquetar archivos en GNU/Linux se refiere al proceso de combinar múltiples archivos y directorios en un solo archivo. Este proceso facilita la manipulación, transferencia, almacenamiento y distribución de conjuntos de archivos de manera más sencilla y eficiente.
+
+(b) Seleccione 4 archivos dentro de algún directorio al que tenga permiso y sume el tamaño de cada uno de estos archivos. Cree un archivo empaquetado conteniendo estos 4 archivos y compare los tamaños de los mismos. ¿Qué característica nota?
+
+b. 
+
+(c) ¿Qué acciones debe llevar a cabo para comprimir 4 archivos en uno solo? Indique la
+secuencia de comandos ejecutados.
+
+c. 
+1. crear y comprimir un archivo usando gzip (usando treas archivos txt de ejemplo)
+
+tar -cvzf archivos_comprimidos.tar.gz archivo1.txt archivo2.txt archivo3.txt archivo4.txt
+
+    -c: Crea un nuevo archivo tar.
+    -v: Muestra los detalles de los archivos procesados.
+    -z: Comprime el archivo tar usando gzip.
+    -f: Especifica el nombre del archivo comprimido de salida (archivos_comprimidos.tar.gz).    
+    (-x: Se puede usar para extraer el contenido del archivo tar.)
+
+(d) ¿Pueden comprimirse un conjunto de archivos utilizando un único comando?
+
+d.
+Si, es lo que hice en el c. 
+
+(e) Investigue la funcionalidad de los siguientes comandos:
+tar //ya esta 
+grep
+gzip
+zgrep
+wc
+
+e.
+.grep: se utiliza para buscar cadenas de texto en archivos o en la salida de otros comandos. 
+    Sintaxis basica: grep [opciones] patron archivo/s (patron: expresion regular que se busca)
+    -i: Ignorar mayúsculas y minúsculas.
+    -r: Buscar recursivamente en directorios.
+    -n: Mostrar los números de línea.
+
+.gzip: se utiliza para comprimir archivos utilizando el algoritmo de compresión gzip, generando archivos con extensión .gz.
+    Sintaxis: gzip archivo
+
+.zgrep: se utiliza para buscar cadenas de texto en archivos comprimidos con gzip (archivos .gz). Funciona de manera similar a grep, pero puede leer directamente archivos comprimidos sin necesidad de descomprimirlos primero.
+
+.wc: El comando wc (word count) se utiliza para contar líneas, palabras y caracteres en archivos o en la entrada estándar.
+    -l: Contar solo las líneas.
+    -w: Contar solo las palabras.
+    -c: Contar solo los caracteres.
+    -m: Contar solo los caracteres (modo multibyte).

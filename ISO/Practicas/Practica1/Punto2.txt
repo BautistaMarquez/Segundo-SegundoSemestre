@@ -1,0 +1,22 @@
+2. Distribuciones de GNU/Linux:
+(a) ¿Qué es una distribución de GNU/Linux? Nombre al menos 4 distribuciones de GNU/-
+Linux y cite diferencias básicas entre ellas.
+(b) ¿En qué se diferencia una distribución de otra?
+(c) ¿Qué es Debian? Acceda al sitio e indique cuáles son los objetivos del proyecto y una breve cronología del mismo
+
+a,b- Una distribucion es una customizacion de GNU/Linux formada por una version de kernel y determinados programas con sus configuraciones.
+Ubuntu: tiene un enfoque basado en los usuarios nuevos y el uso general. 
+    Características: Es una de las distribuciones más populares y fáciles de usar. Tiene un ciclo de lanzamiento regular y versiones con soporte extendido (LTS) que reciben actualizaciones durante cinco años. Viene con el entorno de escritorio GNOME por defecto.
+Debian: tiene un enfoque basado en su estabilidad y robustez. 
+    Características: Conocida por su estabilidad, es muy utilizada en servidores y sistemas críticos. Tiene un amplio repositorio de software y es la base para muchas otras distribuciones, como Ubuntu. 
+Fedora: tiene su enfoque basado en la innovacion y tecnologia de vanguardia.
+    Características: Fedora está orientada a usuarios que buscan probar lo último en tecnología. Actúa como campo de pruebas para tecnologías que luego se integran en Red Hat Enterprise Linux (RHEL).
+Arch Linux: basada en usuarios avanzados y personalizacion. 
+    Características: Es una distribución minimalista y altamente configurable. Utiliza un modelo de lanzamiento continuo ("rolling release"), por lo que siempre está actualizada. La instalación y configuración requieren conocimientos avanzados.
+Despues de leer todas las distribuciones, se puede ver claramente que cada una tiene distintos enfoques y que cada una es utiliza para cosas totalmente distintas, entiendo que esa es la versatilidad que ofrece el software libre, codigo abierto y Linux. 
+
+c- Debian es una distribución de Linux ampliamente reconocida por su estabilidad, seguridad y enfoque en el software libre. Es una de las distribuciones más antiguas y ha servido de base para muchas otras distribuciones populares, como Ubuntu. El proyecto Debian es desarrollado de forma comunitaria por miles de voluntarios de todo el mundo.
+Debian se rige por tres principios fundamentales, conocidos como el Contrato Social de Debian:
+-Proveer un sistema operativo libre.
+-Ser transparentes y abiertos.
+-Fomentar la colaboracion.

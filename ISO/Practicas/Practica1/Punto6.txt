@@ -1,0 +1,21 @@
+6. Sistema de Archivos (File System):
+(a) ¿Qué es?
+(b) Mencione sistemas de archivos soportados por GNU/Linux.
+(c) ¿Es posible visualizar particiones del tipo FAT y NTFS en GNU/Linux?
+(d) ¿Cuál es la estructura básica de los File System en GNU/Linux? Mencione los directorios más importantes e indique qué tipo de información se encuentra en ellos. ¿A qué hace referencia la sigla FHS?
+
+a,b- Organiza la forma en que se almacenan los archivos en dispositivos de almacenamiento (fat,ntfs,ext2,ext3,reiser,etc).
+
+c- Si, tiene soporte robusto para particiones FAT y NTFS, permitiendo tanto la visualización como la manipulación de datos en estos sistemas de archivos.
+    AT16/FAT32: Soporte nativo en GNU/Linux, se pueden montar fácilmente.
+    exFAT: Requiere instalación de paquetes adicionales (exfat-fuse y exfat-utils) para soporte completo.
+    NTFS: Soportado a través del módulo ntfs-3g, con soporte de lectura y escritura.
+
+d- Directorios mas importantes segun la FHS (Filesystem Hierachy Standard): 
+    / Tope de la estructura de directorios. Es como el C:\
+    /home Se almacenan archivos de usuarios (Mis documentos)
+    /var Informacion que varia de tamaño (logs, BD, spools)
+    /etc Archivos de configuracion
+    /bin Archivos binarios y ejecutables
+    /dev Enlace a dispositivos
+    /usr Aplicaciones de usuarios  

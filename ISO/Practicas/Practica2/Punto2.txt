@@ -1,0 +1,70 @@
+2. Proceso de Arranque SystemV (https://github.com/systeminit/si):
+(a) Enumere los pasos del proceso de inicio de un sistema GNU/Linux, desde que se prende
+la PC hasta que se logra obtener el login en el sistema.
+(b) Proceso INIT. ¿Quién lo ejecuta? ¿Cuál es su objetivo?
+(c) RunLevels. ¿Qué son? ¿Cuál es su objetivo?
+(d) ¿A qué hace referencia cada nivel de ejecución según el estándar? ¿Dónde se define qué
+Runlevel ejecutar al iniciar el sistema operativo? ¿Todas las distribuciones respetan
+estos estándares?
+(e) Archivo /etc/inittab. ¿Cuál es su finalidad? ¿Qué tipo de información se almacena en
+el? ¿Cuál es la estructura de la información que en él se almacena?
+(f) Suponga que se encuentra en el runlevel <X>. Indique qué comando(s) ejecutaría para
+cambiar al runlevel <Y>. ¿Este cambio es permanente? ¿Por qué?
+(g) Scripts RC. ¿Cuál es su finalidad? ¿Dónde se almacenan? Cuando un sistema GNU/Linux arranca o se detiene se ejecutan scripts, indique cómo determina qué script ejecutar ante cada acción. ¿Existe un orden para llamarlos? Justifique.
+
+a. 
+1. Se empieza a ejecutar el codigo del BIOS.
+2. El BIOS ejecuta el POST.
+3. El BIOS lee el sector de arranque (MBR).
+4. Se carga el gestor de arranque (MBC).
+5. El bootloader carga el kernel y el initrd.
+6. Se monta el initrd como sistema de archivos raiz y se inicializan componentes esenciales (ej.: scheduler).
+7. El Kernel ejecuta el proceso init y se desmonta el initrd.
+8. Se lee el /etc/inittab.
+9. Se ejecutan los scripts apuntados por el runlevel 1.
+10. El final del runlevel 1 le indica que vaya al runlevel por defecto.
+11. Se ejecutan los scripts apuntados por el runlevel por defecto.
+12. El sistema esta listo para usarse.
+
+b. 
+-Su funcion es cargar todos los subprocesos necesarios para el correcto funcionamiento del SO.
+- Es el encargado de montar los filesystems y de hacer disponible los demas dispositivos.
+Se podria decir que el INIT es ejecutado por el kernel, al final de su secuencia de arranque.
+
+cyd.
+Es el modo en que arranca Linux (3 en Redhat, 2 en Debian), el proceso de arranque se divide en niveles y cada uno es responsable de levantar o bajar una serie de servicios. Existen 7 y permiten iniciar un conjunto de procesos al arranque o apagado del sistema. 
+Segun el estandar:
+• 0: halt (parada)
+• 1: single user mode (monousuario)
+• 2: multiuser, without NFS (modo multiusuario sin soperte de
+red)
+• 3: full multiuser mode console (modo multiusuario completo
+por consola)
+• 4: no se utiliza
+• 5: X11 (modo multiusuario completo con login grafico basado en X)
+• 6: reboot
+
+- El runlevel que se ejecuta al inicio se encuentra definido en el archivo /etc/inittab. 
+- No, muchas distribuciones modernas usan otros sistemas de inicialización y no respetan los estandares, como systemd, que ofrecen enfoques más flexibles y eficientes.
+
+e. 
+- Su principal propósito es definir cómo se inicia y gestiona el sistema después del arranque del kernel, especificando qué procesos deben ejecutarse en diferentes runlevels (niveles de ejecución) y cómo deben comportarse.
+- Este archivo contiene:
+El runlevel predeterminado, la configuracion de consola virtual, los comandos de incializacion de runlevels, eventos especiales y acciones de mantenimiento y respuesta a señales del sistema. 
+Cada línea del archivo /etc/inittab sigue una estructura de cuatro campos separados por dos puntos (:):
+Ejemplo:  id:runlevels:action:process 
+
+f. 
+para cambiar al runlevel y ejecutaria el comando: init Y 
+Este cambio NO es permanente y solo afecta a la sesion actual. Cuando el sistema se inicie nuevamente, usara el runlevel predeterminado. 
+
+g. 
+- Los scripts RC (Run Commands) son scripts de shell que se ejecutan durante el arranque, cambio de runlevel, o apagado de un sistema GNU/Linux. Su finalidad es iniciar, detener o reiniciar servicios y demonios necesarios para el funcionamiento del sistema en un determinado runlevel.
+- Los scripts RC se almacenan en directorios específicos del sistema de archivos:
+    En sistemas SysVinit se encuentran en los subdirectorios /etc/
+    En sistemas systemd los scripts son reemplazados por unidades de servicio (.service), que se encuentran en /etc/systemd/system, /usr/lib/systemd/system. 
+- Los nombres de los enlaces simbólicos en /etc/rcX.d/ tienen un prefijo específico que determina si el script debe iniciarse o detenerse y el orden en que deben ejecutarse:
+    S: Iniciar el servicio (Start).
+    K: Detener el servicio (Kill).
+y el número determina el orden de ejecución, donde los scripts con números más bajos se ejecutan primero.
+ej: S01, S02, K01, K02. 

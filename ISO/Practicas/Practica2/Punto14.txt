@@ -1,0 +1,24 @@
+14. Indique qué comando/s es necesario para realizar cada una de las acciones de la siguiente
+secuencia de pasos (considerando su orden de aparición):
+(a) Cree un directorio llamado logs en el directorio /tmp.
+a. me posicione con cd ./tmp e hice mkdir logs (nose si hay una forma de hacerlo directamente/)
+
+(b) Copie todo el contenido del directorio /var/log en el directorio creado en el punto
+anterior.
+b. cp ./var/log .tmp/logs 
+
+(c) Empaquete el directorio creado en 1, el archivo resultante se debe llamar "misLogs.tar".
+c. tar -czf "misLogs.tar" logs
+
+(d) Empaquete y comprima el directorio creado en 1, el archivo resultante se debe llamar "misLogs.tar.gz".
+d. igual al anterior o usando gzip?? preguntar
+
+(e) Copie los archivos creados en 3 y 4 al directorio de trabajo de su usuario.
+e. mv /direccion de los archivos ~/
+
+(f) Elimine el directorio creado en 1, logs.
+f. r -r /tmp/logs (el rmdir elimina directorios vacios, para eliminar directorios NO vacios se utiliza RM)
+
+(g) Desempaquete los archivos creados en 3 y 4 en 2 directorios diferentes.
+g. ni idea con cual se descomprime no lo vimos jeje
+    buscado: para descomprimir archivo .gz (comprimidos NO empaquetados) se utiliza el comango GUNZIP

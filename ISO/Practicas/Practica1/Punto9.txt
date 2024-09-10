@@ -1,0 +1,15 @@
+9. Archivos:
+(a) ¿Cómo se identifican los archivos en GNU/Linux?
+(b) Investigue el funcionamiento de los editores vi y mcedit, y los comandos cat y more.
+(c) Cree un archivo llamado “prueba.exe” en su directorio personal usando el vi. El mismo
+debe contener su número de alumno y su nombre.
+(d) Investigue el funcionamiento del comando file. Pruébelo con diferentes archivos. ¿Qué
+diferencia nota?
+
+a- En linux los archivos se identifican mediante el comando file, el cual se encarga de identificar el tipo de archivo. 
+
+b- las siglas MC en linux identifican a un gestor de ficheros ortodoxo para sistemas de tipo unix y el editor vi es un editor de texto que maneja em memoria el texto entero de un archivo, este es el editor clasico de UNIX. El comando cat en Linux permite crear, fusionar o imprimir archivos en la pantalla de salida estandar o en otro archivo y muchos mas y el comando more sirve para ver pero no modificar el contenido de un archivo o comando y visualizarlo por paginas.
+
+c- hecho. 
+
+d- investigar

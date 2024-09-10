@@ -1,0 +1,28 @@
+1. Características de GNU/Linux:
+(a) Mencione y explique las características más relevantes de GNU/Linux.
+(b) Mencione otros sistemas operativos y compárelos con GNU/Linux en cuanto a los
+puntos mencionados en el inciso a.
+(c) ¿Qué es GNU?
+(d) Indique una breve historia sobre la evolución del proyecto GNU
+(e) Explique qué es la multitarea, e indique si GNU/Linux hace uso de ella.
+(f) ¿Qué es POSIX?
+
+a- Es un SO operativo tipo Unix, pero libre, diseñado por miles de programadores, existen diversas distribuciones (customizaciones) y es codigo abierto, lo que nos permite estudiarlo, personalizarlo, auditarlo,aprovechar la documentacion,etc. 
+Este es multiusuario, multitarea y multiprocesador, es altamente portable, posee diversos interpretes de comandos, permite el manejo de usuarios y permisos, es case sensitive, entre otras.
+
+b-
+
+c- GNU = No es Unix. 
+GNU se refiere a 4 libertades principales de los usuarios del software:
+• Libertad de usar el programa con cualquier proposito
+• Libertad de estudiar su funcionamiento
+• Libertad para distribuir sus copias
+• Libertad para mejorar los programas
+
+d-inicia en 1983 por Richard Stallman, se necesito crear un marco regulatorio conocido como GPL(General Public License de GNU) para asegurar que fuera libre, en 1990 GNU ya contaba con un editor de textos(Emacs), un compilador(GCC) y gran cantidad de bibliotecas que componen un Unix tipico pero faltaba el componente principal, el nucleo (kernel) luego de varios intentos fallidos (TRIX y MACH), en 1992 Torvalds quien venia trabajando desde 1991 en un Kernel denomindao Linux, el cual se distribuiria bajo licencia GPL decidio fusionar junto con Stallman sus proyecto, asi dando nacimiento a GNU/Linux.
+
+e- La multitarea es la capacidad de un sistema operativo para ejecutar múltiples procesos o tareas al mismo tiempo. En lugar de completar una tarea antes de comenzar otra, el sistema operativo distribuye el tiempo de CPU entre varios procesos, permitiendo que todos avancen aparentemente de manera simultánea.
+Si, GNU/Linux es un sistema operativo multitarea.Este utiliza un modelo de multitarea preemptiva, lo que significa que el kernel (núcleo del sistema operativo) decide cuándo cambiar de un proceso a otro, basándose en la prioridad de los procesos y otros factores. Esto permite una administración eficiente de los recursos del sistema y asegura que aplicaciones críticas reciban la atención necesaria, mientras otras pueden esperar su turno sin bloquear el sistema.
+
+f- Es un conjunto estandares desarrollados por IEEE, para asegurar la compatibilidad entre sistemas operativos. Estos estandares definen una interfaz comun para la programacion y la gestion de recursos en sistemas operativos similares a UNIX, permitiendo que programas escritos para un sistema compatible con POSIX puedan ejecutarse en otros sistemas sin necesidad de modificaciones significativas. 
+La importancia de POSIX radica en que permite la portabilidad del software. Si un programa se desarrolla siguiendo los estándares POSIX, podrá ejecutarse en cualquier sistema operativo compatible con POSIX, como GNU/Linux, macOS y algunas variantes de UNIX, con pocas o ninguna modificación. Esto facilita la interoperabilidad entre diferentes sistemas y reduce la dependencia de un solo proveedor o plataforma.

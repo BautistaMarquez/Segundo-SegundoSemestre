@@ -1,0 +1,64 @@
+8. Arranque (bootstrap) de un Sistema Operativo:
+(a) ¿Qué es el BIOS? ¿Qué tarea realiza?
+(b) ¿Qué es UEFI? ¿Cuál es su función?
+(c) ¿Qué es el MBR? ¿Que es el MBC?
+(d) ¿A qué hacen referencia las siglas GPT? ¿Qué sustituye? Indique cuál es su formato.
+(e) ¿Cuál es la funcionalidad de un “Gestor de Arranque”? ¿Qué tipos existen? ¿Dónde se
+instalan? Cite gestores de arranque conocidos.
+(f) ¿Cuáles son los pasos que se suceden desde que se prende una computadora hasta que
+el Sistema Operativo es cargado (proceso de bootstrap)?
+(g) Analice el proceso de arranque en GNU/Linux y describa sus principales pasos.
+(h) ¿Cuáles son los pasos que se suceden en el proceso de parada (shutdown) de GNU/Linux?
+(i) ¿Es posible tener en una PC GNU/Linux y otro Sistema Operativo instalado? Justifique.
+
+a- El BIOS es un componente esencial que realiza la inicialización y configuración básica del hardware, este se encuentra integrado en un chip en la placa base, realiza el POST, y carga el sistema operativo ademas de proporcionar una interfaz basica entre e/s.
+
+b- UEFI es una interfaz de firmware avanzada que reemplaza al BIOS en la mayoria de sistemas informaticos actuales. Proporciona un arranque más rápido y seguro, soporte para discos grandes y una interfaz gráfica intuitiva. Ofrece capacidades adicionales que mejoran la gestión y seguridad del sistema en comparación con el BIOS tradicional.
+
+c- El MBR (Master Boot Record) es un esquema de particionamiento de discos y una estructura de arranque utilizada en computadoras. Es una parte fundamental del proceso de arranque en los sistemas informáticos más antiguos y aún se usa en muchos sistemas hoy en día,  este se encuentra en los discos, posee el tamaño estandar de un sector (512 bytes). El MBC Master Boot Code, es un pequeño codigo que permite arrancar el SO, la ultima accion del BIOS es leer el MBC.
+
+d- Las siglas GPT hacen referencia a GUID Partition Table (Tabla de Particiones GUID). GPT es un esquema moderno de particionamiento de discos que se utiliza como reemplazo del antiguo esquema MBR (Master Boot Record). Su formato: 
+    Encabezado GPT: contiene info sobre la tabla de particiones y la estructura del disco.
+    Tabla de Particiones GPT: contiene las entradas para cada partición en el disco.
+    Entrada de Partición GPT: Cada entrada de partición en la tabla GPT incluye un identificador único global (GUID), que es un identificador único para el tipo de partición, junto con información sobre el tamaño y la ubicación de la partición.
+    Copias de Respaldo: GPT almacena una copia de la tabla de particiones al final del disco para proporcionar redundancia y permitir la recuperación en caso de daño en la tabla de particiones principal.
+
+e- Un gestor de arranque (bootloader) es un software fundamental que se encarga de cargar y transferir el control desde el firmware (como el BIOS o UEFI) al sistema operativo en una computadora. Su principal función es gestionar el proceso de arranque del sistema y permitir al usuario seleccionar el sistema operativo o el kernel a iniciar si hay múltiples opciones disponibles.
+Tipos de gestores de arranque: del sistema operativo, de arranque multisistema y para entornos especificos.
+El gestor de arranque se instala en el sector de arranque del disco duro, en la MBR (Master Boot Record) o en la partición EFI (Extensible Firmware Interface) en sistemas UEFI. Esto permite que el gestor de arranque sea lo primero que se ejecute cuando la computadora arranca.
+Ejemplos: GRUB, LILO, Syslinux, Windows Boot Manager, entre otros. 
+
+f- Pasos: 
+1. Encendido de la Computadora
+2. Ejecución del Firmware (BIOS/UEFI): Su función es realizar el POST (Power-On Self-Test) para verificar que los componentes esenciales del hardware, como la memoria, la CPU, y los dispositivos de almacenamiento, estén funcionando correctamente.
+3. POST (Power-On Self-Test): 
+4. Búsqueda del Dispositivo de Arranque: El firmware busca el dispositivo de almacenamiento desde el cual debe arrancar el sistema operativo. Esto puede ser un disco duro, una unidad flash, un CD/DVD, o una red, dependiendo de la configuración del sistema.
+5. Carga del Gestor de Arranque: El firmware carga el gestor de arranque desde el dispositivo de almacenamiento. El gestor de arranque es responsable de cargar el sistema operativo en la memoria.
+6. Ejecución del Gestor de Arranque
+7. Carga del Núcleo del Sistema Operativo (Kernel): El gestor de arranque carga el núcleo del sistema operativo en la memoria y transfiere el control al núcleo.
+8. Inicialización del Sistema Operativo: incluye la carga de los controladores de hardware, la inicialización de servicios y procesos básicos, y la configuración del entorno del sistema operativo.
+9. Carga del Entorno de Usuario: el sistema operativo carga el entorno de usuario, que puede incluir el inicio de sesión, el entorno de escritorio, o el shell, dependiendo del sistema operativo.
+
+g-
+1. Encendido del Sistema
+2. Ejecución del Firmware (BIOS/UEFI)
+3. Buscar el Dispositivo de Arranque
+4. Cargar el Gestor de Arranque (Bootloader)
+5. Ejecución del Gestor de Arranque
+6. Cargar el Núcleo del Sistema Operativo (Kernel)
+7. Inicialización del Núcleo
+8. Montar el Sistema de Archivos Raíz
+9. Ejecutar el Proceso Init (o systemd): El núcleo inicia el proceso init (o systemd, que es un reemplazo más moderno en muchas distribuciones), que es el primer proceso del sistema y tiene el PID (Process ID) 1. Este proceso es responsable de iniciar otros procesos y servicios del sistema.
+10. Inicialización de Servicios y Daemons: init o systemd inicia los servicios y daemons necesarios, como la red, los servicios de impresión, y otros componentes esenciales del sistema.
+11. Iniciar el Entorno de Usuario: Finalmente, init o systemd inicia el entorno de usuario, que puede ser una interfaz gráfica de usuario (GUI) como GNOME, KDE, o un entorno de línea de comandos.
+
+h- 
+1. Recepción de la Solicitud de Apagado
+2. Notificación a los Servicios y Daemons: El sistema envía señales a los servicios y daemons en ejecución para que finalicen sus operaciones y se cierren adecuadamente. Esto se realiza mediante comandos como systemctl en sistemas que usan systemd, o directamente a través de init en otros sistemas.
+3. Desmontaje de Sistemas de Archivos: El sistema desmonta todos los sistemas de archivos montados. Esto incluye la sincronización de datos en el disco para asegurar que toda la información pendiente se escriba correctamente y evitar la pérdida de datos.
+4. Cierre de Sesiones de Usuario: Se cierran todas las sesiones de usuario activas
+5. Finalización de Servicios y Daemons: Todos los servicios y daemons en ejecución son terminados de forma ordenada. Esto incluye servicios de red, bases de datos, y otros componentes del sistema.
+6. Detención del Núcleo del Sistema Operativo (Kernel):  El sistema envía una señal al núcleo para que detenga todos los procesos restantes y realice la preparación final para el apagado.
+7. Apagar el Sistema: Finalmente, el sistema apaga el hardware. Esto puede implicar enviar comandos al BIOS/UEFI para realizar un apagado completo o reiniciar el sistema.
+
+i- Si, obviamente se puede tener un sistema operativo por disco, o particionar el disco y tener un SO en cada partcion. 

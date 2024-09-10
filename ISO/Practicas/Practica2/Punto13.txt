@@ -1,0 +1,46 @@
+13. LO VOY A HACER EN EL USER BM (con touch puedo crear archivos)
+Cree una estructura desde el directorio /home que incluya varios directorios, subdirectorios
+y archivos, según el esquema siguiente. Asuma que “usuario” indica cuál es su nombre de
+usuario. Además deberá tener en cuenta que dirX hace referencia a directorios y fX hace
+referencia a archivos:
+(a) Utilizando la estructura de directorios anteriormente creada, indique que comandos
+son necesarios para realizar las siguientes acciones:
+    Mueva el archivo "f3.al directorio de trabajo /home/usuario.
+
+    - mv ~/f2/f3 ~/
+
+    Copie el archivo "f4.en el directorio "dir11".
+
+    - cp ~/f4 ~/dir11
+
+
+    .Haga los mismo que en el inciso anterior pero el archivo de destino, se debe llamar "f7".
+    
+    - cp ~/f4 ~/f7
+
+    .Cree el directorio copia dentro del directorio usuario y copie en él, el contenido de "dir1".
+
+    - mkdir copia; cd ~/dir1 ~/copia
+
+    .Renombre el archivo "f1"por el nombre archivo y vea los permisos del mismo.
+
+    - mv f1 archivo; ls -l
+    
+
+    .Cambie los permisos del archivo llamado archivo de manera de reflejar lo siguiente:
+    • Usuario: Permisos de lectura y escritura
+    • Grupo: Permisos de ejecución
+    • Otros: Todos los permisos
+    
+    - chmod 617 archivo 
+
+    .Renombre los archivos "f3" y "f4"de manera que se llamen "f3.exe "f4".exe respectivamente.
+    
+    - mv f3 fe.exe; mv f4 f4.exe
+
+    .Utilizando un único comando cambie los permisos de los dos archivos renombrados en el inciso anterior, de manera de reflejar lo siguiente:
+    • Usuario: Ningún permiso
+    • Grupo: Permisos de escritura
+    • Otros: Permisos de escritura y ejecución
+    
+    - chmod 023 *".exe"

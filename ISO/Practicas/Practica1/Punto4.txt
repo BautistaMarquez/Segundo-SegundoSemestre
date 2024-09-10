@@ -1,0 +1,22 @@
+4. Kernel:
+(a) ¿Qué es? Indique una breve reseña histórica acerca de la evolución del Kernel de
+GNU/Linux.
+(b) ¿Cuáles son sus funciones principales?
+(c) ¿Cuál es la versión actual? ¿Cómo se definía el esquema de versionado del Kernel en
+versiones anteriores a la 2.4? ¿Qué cambió en el versionado se impuso a partir de la
+versión 2.6?
+(d) ¿Es posible tener más de un Kernel de GNU/Linux instalado en la misma máquina?
+(e) ¿Dónde se encuentra ubicado dentro del File System?
+(f) ¿El Kernel de GNU/Linux es monolítico? Justifique.
+
+a,b- el Kernel es el nucleo del S.O este ejecuta programas y gestiona dispositivos de hardware, es el encargado de que el software y el hardware puedan trabajar juntos. Sus funciones mas importantes son la administracion de memoria, CPU y la e/s. 
+
+c- la version actual es la 3.0.La version 2.4 fue la que catapulto a GNU/Linux como un SO estable y robusto. Durante este periodo es que se comienza a utilizar Linux mas asiduamente. La version 2.6 tuvo muchas mejoras para el SO dentro de las que se destacaban soporte de hilos, mejoras en la planificacion y soporte de nuevo hardware. 
+
+d- Si es posible y es una practica comun en muchas distribuciones. Esto permite selecionar uno al arrancar el sistema, lo que es util para probar nuevos kernels. 
+
+e- Cuando se instala un nuevo kernel NO reemplaza al anterior, cada version de kernel se instala en directorios separados en "/boot" este contiene los archivos necesarios para el arranque del sistema.
+
+f- Si, es un nucleo monolítico hibrido, ya que los drivers y codigo del kernel se ejecutan en modo privilegiado y lo que lo hace hibrido es la capacidad de cargar y descargar funcionalidad a traves de modulos. 
+
+/* Sí, el kernel de GNU/Linux es de tipo monolítico. Esto significa que todas las funcionalidades esenciales, como la gestión de procesos, la memoria, los dispositivos de hardware, y el sistema de archivos, están integradas dentro de un único bloque de código que se ejecuta en modo privilegiado (modo kernel). Data de ChatGPT*/ 

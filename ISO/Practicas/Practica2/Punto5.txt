@@ -1,0 +1,160 @@
+5. FileSystem:
+
+(a) ¿Cómo son definidos los permisos sobre archivos en un sistema GNU/Linux?
+
+a.
+Existen 3 tipos de permisos y se basan en una notaci´on octal:
+    Permiso    Valor    Octal
+    Lectura      R        4
+    Escritura    W        2
+    Ejecucion    X        1
+
+Estos se aplican sobre los usuarios. permisos del dueño -> u, permisos del grupo -> g, permisos de otros usuarios -> o. 
+se utiliza el comando chmod -> $ chmod 755 /tmp/script
+
+(b) Investigue la funcionalidad y parámetros de los siguientes comandos relacionados con
+los permisos en GNU/Linux:
+chmod
+chown
+chgrp
+
+b.
+.chmod: este comando cambia los permisos de acceso (lectura, escritura y ejecucion) de archivos y directorios. Los permisos se asignan al propietario del archivo, al grupo del propietario, y a otros usuarios. Parametros :
+Modo Numerico:                                      Modo simbolico: 
+    4: lectura(r)                                   u(user): Propietario del archivo.
+    2: escritura(w)                                 g (group): Grupo del archivo.
+    1: ejecucion(x)                                 o (others): Otros usuarios.
+                                                    a (all): Todos (propietario, grupo y otros).
+                                                    + (añadir), - (quitar), = (establecer permisos exactamente).
+                                                    r (read): Permiso de lectura.
+                                                    w (write): Permiso de escritura.
+                                                    x (execute): Permiso de ejecución.
+
+.chown: este comando cambia el propietario y/o el grupo de un archivo o directorio. Parametros:
+
+    <usuario>: Cambia el propietario del archivo o directorio.
+    <usuario>:<grupo>: Cambia el propietario y el grupo del archivo o directorio.
+    :<grupo>: Cambia solo el grupo del archivo o directorio (similar a chgrp).
+    --reference=<archivo>: Cambia la propiedad de un archivo o directorio para que coincida con la de otro archivo o directorio de  referencia.
+
+.chgrp: este comando cambia el grupo al que pertenece un archivo o directorio. Parametros: 
+
+    <grupo>: Especifica el nuevo grupo del archivo o directorio.
+    --reference=<archivo>: Cambia el grupo de un archivo o directorio para que coincida con el grupo de otro archivo o directorio de referencia.
+
+
+(c) Al utilizar el comando chmod generalmente se utiliza una notación octal asociada para definir permisos. ¿Qué significa esto? ¿A qué hace referencia cada valor?
+c.
+4 = lectura, 2 = escritura, 1 = ejecucion. 
+
+(d) ¿Existe la posibilidad de que algún usuario del sistema pueda acceder a determinado archivo para el cual no posee permisos? Nombrelo, y realice las pruebas correspondientes.
+
+d.
+No entiendo si se refiere al usuario con los permisos de superusuario o si estos permisos se pueden "dar" desde un superusuario a un usuario "normal", tengo que preguntar esto. 
+
+(e) Explique los conceptos de “full path name” y “relative path name”. De ejemplos claros de cada uno de ellos.
+
+e. 
+.full path name(ruta absoluta): describe la ubicacion exacta de un archivo o directorio desde el directorio raiz del sistema de archivos. Comienza con /. Ejemplo:  /home/usuario/documentos/archivo.txt: Es una ruta absoluta que apunta al archivo
+
+.relative path name(ruta relativa): especifica la ubicacion de un archivo o directorio en relacion con el directorio actual en el que se encuentra el usuario. Ejemplo: documentos/archivo.txt: Es una ruta relativa que apunta al archivo archivo.txt en el subdirectorio documentos del directorio actual.
+
+(f) ¿Con qué comando puede determinar en qué directorio se encuentra actualmente? ¿Existe alguna forma de ingresar a su directorio personal sin necesidad de escribir todo el path completo? ¿Podría utilizar la misma idea para acceder a otros directorios? ¿Cómo? Explique con un ejemplo.
+
+f. 
+- El comando utiliza para determinar el directorio en que uno se encuentra actualmente es: PWD. 
+- Se puede ingresar a un directorio personal utilizando el comando cd ~ o cd. 
+- Si, se puede utilizar este misma idea poniendo el usuario luego del cd ~. Ej: cd ~Juan o cd ~/Documentos.
+
+(g) Investigue la funcionalidad y parámetros de los siguientes comandos relacionados con
+el uso del FileSystem:
+. cd
+. umount
+. mkdir
+. du
+. rmdir
+. df
+. mount
+. ln
+. ls
+. pwd
+. cp
+. mv
+
+g.
+.cd: este comando cambia el directorio de trabajo actual. Parametros: 
+    <directorio>: Especifica el directorio al que se desea cambiar.
+    cd ..: Sube al directorio padre del directorio actual.
+    cd -: Cambia al último directorio en el que se encontraba el usuario.
+    cd ~: Cambia al directorio personal del usuario.
+
+.umont: este comando desmonta un sistema de archivos que se encuentra montado. Parametros: 
+
+    <punto_de_montaje>: Desmonta el sistema de archivos montado en el punto de montaje especificado.
+    <dispositivo>: Desmonta el dispositivo especificado (por ejemplo, /dev/sdb1).
+    -l o --lazy: Desmontaje "perezoso", detiene el acceso inmediato al sistema de archivos pero retrasa el desmontaje real hasta que ya no  esté en uso.
+    -f o --force: Fuerza el desmontaje del sistema de archivos, útil para sistemas de archivos de red.
+
+.mkdir: este comando crea un nuevo directorio. Parametros:
+
+    <directorio>: Nombre del directorio a crear.
+    -p o --parents: Crea directorios padres intermedios que no existan.
+    -v o --verbose: Muestra un mensaje por cada directorio creado.
+
+.du: este comando muestra el uso de espacio en disco de archivos y directorios. Parametros:
+
+    -h o --human-readable: Muestra el tamaño en formatos legibles por humanos (KB, MB, GB).
+    -s o --summarize: Muestra solo el uso total del directorio especificado.
+    -a o --all: Muestra el uso del espacio en disco de todos los archivos y directorios.
+    -c o --total: Muestra un total al final.
+    -d <nivel>: Profundidad máxima de los directorios a mostrar.
+
+.rmdir: este comando elimina directorios vacios. Parametros: 
+
+    <directorio>: Nombre del directorio a eliminar.
+    -p o --parents: Elimina el directorio especificado y su jerarquía de padres vacíos.
+
+.df: este comando muestra el espacio disponible en los sistemas de archivos montados. Parametros:
+
+    -h o --human-readable: Muestra el tamaño en formatos legibles por humanos (KB, MB, GB).
+    -T o --print-type: Muestra el tipo de sistema de archivos.
+    -i o --inodes: Muestra la información sobre inodos en lugar de bloques de disco.
+
+.mount: este comando monta sistemas de archivos en un punto de montaje. Parametros: 
+
+    <dispositivo> <punto_de_montaje>: Especifica el dispositivo a montar y el punto de montaje.
+    -t <tipo>: Especifica el tipo de sistema de archivos (por ejemplo, ext4, ntfs).
+    -o <opciones>: Especifica las opciones de montaje (por ejemplo, ro para solo lectura, rw para lectura y escritura).
+    -a o --all: Monta todos los sistemas de archivos definidos en /etc/fstab.
+
+.ln: este comando crea enlaces a archivos. Parametros: 
+
+    <archivo_original> <enlace>: Crea un enlace al archivo original con el nombre especificado.
+    -s o --symbolic: Crea un enlace simbólico (alias o "soft link").
+    -f o --force: Elimina archivos de destino existentes.
+    -v o --verbose: Muestra un mensaje por cada enlace creado.
+
+.ls: este comando muestra el contenido de directorios. Parametros:
+
+    -l: Muestra la lista detallada con permisos, propietarios, tamaño, etc.
+    -a o --all: Muestra todos los archivos, incluidos los ocultos (los que comienzan con .).
+    -h o --human-readable: Muestra los tamaños en formatos legibles por humanos.
+    -R o --recursive: Muestra el contenido de los subdirectorios de manera recursiva.
+    -S: Ordena los archivos por tamaño.
+
+.pwd: este comando muestra la ruta completa del directorio de trabajo actual. 
+
+.cp: este comando copia archivos y directorios. Parametros: 
+
+    <origen> <destino>: Especifica el archivo o directorio de origen y destino.
+    -r o --recursive: Copia directorios de manera recursiva.
+    -i o --interactive: Solicita confirmación antes de sobrescribir archivos.
+    -v o --verbose: Muestra los archivos a medida que se copian.
+    -p o --preserve: Conserva los atributos originales (como permisos, tiempos de modificación, etc.).
+
+.mv: este comando mueve o renombra archivos y directorios. Parametros:
+
+    <origen> <destino>: Especifica el archivo o directorio de origen y destino.
+    -i o --interactive: Solicita confirmación antes de sobrescribir archivos.
+    -v o --verbose: Muestra los archivos a medida que se mueven.
+    -f o --force: Sobrescribe archivos existentes sin confirmación.

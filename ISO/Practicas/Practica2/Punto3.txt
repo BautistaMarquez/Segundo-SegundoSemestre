@@ -1,0 +1,31 @@
+3. SystemD(https://github.com/systemd/systemd):
+
+(a) ¿Qué es sytemd?
+
+a. 
+Systemd es un sistema de inicialización y gestor de servicios para sistemas operativos basados en Unix, especialmente Linux. Fue diseñado para reemplazar el sistema de inicialización tradicional SysVinit y mejorar el rendimiento y la gestión de servicios del sistema, ofreciendo más características, mayor flexibilidad, y tiempos de arranque más rápidos.
+
+(b) ¿A qué hace referencia el concepto de Unit en SystemD?
+
+b.
+Este concepto hace referencia a las unidades de trabajo, que son denominadas units y existen varias entre ellas: 
+    - Service: controla un servicio particular.
+    - Socket: encapsula IPC. 
+    - Target: agrupa units o establece puntos de sincronizacion durante el booteo. 
+    - Snapshot: almacena el estado de un conjunto de unidades que puede estar restablecido mas tarde
+    - etc. 
+Estos pueden tener dos estados: active o inactive.
+
+(c) ¿Para que sirve el comando systemctl en SystemD?
+
+c.
+systemctl se utiliza para interactuar con el sistema y gestionar las "unidades" (units) controladas por systemd. Permite iniciar, detener, reiniciar, habilitar, deshabilitar y monitorizar servicios, así como cambiar el estado del sistema, entre otras tareas administrativas críticas.
+
+(d) ¿A qué hace referencia el concepto de target en SystemD?
+
+d. 
+un "target" (objetivo) es una unidad que agrupa otras unidades (units) con el propósito de alcanzar un estado específico del sistema operativo. Los "targets" reemplazan y amplían la funcionalidad de los runlevels del sistema de inicialización tradicional SysVinit.
+
+(e) Ejecute el comando pstree. ¿Qué es lo que se puede observar a partir de la ejecución de este comando?
+
+e. 

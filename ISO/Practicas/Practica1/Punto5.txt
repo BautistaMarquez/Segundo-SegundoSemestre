@@ -1,0 +1,23 @@
+5. Intérprete de comandos (Shell):
+(a) ¿Qué es?
+(b) ¿Cuáles son sus funciones?
+(c) Mencione al menos 3 intérpretes de comandos que posee GNU/Linux y compárelos
+entre ellos.
+(d) ¿Dónde se ubican (path) los comandos propios y externos al Shell?
+(e) ¿Por qué considera que el Shell no es parte del Kernel de GNU/Linux?
+(f) ¿Es posible definir un intérprete de comandos distinto para cada usuario? ¿Desde dónde
+se define? ¿Cualquier usuario puede realizar dicha tarea?
+
+a,b- Tambien conocido como CLI (command line inteface), es el modo de comunicacion entre el usuario y el SO. Ejecuta programas a partir del ingreso de comandos, estos se pueden personalizar y son programables. 
+
+c- Bourne Shell (sh), Korn Shell (ksh) y Bourne Again Shell (bash). 
+Sh: es el shell original de Unix, posee sintaxis basica pero carece de caracteristicas avanzadas, es extremadamente portatil. 
+Ksh: combina caracteristicas de sh y csh, ofrece funciones mas avanzadas de scripting, un historial de comandos entr otras caracteristicas, a este se lo considera mas rapido y eficiente que bash, especialmente en scripts grandes. 
+bash:es una mejora del sh, posee mejoras en el scripting, tambien posee el historial de comandos y otras caracteristicas como ksh, no es tan portatil como sh, este permite definir alias y personalizar funciones del comportamiento del shell. 
+
+d- Los comandos propios(builtin) se ubican integrados directamente al shell (ej de comandos: cd, echo, pwd, set, export) para verificar si es interno se puede usar el comando type. 
+Los comandos externos son programas o scripts que se encuentran en el sistema de archivos, estos son ejecutables almacenados en directorios especificos como /bin, /usr/bin, /sbin, entre otros, que estan en la variable de entorno PATH.
+
+e- El shell no es parte del kernel de GNU/Linux porque su función, diseño y nivel de operación están en el espacio de usuario, proporcionando una interfaz accesible y flexible sin interferir en las tareas críticas de administración de recursos que realiza el kernel. Este enfoque modular y separado es uno de los fundamentos del diseño de sistemas Unix-like y contribuye a la estabilidad, seguridad y flexibilidad del sistema.
+
+f- Si, es posible definir un shell para cada usuario, esto se establece en el archivo "/etc/passwd" o mediante el comando "chsh", un usuario normal puede cambiar su propio shell, pero no puedecambiar el shell de otros usuarios y solo puede seleccionar shells permitidos en /etc/shells, solo un usuario con privilegios de root puede cambiar el shell de cualquier usuario o modificar directamente el archivo /etc/passwd.

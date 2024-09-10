@@ -1,0 +1,41 @@
+12. Indique qué acción realiza cada uno de los comandos indicados a continuación considerando
+su orden. Suponga que se ejecutan desde un usuario que no es root ni pertenece al grupo
+de root. (Asuma que se encuentra posicionado en el directorio de trabajo del usuario con el
+que se logueó). En caso de no poder ejecutarse el comando indique la razón:
+*En el pdf*
+(a) Inicie 2 sesiones utilizando su nombre de usuario y contraseña. En una sesión vaya
+siguiendo paso a paso las órdenes que se encuentran escritas en el cuadro superior.
+En la otra sesión, cree utilizando algún editor de textos un archivo que se llame
+.
+ejercicio10_explicacion"dentro del directorio creado en el ejercicio 9.a- y, para cada
+una de las órdenes que ejecute en la otra sesión, realice una breve explicación de los
+resultados obtenidos.
+(b) Complete en el cuadro superior los comandos 19 y 20, de manera tal que realicen la
+siguiente acción:
+19: Copiar el directorio iso y todo su contenido al directorio creado en el inciso
+9.a-.
+20: Copiar el resto de los archivos y directorios que se crearon en este ejercicio al
+directorio creado en el ejercicio 9.a-.
+(c) Ejecute las órdenes 19 y 20 y comentelas en el archivo creado en el inciso a-.
+
+a. Lo voy a hacer aca (TODO ESTO LO HICE EN EL USER BM)
+1. creo el directorio iso 
+2. se posiciona en el directorio creado "iso" y guarda en un directorio f0 (el cual se crea) el resultado del ps (muestra una lista de los procesos en ejecución en el sistema) (el ; simplemente separa dos comandos en una sola linea)
+3. crea el directorio f1 y le guarda el resultado del ls (osea f0 y f1, que es lo que posee el directorio actual /home/iso)
+4. me posiciono en el directorio raiz /
+5. realiza una impresion de la "ubicacion" del home (/home/bm en mi caso)
+6. error: ls: no se puede acceder a "$":no existe el fichero o directorio (pareciera que esto es un error del pdf). Si no utilizo el $ antes del mayor funciona y entiendo que almacena la salida del ls -l en la direccion posterior al mayor
+7. me posiciono en el directorio home y creo que el directorio f2
+8. muestra la info del directorio del f2, no se cual es la diferencia o lo que "agrega" el d la verdad 
+9. modifica los permisos del directorio f2, siendo 3 = escritura y ejecucion, 4 = lectura y 1 = ejecucion (usuario,grupo,todos).
+10. crea un ARCHIVO en el directorio actual.
+11. me posiciono en el directorio f2. 
+12. me posiciono en el directorio iso, (el signo anterior a la barra, es un atajo que significa el directorio de inicio del USUARIO ACTUAL.)
+13. guarda la salida del pwd (muestra la direccion actual) en f3
+14. (el grep 'ps' es un filtro para filtrar los archivos que tengan ps) entiendo que realiza el ps (osea muestra los "programas" en ejecucion) filtrando por los que tengan ps, cuenta las lineas con el wc y la salida la guarda en f3 que seria la direccion que esta posterior al mayor mayor (el doble mayor añade SIN SOBRESCRIBIR) la salida es 1.
+15. modifica los permisos del directorio f2 y luego se posiciona en el cd .. que seria el directorio personal oea el home
+16. error: find: warning: '-name' matches against basenames only, but the given pattern contains a directory separator ('/'), thus the expression will evaluate to false all the time. did you mean '-wholename'? usando el wholename si funciona y entiendo que busca las direcciones que posean un . que estan en la direccion etc/passwd. 
+17. me mostro las direcciones que poseian / que estaban en la direccion etc/passwd entiendo.
+18. creo el directorio ejercicio5
+19. lo voy a copiar al directorio creado en el paso 18, utilizando cp -r ~/iso ~/ejercicio5
+20. entiendo que seria lo mismo ya que hay que utilizar el cp y copiarlo en el otro directorio, no tendria mas misterio. 
