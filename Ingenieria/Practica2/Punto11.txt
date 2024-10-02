@@ -1,0 +1,105 @@
+Problema 11: Concursos
+Suponga que el área para la cual trabaja fue contactada para implementar un sistema para el manejo de concursos de los
+docentes de la Facultad de Informática.
+
+El docente que quiera inscribirse a un concurso deberá registrarse previamente en el sistema. Para esto deberá ingresar
+los siguientes datos: Dni, nombre, apellido y dirección de mail. Una vez completado los datos el sistema mandará a la
+casilla de correo ingresada la contraseña asignada automáticamente. El mail debe ser único y será utilizado como
+nombre de usuario. Según el estatuto de la UNLP los dni permitidos para concursar son aquellos menores a 55 millones y
+mayores a 12 millones.
+
+Una vez registrado el docente puede inscribirse al concurso, para lo cual, una vez que haya ingresado al sistema, deberá
+seleccionar la materia a la cual desea inscribirse. Según el reglamento interno de la Facultad de informática que nos
+facilitó el jefe del área de personal, el docente no podrá inscribirse a más de 3 concursos. Cuando el docente acepta la
+inscripción el sistema deberá imprimir un comprobante.
+
+Por último, para cumplir con la ordenanza número 123/19 de la UNLP, el jefe del área de concursos, el cual ya cuenta con
+un nombre de usuario y contraseña, deberá poder imprimir un listado con los inscriptos a una materia determinada para
+poder enviar dicho listado al secretario administrativo quien lo firma y eleva al decano de la Facultad. Suponga que el
+sistema Siu-Guarani realiza una tarea similar a la solicitada y que puede consultar su implementación y registros.
+
+Resolucion
+Rol de usuarios: 
+    docentes
+    jefe de area(no necesita registro)
+
+Historias de usuario:
+    registrar docente (el mail debe ser unico y se usa como nombre de user, los dni permitidos para concursar son aquellos menores a 55 millones y mayores a 12 millones.)
+    inscribir a concurso (un docente no puede inscribirse a mas de 3 cursos)
+    imprimir listado (3 escenarios)
+
+Reglas de negocio:
+
+
+1.
+Id: registrar docente 
+Título: como docente quiero registrarme para inscribirme a un curso
+Reglas de Negocio:
+    el mail del docente debe ser unico 
+    el dni del docente debe ser mayor a 12 millones y menor a 55 millones 
+
+Reverso: 
+Criterios de Aceptación (registrar docente):
+Escenario 1: registro exitoso
+DADO el mail docente.123@gmail.com no se encuentra registrado y el dni 36.235.190 cumple con los requisitos
+CUANDO el docente ingrese 36.235.190, lucas, rodriguez, docente.123@gmail.com y oprima "registrar"
+ENTONCES el sistema verifica la validez de los datos, confirma el registro y envia la contraseña al mail ingresado por el docente
+
+Escenario 2: registro fallido por mail regsitrado
+DADO el mail docente.123@gmail.com  se encuentra registrado
+CUANDO el docente ingrese 36.235.190, lucas, rodriguez, docente.123@gmail.com y oprima "registrar"
+ENTONCES el sistema verifica la validez de los datos e informa por pantalla "El mail ingresado ya se encuentra registrado y asociado a un docente"
+
+Escenario 3: registro fallido por dni invalido 
+DADO el mail docente45.123@gmail.com no se encuentra registrado y el dni 55.235.190 no cumple con los requisitos
+CUANDO el docente ingrese 36.235.190, lucas, rodriguez, docente45.123@gmail.com y oprima "registrar"
+ENTONCES el sistema verifica la validez de los datos e informa "el DNI ingresado no cumple con los requisitos establecidos para el registro"
+
+Escenario 4: registro fallido por error en el envio del correo (?)
+DADO 
+CUANDO 
+ENTONCES 
+
+
+2.
+Id: inscribir a concurso
+Título: como docente quiero inscribirme a un concurso para poder trabajar en la materia que deseo 
+Reglas de Negocio:
+    el docente no puede inscribirse a mas de 3 concursos 
+    (dice que la materia se selecciona asi que entiendo que no puede seleccionar una erronea)
+
+Reverso: 
+Criterios de Aceptación (inscribir a concurso):
+Escenario 1: inscripcion exitosa 
+DADO el docente posee 0 inscripciones a concursos 
+CUANDO el docente seleccione la materia Ingenieria De Software I y oprima "inscribirse"
+ENTONCES el sistema aumenta en uno la cantidad de inscripciones a concursos del docente, confirma la inscripcion e imprime el comprobante 
+
+Escenario 2: inscripcion fallida por cantidad de inscripciones igual a 3
+DADO el docente posee 3 inscripciones a concursos 
+CUANDO el docente seleccione la materia Ingenieria De Software I y oprima "inscribirse" 
+ENTONCES el sistema informa "el docente posee el numero de maximo de inscrpciones a concursos (3)"
+
+
+3.
+Id: imprimir listado 
+Título: como jefe de area quiero imprimir el listado para enviarlo al secretario
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (imprimir listado):
+Escenario 1: impresion exitosa 
+DADO la materia Ingenieria De Software I valida 
+CUANDO el jefe de area seleccione Ingenieria De Software I y oprima "listado"
+ENTONCES el sistema imprime el listado de los inscriptos al concurso de la materia seleccionada
+
+Escenario 2: impresion exitosa sin inscriptos
+DADO la materia Ingenieria De Software II valida  
+CUANDO el jefe de area seleccione Ingenieria De Software II y oprima "listado" 
+ENTONCES el sistema informa "No existen inscriptos para el concurso de la materia seleccionada"
+
+Escenario 3: impresion fallida por materia invalida (?)
+DADO 
+CUANDO 
+ENTONCES 

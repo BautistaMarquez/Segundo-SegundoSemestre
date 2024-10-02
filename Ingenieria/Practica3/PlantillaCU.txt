@@ -1,0 +1,118 @@
+
+Analisis:
+Actores:
+
+casos de uso:
+
+
+
+1.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal (a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+2.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+3.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+4.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+5.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+6.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+7.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:

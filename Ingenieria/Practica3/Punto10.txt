@@ -1,0 +1,134 @@
+10. Gimnasio
+Se desea modelar con casos de uso un sistema web para el manejo de turnos de un gimnasio. Las personas
+que desean solicitar un turno para concurrir al gimnasio primero deben registrarse. Para ello deben ingresar
+el dni, el nombre, el apellido y el mail que será utilizado como nombre de usuario (por lo tanto, no puede
+repetirse). Una vez que el usuario se registra, el sistema genera una contraseña que es enviada al correo de
+la persona.
+Para solicitar un turno, el cliente del gimnasio, previa autenticación, debe ingresar: fecha, hora y actividad.
+Si hay cupo para esa actividad en ese día y a esa hora, el sistema registra el turno, de lo contrario, muestra
+un mensaje de cupo no disponible.
+Por último cuando un cliente llega al gimnasio debe registrar su llegada, para esto la secretaria del gimnasio
+solicita el número de dni del cliente para hacer el registro. El gimnasio se maneja con un sistema externo
+que suma puntos a aquellos clientes que cumplen con las reservas realizadas. Es necesario que cuando se
+registre la asistencia del cliente al gimnasio se haga la suma correspondiente para lo cual el sistema se
+conecta con el Servidor externo, envía el dni del cliente y la actividad que va a realizar y el Servidor se
+encarga de sumar los puntos.
+
+
+Analisis:
+Actores:
+
+casos de uso:
+
+
+
+1.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal (a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+2.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+3.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+4.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+5.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+6.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:
+
+
+7.
+Nombre del caso de uso: 
+
+Descripcion:
+
+Actores:
+
+Precondiciones:
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+
+curso alterno:
+
+Postcondicion:

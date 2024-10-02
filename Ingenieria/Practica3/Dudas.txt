@@ -1,0 +1,15 @@
+verifica y valida no va, con poner que verifica ya esta.
+Punto 1y5: 
+    .como el cliente es parte del pago con tarjeta tendria que hacerle una flecha 
+
+
+
+Punto 6: 
+    .Consultar si para la comprada de entrada fisico, seria mejor que el nombre sea Vender
+    .En el reservar entrada la grilla que se muestra seria distinta? pq solo dice que con eso se ingresa el nombre
+    .precondicion en retirar entradas reservadas? y preguntar ultimo paso 
+    .deberia eliminar que el pago fisico extiende al retiro de entrada reservada
+
+.Punto7:
+    .Es una pregunta GENERAL pero no se si los actores que partician de CU que son invocados son actores del CU que invoca (ej: sistema bancario)
+    .ADELANTAR CUOTAS: El cliente debe poseer al menos un prestamo que este por el sexto mes? (o seria un caso en los pasos, osea que el cliente no posea prestamos)

@@ -1,0 +1,139 @@
+7. Préstamos Personales
+Se necesita modelar un subsistema web de administración de préstamos personales.
+El sistema forma parte de un sistema mayor que implementa un servicio de homebanking para clientes del
+banco. Para todas las operaciones que realiza el cliente, se asume que está debidamente autenticado.
+Un cliente del banco puede solicitar un préstamo personal vía web. Cada cliente puede solicitar un máximo
+de 3 préstamos y hasta un monto total de $30.000. Para realizar la solicitud, el cliente ingresa el motivo,
+selecciona la cuenta de la cual se descontará automáticamente la cuota mensualmente e ingresa el monto
+del préstamo. El sistema debe verificar que el cliente no figure en el Veraz (banco de datos con información
+de deudores). Para realizar la comprobación, el sistema envía un código de seguridad para validar la
+identidad de la aplicación del banco. Una vez validada la identidad, la aplicación le envía el nombre y
+apellido de la persona y su número de CUIL/CUIT para determinar si existe o no como deudor. En caso de
+que todo sea válido, el sistema registra el préstamo correspondiente, genera un identificador del préstamo,
+un código de verificación y un comprobante con los datos del préstamo.
+El cliente podrá adelantar cuotas a partir del sexto mes de otorgado el préstamo. Para esto, el sistema
+muestra un listado de préstamos vigentes donde se debe seleccionar el que se desea pagar. A continuación
+el sistema solicita ingresar la cantidad de cuotas a abonar. Luego, el sistema muestra un listado de cuentas
+del cliente, donde se deberá seleccionar una de ellas para realizar el pago. Si hay saldo suficiente, el monto
+se deberá descontar de la cuenta del cliente. En caso de no poseer saldo se le informa al cliente.
+El cliente podrá realizar la cancelación total del préstamo a partir del noveno mes. Para ello, se debe
+presentar personalmente en el banco con su DNI para acreditar su identidad. Cuando se introduce el DNI, el
+sistema lista los préstamos para que se seleccione cual desea pagar. Luego se verifica que la cuenta
+asociada originalmente posea saldo suficiente para alcanzar el monto total adeudado. De ser así se
+registrará dicha cancelación y emitirá un comprobante con los datos de la operación.
+
+
+Analisis:
+Actores: cliente - servidor bancario
+
+casos de uso: solicitar prestamo - verificar cliente - adelantar cuotas - realizar cancelacion total
+
+
+
+1.
+Nombre del caso de uso: solicitar prestamo
+
+Descripcion: este CU describe el evento en el cual un cliente del banco solicta un prestamo
+
+Actores: cliente
+
+Precondiciones: -
+
+Curso normal (a = Accion del Actor y s = Accion del Sistema):
+Paso 1 a: el cliente selecciona la opcion "solicitar prestamo personal"
+Paso 2 s: el sistema verifica que el cliente posea menos de 3 prestamos
+Paso 3 s: el sistema solicita el ingreso del motivo, selecciona la cuenta de la cual se descontara la cuota mensualmente y  el monto del prestamo
+Paso 4 a: el cliente ingresa los datos solicitados por el sistema 
+Paso 5 s: el sistema verifica que el monto no sea mayor a $30.000
+Paso 6 s: el sistema ejecuta el CU "verificar cliente"
+Paso 7 s: el sistema registra el prestamo, genera un identificador del prestamo y un codigo de verificacion.
+Paso 8 s: el sistema genera el comprobante con los datos del prestamos
+
+curso alterno:
+Paso alternativo 3: el cliente posee 3 prestamos. El sistema informa al cliente. Fin del CU.
+Paso alternativo 7: la verificacion fallo. El sistema informa el error. Fin del CU.
+
+Postcondicion: el prestamo es otorgado al cliente.
+
+
+2.
+Nombre del caso de uso: verificar cliente
+
+Descripcion: este CU describe el evento en el cual el servidor realiza la verificacion del cliente mediante el servidor bancario
+
+Actores: servidor bancario 
+
+Precondiciones: -
+
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+Paso 1 s: el sistema solicita conexion con el servidor bancario y envia el codigo de seguridad
+Paso 2 a: el servidor bancario acepta la conexion y valida la identidad del sistema 
+Paso 3 a: el servidor bancario solicita el nombre, apellido y CUIT 
+Paso 4 s: el sistema envia los datos solicitados al servidor bancario
+Paso 5 a: el servidor bancario verifica los datos 
+Paso 6 a: el servidor bancario envia el resultado 
+Paso 7 s: el sistema recibe que el cliente no es deudor 
+Paso 8 s: el sistema valida al cliente y cierra la conexion con el servidor bancario
+
+curso alterno:
+Paso alternativo 2: el codigo de seguridad es invalido, finaliza la conexion. Fin del CU
+Paso alternativo 7: el cliente es deudor. El sistema informa el error. Fin del CU. 
+
+Postcondicion: el cliente es validado para recibir un prestamo 
+
+
+3.
+Nombre del caso de uso: adelantar cuotas
+
+Descripcion: este CU describe el evento en el cual el cliente realiza el pago de cuotas del prestamo por adelantado 
+
+Actores: cliente
+
+Precondiciones: -
+(El cliente debe poseer al menos un prestamo que este por el sexto mes? (o seria un caso en los pasos, osea que el cliente no posea prestamos)?)
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+Paso 1 a: el cliente selecciona la opcion "adelanto de cuotas" 
+Paso 2 s: el sistema muestra el listado de prestamos vigentes que posee el cliente 
+Paso 3 a: el cliente selecciona el prestamo del cual quiere realizar el adelantamiento de cuotas
+Paso 4 s: el sistema verifica que el prestamo posea 6 meses de antiguedad 
+Paso 5 s: el sistema solicita el ingreso de las cuotas a abonar 
+Paso 6 a: el cliente ingrese el numero de cuotas a abonar
+Paso 7 s: el sistema muestra el listado de cuentas del cliente
+Paso 8 a: el cliente selecciona la cuenta con la cual desea abonar las cuotas 
+Paso 9 s: el sistema verifica que el saldo en la cuenta seleccionada sea suficiente  
+Paso 10 s: el sistema confirma el pago y descuenta el saldo de la cuenta seleccionada
+
+curso alterno:
+Paso alternativo 2: el cliente no posee prestamos vigentes. El sistema informa el error. Fin del CU.
+
+Paso alternativo 4: el prestamo seleccionado por el cliente, no posee seis meses desde que fue otorgado. El sistema informa el error. Fin del CU. ?
+Paso alternativo 9: el saldo de la cuenta seleccionada no es suficiente para realizar el pago. El sistema informa el error. Fin del CU. 
+
+Postcondicion: el cliente realizo el adelantamiento de cuotas de un prestamo.
+
+
+4.
+Nombre del caso de uso: realizar cancelacion total
+
+Descripcion: este CU describe el evento en el cual el cliente reliza la cancelacion total de un prestamo por adelantado
+
+Actores: cliente
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+Paso 1 a: el cliente selecciona la opcion "realizar cancelacion"
+Paso 2 s: el sistema lista los prestamos vigentes del cliente 
+Paso 3 a: el cliente selecciona un prestamo de la lista
+Paso 4 s: el sistema verifica que el prestamo posea nueve meses de antiguedad
+Paso 5 s: el sistema verifica que la cuenta asociada posea el saldo suficiente para alcanzar el monto adeudado 
+Paso 6 s: el sistema registra la cancelacion y emite el comprobante con los datos de la operacion 
+
+curso alterno:
+Paso alternativo 2: el cliente no posee prestamos vigentes. El sistema informa el error. Fin del CU.
+Paso alternativo 5: el prestamo no posee la antiguedad necesaria. El sistema informa el error. Fin del CU
+Paso alternativo 6: la cuenta asociada no posee saldo suficiente. El sistema informa el error. Fin del CU
+
+Postcondicion: el cliente recibe el comprobante con los datos de la operacion de la cancelacion del prestamo.

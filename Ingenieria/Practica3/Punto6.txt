@@ -1,0 +1,207 @@
+6. Ventas de Entradas para Teatro
+Se desea modelar un sistema de gestión de ventas de entradas para un teatro. Las personas compran sus
+entradas a través de una página web, o personalmente.
+El sistema permite, sólo de modo personal en el teatro, la reserva de entradas de forma gratuita. El
+empleado debe ingresar los datos de la obra (fecha, hora, y nombre) junto el nombre y DNI del espectador.
+En este caso, sólo se podrá reservar hasta 2 entradas. Las entradas reservadas no compradas caducarán tres
+horas antes del evento. Para seleccionar el nombre de la obra, el sistema muestra una grilla de funciones
+disponibles para que el usuario seleccione una.
+Para comprar una entrada vía web, el sistema muestra la grilla de funciones disponibles. El usuario
+selecciona una opción, ingresa su DNI, la cantidad de lugares solicitados y selecciona la opción “pagar”. El
+pago se realiza con tarjeta de crédito. Para esto debe ser autorizada a través del sistema del banco. Este
+pide el número de tarjeta, vencimiento, y código de seguridad. Verifica todos los campos y autoriza la
+compra. Autorizada la tarjeta, se emite un código de compra con el que el cliente podrá retirar sus entradas
+en la boletería del cine.
+Para comprar una entrada personalmente, el vendedor de la boletería solicita los datos de la función al
+cliente, procediendo de un modo similar a la compra web, con la diferencia que en este caso no se muestra
+el código de compra sino que se imprimen directamente la/s entrada/s. El pago es únicamente con tarjeta
+de crédito, igual que en el caso anterior.
+Para retirar las entradas reservadas previamente, el empleado solicita nombre y DNI del espectador, el
+sistema valida que la persona posea entradas reservadas, y que no estén caducas. El resto del
+procedimiento se realiza igual que la compra de entradas descriptas anteriormente.
+Cuando una persona llega con el código de compra, el vendedor debe ingresar el código para que el
+sistema, luego de verificarlo, imprima las entradas correspondientes.
+Además se desea administrar la programación de las salas. El administrador ingresa la distribución semanal
+de las obras en las salas de manera que se encuentre disponible para la realización de la venta de entradas.
+
+
+Analisis:
+Actores: empleado - cliente - sistema bancario - vendedor - administrador
+
+casos de uso: reservar entradas - comprar entrada web - pago con tarjeta - comprar entrada fisico - retirar entradas reservadas(usa el compra entrada fisico) - retirar entradas web -  administrar programacion
+
+
+1.
+Nombre del caso de uso: reservar entradas
+
+Descripcion: este CU describe el evento en el cual el empleado realiza la reserva de entradas 
+
+Actores: empleado
+
+Precondiciones: - 
+
+Curso normal (a = Accion del Actor y s = Accion del sistema):
+Paso 1 a: el empleado selecciona la opcion "reservar entradas"
+Paso 2 s: el sistema muestra la grilla de funciones disponibles
+Paso 3 a: el empleado seleciona una de las funciones disponibles
+Paso 4 s: el sistema solicita el ingreso de la fecha y hora de la funcion
+Paso 5 a: el empleado ingresa la fecha y hora de la funcion 
+Paso 6 s: el sistema verifica que los datos sean validos, los valida
+Paso 7 s: el sistema solicita el ingreso del nombre y DNI del espectador 
+Paso 8 a: el empleado ingresa el nombre y DNI del espectador 
+Paso 9 s: el sistema guarda los datos ingresados y solicita el ingreso de la cantidad de entradas a reservar 
+Paso 10 a: el empleado ingresa la cantidad de entradas 
+Paso 11 s: el sistema verifica que la cantidad sea valida, valida el dato y confirma la reserva
+
+curso alterno:
+Paso alternativo 6: la fecha u hora ingresadas son invalidas. El sistema informa el error. Vuelve al paso 4. 
+Paso alternativo 11: la cantidad de entradas ingresadas es mayor a 2. El sistema informa el error. Fin del CU. 
+
+Postcondicion: la reserva es confirmada. 
+
+
+2.
+Nombre del caso de uso: comprar entrada web 
+
+Descripcion: este CU describe el evento en el cual el cliente realiza la compra de entradas via web 
+
+Actores: cliente - sistema bancario
+
+Precondiciones: - 
+
+Curso normal ( a = Accion del Actor y s = Accion del sistema):
+Paso 1 a: el cliente selecciona la opcion "comprar entrada"
+Paso 2 s: el sistema muestra en pantalla la grilla de funciones disponibles. 
+Paso 3 a: el cliente selecciona una opcion, ingresa su dni, la cantidad de lugares solicitados y selecciona "pagar"
+Paso 4 s: el sistema solicita los datos de la tarjeta
+Paso 5 a: el cliente ingresa los datos de su tarjeta
+Paso 4 s: el sistema ejecuta el CU "Pago con tarjeta"
+Paso 5 s: el sistema emite el codigo de compra 
+
+curso alterno:
+Paso alternativo 5: el pago no se realiza. Se informa al cliente registrado. Fin del CU.  
+
+Postcondicion: el codigo de compra con el cual el cliente retirara sus entradas es emitido. 
+
+
+3.
+Nombre del caso de uso: pago con tarjeta
+
+Descripcion: este caso de uso describe el evento en el que un servidor bancario verifica los datos de una tarjeta ingresados y se confirma el pago
+
+Actores: servidor bancario
+
+Precondiciones: se debe haber ejecutado el CU "comprar entrada web" o "comprar entrada fisico"
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 s: el sistema solicita conexion con el servidor bancario.
+paso 2 a: el servidor bancario acepta la conexion y solicita el numero de tarjeta, fecha de vencimiento y codigo de seguridad.
+paso 3 s: el sistema envia el numero de la tarjeta, fecha de vencimiento y codigo de seguridad al servidor bancario.
+paso 4 a: el servidor bancario valida el numero y fondos suficientes.
+paso 5 a: el servidor bancario retorna el resultado.
+paso 6 s: el sistema recibe que el numero de la tarjeta es correcto.
+paso 7 s: el sistema recibe que los fondos son suficientes.
+paso 8 s: el sistema registra el pago y cierra la conexion con el servidor bancario.
+
+curso alterno:
+paso  alternativo 2: falla la conexion con el servidor bancario. Se informa el error. Fin de CU.
+paso alternativo 6: la validacion de los datos de la tarjeta es incorrecta. Se informa error en el numero de la tarjeta. Fin de CU.
+paso alternativo 7: Fondos insuficientes. Se informa que la tarjeta no posee fondos suficientes. Fin de CU
+
+Postcondicion: se validaron los datos, efectuo y registro el pago a traves de tarjeta.
+
+
+4.
+Nombre del caso de uso: comprar entrada fisico?
+
+Descripcion: Este CU describe el evento en el cual el Vendedor realiza la venta de entradas de forma presencial 
+
+Actores: vendedor 
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del sistema):
+Paso 1 a: el vendedor solicita la opcion "comprar entrada"
+Paso 2 s: el sistema muestra en pantalla la grilla de funciones disponibles. 
+Paso 3 a: el vendedor selecciona una opcion, ingresa el dni del cliente, la cantidad de lugares solicitados y selecciona "pagar"
+Paso 4 s: el sistema solicita los datos de la tarjeta del cliente
+Paso 5 a: el vendedor ingresa los datos de su tarjeta
+Paso 6 s: el sistema ejecuta el CU "Pago con tarjeta"
+Paso 7 s: el sistema imprime las entradas
+
+curso alterno:
+Paso alternativo 6: el pago no se realiza. Se informa al cliente registrado. Fin del CU.  
+
+Postcondicion: las entradas son otorgadas al cliente
+
+
+5.
+Nombre del caso de uso: retirar entradas reservadas
+
+Descripcion: Este CU describe el evento en el cual el empleado realiza el retiro de entradas reservadas previamente por un cliente 
+
+Actores: empleado 
+
+Precondiciones: - 
+
+Curso normal ( a = Accion del Actor y s = Accion del sistema):
+Paso 1 a: el empleado solicita la opcion "retiro de entradas reservadas" 
+Paso 2 s: el sistema solicita el nombre y dni del cliente 
+Paso 3 a: el empleado ingresa los datos del cliente 
+Paso 4 s: el sistema verfica que la persona ingresada posea entradas reservadas 
+Paso 5 s: el sistema verifica que las entradas no esten caducas 
+Paso 6 s: el sistema solicita los datos de la tarjeta del cliente
+Paso 7 a: el vendedor ingresa los datos de su tarjeta
+Paso 8 s: el sistema ejecuta el CU "Pago con tarjeta"
+Paso 9 s: el sistema imprime las entradas
+
+curso alterno:
+Paso alternativo 4: la persona ingresada no posee entradas reservadas. Se informa el error. Fin del CU.
+Paso alternativo 5: las entradas reservasdas ya estan caducas. Se informa el error. Fin del CU. 
+Paso alternativo 8: el pago no se realiza. Se informa el error. Fin del CU.
+
+Postcondicion: las entradas reservadas son otorgadas al cliente 
+
+
+6.
+Nombre del caso de uso: retirar entradas web 
+
+Descripcion: este CU describe el evento en el cual el vendedor realiza el retiro de entradas compradas por un cliente previamente via web
+
+Actores: vendedor 
+
+Precondiciones: - 
+
+Curso normal ( a = Accion del Actor y s = Accion del sistema):
+Paso 1 a: el vendedor selecciona la opcion "retirar entradas web"
+Paso 2 s: el sistema solicita el ingreso del codigo de compra 
+Paso 3 a: el vendedor ingresa el codigo de compra del cliente 
+Paso 4 s: el sistema verifica el codigo de compra ingresado 
+Paso 5 s: el sistema imprime las entradas 
+
+curso alterno:
+Paso alternativo 5: el codigo de compra ingresado es invalido
+
+Postcondicion: las entradas compradas via web son otorgadas al cliente 
+
+
+7.
+Nombre del caso de uso: administrar programacion
+
+Descripcion: este CU describe el evento en el cual el administrador reliza la administracion de la nueva programacion de las salas
+
+Actores: administrador
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del sistema):
+Paso 1 a: el administrador selecciona la opcion "administrar programacion"
+Paso 2 s: el sistema solicita la distribucion semanal de las obras 
+Paso 3 a: el administrador ingresa la distribucion de las obras que estaran en las salas disponibles
+Paso 4 s: el sistema verifica que los datos ingresados sean validos
+Paso 5 s: el sistema confirma y guarda la programacion semanal de las salas 
+
+curso alterno:
+Paso alternativo 5: los datos ingresados por el administrador es invalida. La distribucion ingresada no es posible. Fin del CU.
+
+Postcondicion: la programacion semanal de las salas es confirmada. 

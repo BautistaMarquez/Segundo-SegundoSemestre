@@ -1,0 +1,169 @@
+5. Impresión de Fotos
+Se desea desarrollar un sistema para la impresión de fotos para una casa fotográfica. Los clientes pueden
+subir sus fotos, pagar por internet y luego ser retiradas personalmente por el local.
+Para subir las fotos la persona debe registrarse en el sitio, ingresando sus datos personales, nombre,
+apellido, email, domicilio, nombre de usuario y contraseña.
+Una vez autenticado, el usuario puede subir un máximo de 50 fotos para ser impresas. Las fotos se ingresan
+de a una. Una vez subidas, el usuario debe abonar el monto total (el valor de cada foto es de $15). El pago
+se realiza con tarjeta de crédito, ingresando los datos de la misma (número de tarjeta, código de seguridad
+y nombre del titular), la cual debe ser validada a través del sistema del banco. Una vez que se realiza el
+pago se le otorga al cliente un código único que le servirá posteriormente para retirar las fotos.
+Un cliente debe acercarse a la sucursal para retirar las fotos enviadas previamente. Para esto debe
+presentar el código único a un empleado. Este registra el código, la fecha de retiro y entrega las fotos al
+cliente.
+
+
+Analisis:
+Actores: cliente no registrado - cliente registrado -  sistema bancario - empleado 
+
+casos de uso: registrar cliente - iniciar sesion - cerrar sesion - subir fotos - pago con tarjeta - validar retiro 
+
+
+
+1.
+Nombre del caso de uso: registrar cliente
+
+Descripcion: este caso de uso explica el modo en que un cliente no registrado se  registra en al sistema.
+
+Actores: cliente no registrado
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del Servidor):
+Paso 1 a: el cliente no registrado selecciona la opcion registrar cliente.
+Paso 2 s: el sistema solicita que ingrese su nombre, apellido, email, domicilio, nombre de usuario y contraseña. 
+Paso 3 a: el cliente no registrado ingresa los datos requeridos. 
+Paso 4 s: el sistema verifica los datos ingresados, verifica que no exista un usuario con el nombre ingresado.
+Paso 5 s: el sistema registra el alta del nuevo cliente registrado.
+
+curso alterno:
+Paso alternativo 4: Ya existe un usuario con el mismo nombre. Se informa el error. Vuelve al Paso 2.
+
+Postcondicion: Se creo una cuenta de cliente registrado.
+
+2.
+Nombre del caso de uso: iniciar sesion 
+
+Descripcion: especifica el modo en que el cliente registrado inicia sesion
+
+Actores: cliente registrado 
+
+Precondiciones: El cliente debe haberse registrado en el sistema previamente.
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el cliente registrado selecciona la opcion de "Iniciar seion"
+paso 2 s: el sistema solicita nombre de usuario y contraseña. 
+paso 3 a: el cliente registrado ingresa su nombre de usuario y contraseña.
+paso 4 s: el sistema verifica los datos ingresados.
+paso 5 s: el sistema registra la sesion iniciada y le otorga los permisos al cliente registrado.
+
+curso alterno:
+Paso alternativo 4 s: el usuario o la contraseña no son validas, el sistema informa que los datos son invalidos. Vuelve al paso 2.
+
+Postcondicion: La sesion esta iniciada, el cliente registrado y se le habilita la opcion de subir fotos.
+
+
+
+3.
+Nombre del caso de uso: cerrar sesion
+
+Descripcion: especifica el modo en que el cliente registrado cierra sesion
+
+Actores: cliente registrado 
+
+Precondiciones: El cliente registrado debe tener una sesion iniciada 
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el cliente registrado selecciona la opcion de "cerrar sesion"
+paso 2 s: el sistema solicita la confirmacion.
+paso 3 a: el cliente registrado confirma la operacion.
+paso 4 s: el sistema cierra la sesion del cliente registrado y le inhabilita los permisos. 
+
+curso alterno:
+paso alternativo 3: el cliente registrado rechaza la operacion. Fin del caso de uso.
+
+Postcondicion: la sesion ha sido cerrada.
+
+
+4.
+Nombre del caso de uso: subir fotos 
+
+Descripcion: este CU describe el evento en el que un cliente registrado realiza la subida de sus fotos 
+
+Actores: cliente registrado 
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del Servidor):
+Paso 1 a: el cliente registrado selecciona la opcion subir fotos.
+Paso 2 s: el sistema solicita el ingreso de una foto. 
+Paso 3 a: el cliente registrado selecciona una foto y oprime subir foto.
+Paso 4 s: el sistema almacena la foto y aumenta en 1 la cantidad de fotos ingresadas.
+Paso 5 s: el sistema consulta si se quiere finalizar con la operacion. 
+Paso 5.1 s: si la cantidad de fotos ingresada es igual a 50. El sistema informa que la cantidad de fotos es igual a la maxima permitida. Le solicita al cliente registrado finalizar la operacion. 
+Paso 6 a: el cliente selecciona entre continuar o finalizar. 
+Paso 7 s: el sistema recibe la opcion de finalizar, solicita la confirmacion del usuario registrado.
+Paso 7.1 s: el sistema recibe la opcion de continuar. Vuelve al paso 2.
+Paso 8 a: el cliente confirma la finalizacion. 
+Paso 9 s: el sistema ejecuta el CU pago con tarjeta. 
+Paso 10 s: el sistema le otorga al cliente un codigo unico para el retiro.
+
+curso alterno:
+Paso alternativo 8: el cliente rechaza la finalizacion. Se vuelve al paso 6. 
+Paso alternativo 10: el pago no se realiza. Se informa al cliente registrado. Fin del CU. 
+
+
+Postcondicion: el cliente recibe el codigo y las fotos subidas fueron abonadas.  
+
+
+5.
+Nombre del caso de uso: pago con tarjeta
+
+Descripcion: este caso de uso describe el evento en el que un servidor bancario verifica los datos de una tarjeta ingresados por el cliente registrado y se confirma el pago
+
+Actores: servidor bancario, cliente registrado.
+
+Precondiciones: se debe haber ejecutado el CU "subir fotos"
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+Paso 1 s: el sistema le solicita al cliente registrado el ingreso de los datos de la tarjeta.
+Paso 2 a: el cliente registrado ingresa los datos requeridos.
+paso 3 s: el sistema solicita conexion con el servidor bancario.
+paso 4 a: el servidor bancario acepta la conexion y solicita los datos de la tarjeta.
+paso 5 s: el sistema envia los datos requeridos al servidor bancario.
+paso 6 a: el servidor bancario verifica los datos ingresados y fondos suficientes.
+paso 7 a: el servidor bancario retorna el resultado.
+paso 8 s: el sistema recibe que los datos ingresados son validos.
+paso 9 s: el sistema recibe que los fondos son suficientes.
+paso 10 s: el sistema registra el pago y cierra la conexion con el servidor bancario.
+
+curso alterno:
+paso  alternativo 4: falla la conexion con el servidor bancario. Se informa el error. Fin de CU.
+paso alternativo 8: la validacion de los datos es incorrecta. Se informa el error. Fin de CU.
+paso alternativo 9: Fondos insuficientes. Se informa que la tarjeta no posee fondos suficientes. Fin de CU
+
+Postcondicion: se validaron los datos, efectuo y registro el pago a traves de tarjeta.
+
+
+6.
+Nombre del caso de uso: validar retiro 
+
+Descripcion: en este CU se describe el evento en el cual el empleado valida el retiro de las fotos
+
+Actores: empleado 
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del Servidor):
+Paso 1 a: el empleado selecciona la opcion validar retiro.
+Paso 2 s: el sistema solicita el ingreso del codigo unico.
+Paso 3 a: el empleado ingresa el codigo unico.
+Paso 4 s: el sistema valida el codigo ingresado.
+Paso 5 s: el sistema solicita la fecha de retiro.
+Paso 6 a: el empleado ingresa la fecha de retiro.
+Paso 7 s: el sistema confirma el retiro.
+
+curso alterno:
+Paso alternativo 4: el codigo ingresado es invalido. El sistema informa el fallo. Fin del CU.
+
+Postcondicion: El retiro es validado.

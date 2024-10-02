@@ -1,0 +1,112 @@
+1.
+Nombre del caso de uso: iniciar sesion 
+
+Descripcion: especifica el modo en que el encargado inicia sesion
+
+Actores: encargado
+
+Precondiciones: -
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el encargado selecciona la opcion de "Iniciar seion"
+paso 2 s: el sistema solicita nombre de usuario y contraseña. 
+paso 3 a: el encargado ingresa su nombre de usuario y contraseña.
+paso 4 s: el sistema verifica los datos ingresados.
+paso 5 s: el sistema registra la sesion iniciada y le otorga los permisos al encargado.
+curso alterno:
+Paso alternativo 4 s: el usuario o la contraseña no son validas, el sistema informa que los datos son invalidos.Vuelve al paso 2.
+
+Postcondicion: La sesion esta iniciada el encargado ya posee los permisos para dar de alta el mobiliario.
+
+
+2.
+Nombre del caso de uso: cerrar sesion
+
+Descripcion: especifica el modo en que el encargado cierra sesion
+
+Actores: encargado 
+
+Precondiciones: El encargado debe tener una sesion iniciada 
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el encargado selecciona la opcion de "cerrar sesion"
+paso 2 s: el sistema solicita la confirmacion.
+paso 3 a: el encargado confirma la operacion.
+paso 4 s: el sistema cierra la sesion del encargado y le inhabilita los permisos. 
+
+curso alterno:
+paso alternativo 3: el encargado rechaza la operacion. Fin del caso de uso.
+
+Postcondicion: la sesion ha sido cerrada, el encargado no posee los permisos para dar de alta el mobiliario y se eliminan los datos de sesion. 
+
+3.
+Nombre del caso de uso: cargar mueble
+
+Descripcion: este caso de uso describe el evento en el que el encargado carga un mueble
+
+Actores: encargado
+
+Precondiciones: el encargado debe haber iniciado sesion 
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el encargado selecciona la opcion de cargar un mueble 
+paso 2 s: el servidor redirige al encargado a la pagina para la carga del mueble 
+paso 3 a: el encargado carga los datos del mueble y oprime "dar de alta" 
+paso 4 s: el servidor verifica los datos ingresados
+paso 5 s: el servidor valida la carga y da de alta el mueble. 
+
+curso alterno: 
+paso alternativo 4: ya existe un mueble con ese codigo, se notifica. Fin del caso de uso.
+
+Postcondicion: el mueble es dado de alta y es visible para los clientes. 
+
+
+4.
+Nombre del caso de uso: realizar reserva
+
+Descripcion: este caso de uso describe el evento en el que un cliente realiza una reserva de un inmueble 
+
+Actores: cliente
+
+Precondiciones: - 
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el cliente selecciona la opcion "reservar inmueble"
+paso 2 s: el sistema verifica que se hayan seleccionado al menos 3 muebles 
+paso 3 s: el sistema ejecuta el caso de uso pagar reserva 
+paso 4 s: el sistema confirma la reserva y emite el numero de reserva unico 
+
+curso alterno:
+paso alternativo 2: la cantidad de muebles es menor a 3, el sistema informa el error. Fin del caso de uso. 
+paso alternativo 3: el pago no se realiza. Se notifica al cliente. Fin del caso de uso. 
+
+Postcondicion: el numero de reserva unico es emitido que sera utilizado a la hora de hacer efectivo el alquiler 
+
+
+5.
+Nombre del caso de uso: pagar reserva
+
+Descripcion: este caso de uso describe el evento en el que un cliente que realizo una reserva
+
+Actores: cliente, servidor bancario
+
+Precondiciones: se debe haber ejecutado el CU "realizar reserva"
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 s: el sistema solicita el numero de tarjeta.
+paso 2 a: el cliente ingresa los datos de su tarjeta.
+paso 3 s: el sistema solicita conexion con el servidor bancario.
+paso 4 a: el servidor bancario acepta la conexion y solicita el numero de tarjeta.
+paso 5 s: el sistema envia el numero de la tarjeta al servidor bancario.
+paso 6 a: el servidor bancario valida el numero y fondos suficientes.
+paso 7 a: el servidor bancario retorna el resultado.
+paso 8 s: el sistema recibe que el numero de la tarjeta es correcto.
+paso 9 s: el sistema recibe que los fondos son suficientes.
+paso 10 s: el sistema registra el pago y cierra la conexion con el servidor bancario.
+
+curso alterno:
+paso  alternativo 3: falla la conexion con el servidor bancario. Se informa el error. Fin de CU.
+paso alternativo 8: la validacion del numero es incorrecta. Se informa error en el numero de la tarjeta. Fin de CU.
+paso alternativo 9: Fondos insuficientes. Se informa que la tarjeta no posee fondos suficientes. Fin de CU
+
+Postcondicion: se efectuo y registro el pago a traves de tarjeta.

@@ -12,8 +12,107 @@ premium y compra por un monto superior a $4500 se deben aplicar ambos descuentos
 
 Resolucion
 Rol de usuarios: 
+    clientes
     
 Historias de usuario:
+    registrar cliente
+    iniciar sesion 
+    cerrar sesion 
+    comprar bebidas
 
 
 Reglas de negocio:
+    el mail debe ser unico y la edad debe ser mayor a 18 para registrarse
+    si el usuario es premium se le hace un descuento del 20%
+    si el usuario selecciono productos por un monto superior a los $4500 se le hace un 10%
+
+1. 
+Id: registrar persona
+Título: como persona quiero registrarme para comprar bebidas
+Reglas de Negocio:
+    el mail debe ser unico y no se puede repetir
+    la edad de la persona debe ser mayor a 18 para registrarse
+
+
+Reverso: 
+Criterios de Aceptación (registrar persona):
+Escenario 1: registro existoso
+DADO el mail juan.lopez@gmail.com que no se encuentra registrado y la edad 20 supera a la minima
+CUANDO la persona ingrese juan, lopez, juan.lopez@gmail.com, 20 y oprima "registrar"
+ENTONCES el sistema confirma el registro y envia la contraseña al email ingresado 
+
+Escenario 2: registro fallido por email repetido
+DADO el mail lucas.lopez@gmail.com que se encuentra registrado
+CUANDO la persona ingrese lucas, lopez, lucas.lopez@gmail.com, 20 y oprima "registrar"
+ENTONCES el sistema informa que el email ingresado ya se encuentra registrado 
+
+Escenario 3: 
+DADO el mail lucas.lopez1@gmail.com que no se encuentra registrado y la edad 16 no supera a la minima
+CUANDO la persona ingrese lucas, lopez, lucas.lopez1@gmail.com, 16 y oprima "registrar" 
+ENTONCES el sistema mostrara en pantalla el texto de la ley que impide la venta de bebidas alcohólicas a menores.
+
+
+2. 
+Id: inciar sesion 
+Título: como cliente quiero iniciar sesion para acceder al sitio
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (iniciar sesion):
+Escenario 1: inicio exitoso
+DADO el usuario juan.lopez@gmail.com y la contraseña pepito son correctas 
+CUANDO cuando el cliente ingrese juan.lopez@gmail.com, pepito y oprima "iniciar sesion"
+ENTONCES el sistema verifica las credenciales y redirige al cliente a la pagina de inicio del sitio
+
+Escenario 2: inicio fallido por usuario inexistente
+DADO el usuario juan.lopez1@gmail.com no es correcto
+CUANDO cuando el cliente ingrese juan.lopez1@gmail.com, pepito y oprima "iniciar sesion" 
+ENTONCES el sistema verifica las credenciales e informa que hubo un error en el ingreso de los datos 
+
+Escenario 3: inicio fallido por contraseña incorrecta
+DADO el usuario juan.lopez@gmail.com y la contraseña pepita es incorrecta
+CUANDO cuando el cliente ingrese juan.lopez1@gmail.com, pepita y oprima "iniciar sesion" 
+ENTONCES el sistema verifica las credenciales e informa que hubo un error en el ingreso de los datos  
+
+3. 
+Id: cerrar sesion 
+Título: como cliente quiero cerrar sesion para salir del sitio 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (cerrar sesion):
+Escenario 1: cerrado de sesion exitoso
+DADO el click del boton "cerrar sesion"
+CUANDO el cliente oprima el boton "cerrar sesion"
+ENTONCES el sistema cerrara la sesion actual del cliente
+
+4. 
+Id: comprar bebidas
+Título: como cliente quiero comprar bebidas para tomarlas
+Reglas de Negocio:
+    si el usuario es premium se le hace un descuento del 20%
+    si el usuario selecciono productos por un monto superior a los $4500 se le hace un 10%
+
+Reverso: 
+Criterios de Aceptación ():
+Escenario 1: compra cliente no premium menor a $4500 
+DADO el cliente no premium y el valor de $3000 de su compra 
+CUANDO cuando el cliente seleccione los productos por valor de $3000 y oprima "pagar"
+ENTONCES el sistema informa que el valor a pagar es de $3000
+
+Escenario 2: compra cliente no premium mayor a $4500
+DADO el cliente no premium y el valor de $5000 de su compra 
+CUANDO cuando el cliente seleccione los productos por valor de $5000 y oprima "pagar"
+ENTONCES el sistema informa que el valor a pagar es de $4500
+
+Escenario 3: compra cliente premium no mayor a $4500
+DADO el cliente  premium y el valor de $4000 de su compra 
+CUANDO cuando el cliente seleccione los productos por valor de $4000 y oprima "pagar"
+ENTONCES el sistema informa que el valor a pagar es de $3200
+
+Escenario 4: compra cliente premium mayor a $4500
+DADO el cliente  premium y el valor de $10000 de su compra 
+CUANDO cuando el cliente seleccione los productos por valor de $10000 y oprima "pagar"
+ENTONCES el sistema informa que el valor a pagar es de $7000

@@ -1,0 +1,116 @@
+Problema 12: Créditos bancarios
+Se desea modelar mediante historias de usuario el manejo de créditos otorgados por un banco a sus clientes.
+Los clientes que desean pedir un crédito, deben iniciar un trámite a través de un sitio web del banco ingresando dni,
+nombre, apellido, mail, tipo de crédito (personal, vivienda, etc.) y monto solicitado. El sistema acepta el inicio de trámite
+si el dni ingresado corresponde a un cliente del banco y si el crédito solicitado no supera los $400.000. En caso de que no
+sea cliente del banco el sistema deberá enviar un correo electrónico al email ingresado con un instructivo para hacerse
+cliente del banco. Si el monto supera los $400.000 el sistema rechaza el inicio de trámite y muestra el mensaje “El monto solicitado excede el límite permitido”. Si los datos son correctos, el sistema almacena el trámite para que sea analizado
+por el área económica e imprime un número de comprobante para el cliente.
+
+Por otro lado, los clientes pueden consultar el estado de un trámite, para esto es necesario que se ingrese un número de
+comprobante. Si el número de comprobante es válido, el sistema retorna un informe con el estado del mismo, de lo
+contrario mostrará un mensaje “trámite inexistente”. Si el cliente ingresa tres veces un código inexistente el sistema
+bloquea la ip (dirección de red de la máquina que efectúa la consulta) del cliente por 24 horas mostrando un mensaje
+“Usted ha excedido el número de consultas inválidas”.
+
+Por último, el gerente del banco puede pedir un listado de créditos aprobados entre fechas. Si las fechas ingresadas son
+válidas, el sistema mostrará un listado con los créditos aprobados, de lo contrario mostrará un mensaje “las fechas
+ingresadas no son válidas”. El sistema utiliza un sistema de autenticación general del banco, por lo que no es necesario
+modelar el iniciar y cerrar sesión. Si no hay créditos aprobados para las fechas ingresadas el sistema mostrará el siguiente
+mensaje: ”No hay créditos aprobados en las fechas ingresadas”.
+
+
+
+Resolucion
+Rol de usuarios: 
+    clientes
+    gerente
+
+Historias de usuario:
+    iniciar tramite
+    consultar estado
+    pedir listado 
+
+Reglas de negocio:
+    para aceptar el inico del tramite el dni debe corresponder al de un cliente y el credito debe ser menor a $400.000
+    si el cliente ingresa 3 veces un numero de tramite incorrecto bloquea la ip del cliente por 24 horas 
+    las fechas ingresadas por el gerente deben ser validas
+
+
+1.
+Id: inciar tramite
+Título: como cliente quiero inciar un tramite para sacar un credito
+Reglas de Negocio:
+    el dni debe corresponder a uno de un cliente del banco 
+    el credito debe ser menor a $400.000
+
+
+Reverso: 
+Criterios de Aceptación (inicar tramite):
+Escenario 1: tramite exitoso
+DADO el dni 1234 corresponde a un cliente y el saldo $300.000 es menor al maximo
+CUANDO el cliente ingrese 1234, juan, lopez, juan.lopez@gmail.com, personal, $300.000 y oprima "iniciar"
+ENTONCES el sistema almacena el tramite e imprime el numero de comprobante
+
+Escenario 2: tramite fallido por dni incorrecto 
+DADO el dni 4444 no corresponde a un cliente 
+CUANDO el cliente ingrese 4444, juan, lopez, juan.lopez@gmail.com, personal, $300.000 y oprima "iniciar" 
+ENTONCES el sistema envia el instructivo para hacerse cliente del banco al email ingresado e informa que el dni no corresponde a un cliente del banco 
+
+Escenario 3: tramite fallido por monto superior al maximo 
+DADO el dni 1234 corresponde a un cliente y el saldo $500.000 es menor al maximo 
+CUANDO el cliente ingrese 1234, juan, lopez, juan.lopez@gmail.com, personal, $500.000 y oprima "iniciar" 
+ENTONCES el sistema rechaza el inicio de trámite y muestra el mensaje “El monto solicitado excede el límite permitido”.
+
+
+2.
+Id: consultar estado 
+Título: como cliente quiero consultar el estado del tramite para estar informado
+Reglas de Negocio:
+    si el cliente ingresa 3 veces un codigo de comprobante incorrecto bloquea la ip del cliente por 24 horas
+
+Reverso: 
+Criterios de Aceptación (consultar estado):
+Escenario 1: consulta exitosa
+DADO el codigo de comprobante 1111 corresponde a un numero de comprobante valido 
+CUANDO el cliente ingrese 1111 y oprima "consultar"
+ENTONCES el sistema otorga el estado del tramite correspondiente al codigo de comprobante ingresado
+
+Escenario 2: consulta fallida por codigo invalido con cantidad de fallos menor a 3
+DADO el codigo de comprobante 0000 no corresponde a un numero de comprobante valido y la cantidad de fallos es 0  
+CUANDO el cliente ingrese 0000 y oprima "consultar"
+ENTONCES el sistema informa por pantalla "tramite inexistente" y aumenta en 1 la cantidad de fallos de la ip del cliente
+
+Escenario 3: consulta fallida por codigo invalido con cantidad de fallor igual a 2
+DADO el codigo de comprobante 0000 no corresponde a un numero de comprobante valido y la cantidad de fallos es 2 
+CUANDO el cliente ingrese 0000 y oprima "consultar"
+ENTONCES el sistema informa por pantalla "tramite inexistente", aumenta en 1 la cantidad de fallos de la ip del cliente, bloquea la ip del cliente por 24 horas e informa por pantalla "Usted ha excedido el número de consultas inválidas" 
+
+Escenario 4: consulta fallido por cantidad de fallos igual a 3
+DADO la cantidad de fallos igual a 3
+CUANDO el cliente ingrese a la pagina para consultar el estado de un tramite  
+ENTONCES el sistema informa por pantalla "Usted ha excedido el número de consultas inválidas"
+
+
+3.
+Id: pedir listado 
+Título: como gerente quiero pedir el listado para ver los creditos aprobados
+Reglas de Negocio:
+    las fechas ingresadas por el gerente deben ser validas
+
+Reverso: 
+Criterios de Aceptación (pedir listado):
+Escenario 1: pedido exitoso y existen creditos otorgados
+DADO las fechas 23/04/23 y 11/09/24 son validas 
+CUANDO el gerente ingrese las fechas 04/23, 09/24 y oprima "listado"
+ENTONCES el sistema muestra el listado con los creditos aprobados entre las fechas
+
+Escenario 2: pedido exitoso y no existen creditos otorgados
+DADO las fechas 10/04/23 y 21/09/24 son validas 
+CUANDO el gerente ingrese las fechas 04/23, 09/24 y oprima "listado"
+ENTONCES el sistema informa por pantalla "No hay creditos aprobados en las fechas ingresadas"
+
+Escenario 3: pedido fallido por fechas invalidas
+DADO las fechas 10/13/22 y 11/27/22 son invalidas
+CUANDO el gerente ingrese las fechas 10/13/22 y 11/27/22 y oprima "listado" 
+ENTONCES el sistema informa "las fechas ingresadas no son validas"

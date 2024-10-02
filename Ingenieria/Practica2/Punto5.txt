@@ -1,0 +1,158 @@
+Problema 5: Casa de fotografia
+Se desea desarrollar un sistema para la impresión de fotos para una casa fotográfica. Los clientes pueden subir sus
+fotos, pagar por internet y luego ser retiradas personalmente por el local.
+Para subir las fotos la persona debe registrarse en el sitio, ingresando sus datos personales, nombre, apellido, email,
+domicilio, nombre de usuario y contraseña.
+Una vez autenticado, el usuario puede subir un máximo de 50 fotos para ser impresas. Las fotos se ingresan de a
+una. Una vez subidas, el usuario debe abonar el monto total (el valor de cada foto es de $15). El pago se realiza con
+tarjeta de crédito, ingresando los datos de la misma (número de tarjeta, código de seguridad y nombre del titular), la
+cual debe ser validada a través del sistema del banco. Una vez que se realiza el pago se le otorga al cliente un código
+único que le servirá posteriormente para retirar las fotos.
+Un cliente debe acercarse a la sucursal para retirar las fotos enviadas previamente. Para esto debe presentar el
+código único a un empleado. Este registra el código, la fecha de retiro y entrega las fotos al cliente.
+
+Resolucion
+Rol de usuarios: 
+    usuarios
+    empleado
+    
+Historias de usuario:
+    registrar persona
+    iniciar sesion 
+    cerrar sesion 
+    subir fotos 
+    pagar con tarjeta
+    ingresar datos
+
+Reglas de negocio:
+    el maximo de fotos a subir son 50
+    las fotos se suben de a una 
+
+
+1. 
+Id: registrar persona 
+Título: como persona quiero registrarme para imprimir fotos 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (registrar persona):
+Escenario 1: registro exitoso
+DADO el nombre de usuario juan01 no se encuentra registrado
+CUANDO el usuario ingrese juan, lopez, juan.lopez@gmail.com, 1y57, juan01, pepe y oprima "registrar"
+ENTONCES el sistema confirma el registro
+
+Escenario 2: registro fallido
+DADO el nombre de usuario juan00  se encuentra registrado
+CUANDO el usuario ingrese juan, lopez, juan.lopez@gmail.com, 1y57, juan00, pepe y oprima "registrar"
+ENTONCES el sistema informa que el nombre de usuario ingresado ya se encuentra registrado.
+
+2.
+Id: iniciar sesion 
+Título: como usuario quiero iniciar sesion para subir las fotos 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (iniciar sesion):
+Escenario 1: inicio de sesion exitoso
+DADO el nombre de usuario juan00 y la contraseña pepe validas
+CUANDO el usuario ingrese juan00, pepe y oprima "iniciar sesion"
+ENTONCES el sistema verifica las crendenciales y redirige al usuario a la pagina de inicio del sitio
+
+Escenario 2: inicio fallido por usuario inexistente
+DADO el usuario juan01 no es correcto
+CUANDO cuando el cliente ingrese juan01, pepito y oprima "iniciar sesion" 
+ENTONCES el sistema verifica las credenciales e informa que hubo un error en el ingreso de los datos 
+
+Escenario 3: inicio fallido por contraseña incorrecta
+DADO el usuario juan00 y la contraseña pepita es incorrecta
+CUANDO cuando el cliente ingrese juan00, pepita y oprima "iniciar sesion" 
+ENTONCES el sistema verifica las credenciales e informa que hubo un error en el ingreso de los datos  
+
+3. 
+Id: cerrar sesion 
+Título: como cliente quiero cerrar sesion para salir del sitio 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (cerrar sesion):
+Escenario 1: cerrado de sesion exitoso
+DADO el click del boton "cerrar sesion"
+CUANDO el cliente oprima el boton "cerrar sesion"
+ENTONCES el sistema cerrara la sesion actual del cliente
+
+4. 
+Id: subir fotos 
+Título: como usuario quiero subir fotos para imprimirlas
+Reglas de Negocio:
+    el maximo de fotos a subir son 50
+
+
+Reverso: 
+Criterios de Aceptación (subir fotos):
+Escenario 1: subida exitosa con cantidad < 50
+DADO la cantidad de imagenes 40 valida
+CUANDO el usuario seleccione una foto y oprima "subir"
+ENTONCES el sistema aumentara en 1 el valor de la cantidad de fotos, informa que la foto se subio con exito e informa al usuario que todavia puede subir fotos
+
+Escenario 2: subida exitosa con cantidad = 49 
+DADO la cantidad de imagenes es 49 valida
+CUANDO el usuario seleccione una foto y oprima "subir" 
+ENTONCES el sistema aumentara en 1 el valor de la cantidad de fotos informa que la foto se subio con exito e informa al usuario que ya no puede subir fotos 
+
+Escenario 3: subida fallida
+DADO la cantidad de imagenes = 50
+CUANDO el usuario seleccione una foto y oprima "subir"
+ENTONCES el sistema informa que la foto no se subio con exito, dado se alcanzo la cantidad maxima de fotos subidas
+
+5.
+Id: pagar con tarjeta 
+Título: como usuario quiero pagar con tarjeta para imprimir las fotos 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (pagar con tarjeta):
+Escenario 1: pago exitoso
+DADO la conexión con el servidor del banco es exitosa y el numero de tarjeta 1234, numero de seguridad 012 y nombre del titular juan lopez son validos 
+CUANDO el usuario ingrese 1234, 012, juan lopez y oprima "pagar"
+ENTONCES el sistema esperara respuesta del banco, informa que el pago fue exitoso y otorga el numero unico para el retiro de las fotos
+
+Escenario 2: pago fallido por eror en las credenciales
+DADO la conexión con el servidor del banco es exitosa y el numero de tarjeta 1234, numero de seguridad 044 y nombre del titular juan lopez son invalidos 
+CUANDO el usuario ingrese 1234, 044, juan lopez y oprima "pagar" 
+ENTONCES el sistema espera respuesta del banco e informa un error por error en las crendenciales 
+
+Escenario 3: Pago fallido por fallo en la conexion con el servidor externo del banco
+DADO que no se pudo realizar la conexión con el servidor del banco
+CUANDO el matriculado o la persona ingresa un número de tarjeta y presiona “Pagar”
+ENTONCES el sistema retorna un error por conexión fallida.
+
+Escenario 4: Pago fallido por fondos insuficientes
+DADO la conexión con el servidor del banco es exitosa y el numero de tarjeta 1234, numero de seguridad 012 y nombre del titular juan lopez son validos 
+CUANDO el usuario ingrese 1234, 012, juan lopez y oprima "pagar"
+ENTONCES el sistema esperara respuesta del banco e informa que la tarjeta no cuenta con los fondos suficientes 
+6. 
+Id: ingresar datos 
+Título: como empleado quiero ingresar los datos para poder cargarlos al sistema 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (ingresar datos):
+Escenario 1: ingreso exitoso 
+DADO el codigo 012 valido y la fecha de retiro 12/12/2024 correcta
+CUANDO el empleado ingrese 012, 12/12/2024 y oprima "ingresar"
+ENTONCES el sistema verifica los datos e informa son correctos
+
+Escenario 2: ingreso fallido por error en el codigo
+DADO el codigo 0125 invalido
+CUANDO el empleado ingrese 012, 12/12/2024 y oprima "ingresar"
+ENTONCES el sistema verifica los datos e informa que el codigo es invalido 
+
+Escenario 3: ingreso fallido por error en la fecha
+DADO dado el codigo 112 y la fecha 06/07/23
+CUANDO el empleado ingrese 112, 06/07/23 y oprima "ingresar"
+ENTONCES el sistema verifica los datos e informa que la fecha no coincide con el dia actual

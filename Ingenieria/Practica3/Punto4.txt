@@ -1,0 +1,93 @@
+4. Máquina de reciclado
+Se desea modelar un sistema que controle una máquina de reciclado. La máquina cuenta con un recipiente
+externo donde se depositan los materiales a reciclar (vidrio, papel, plástico o aluminio). La persona coloca
+lo que desea reciclar en el recipiente y luego presiona la opción “reciclar”. El sistema detecta el tipo de
+material y registra el peso; por último imprime un recibo con el monto total que se le debe pagar a la
+persona por lo reciclado. Si el sistema no detecta correctamente el tipo de material aborta el proceso
+retornando el producto.
+El sistema también es utilizado por un operador a través de una consola que se encuentra bajo llave. El
+operador puede solicitar un listado con los tipos de materiales reciclados en un periodo de fechas
+determinado, detallando además el total abonado por dicho material. También, el operador puede
+actualizar los montos a pagar por kilo de cada tipo de material que la máquina puede reciclar. Para esto, el
+sistema primero solicita el tipo de material a actualizar. Luego se pide el nuevo monto. Si el operador
+acepta, se actualiza el material seleccionado.
+
+
+Analisis:
+Actores: persona - operador 
+
+casos de uso: reciclar productos - imprimir listado - actualizar monto
+
+
+
+1.
+Nombre del caso de uso: reciclar productos 
+
+Descripcion: este CU describe el evento en el que una persona recicla productos 
+
+Actores: persona 
+
+Precondiciones: -
+
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+Paso 1 a: la persona selecciona la opcion reciclar 
+Paso 2 s: el sistema pide confirmacion de la accion 
+Paso 3 a: la persona confirma la accion 
+Paso 4 s: el sistema detecta el tipo de material y registra el peso 
+Paso 5 s: el sistema imprime el recibo con el monto del material a la persona. 
+
+
+curso alterno:
+Paso alternativo 3: la persona rechaza la accion. Fin del CU.
+Paso alternativo 4: el sistema no logra detectar el tipo de material. Informa el error a la persona. Fin del CU
+
+Postcondicion: el ticket con el monto total es emitido.
+
+
+2.
+Nombre del caso de uso: imprimir listado 
+
+Descripcion: este CU describe el evento en que el operador realiza la impresion del listado de tipos de materiales reciclados en un periodo de fecha determinado. 
+
+Actores: operador 
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del Servidor):
+Paso 1 a: el operador selecciona la opcion imprimir listado.
+Paso 2 s: el sistema solicita el ingreso de la fecha inicio y fecha fin del periodo de tiempo.
+Paso 3 a: el operador ingresa las fechas de inicio y fin del periodo deseado. 
+Paso 4 s: el sistema verifica y valida las fechas ingresadas por el operador. 
+Paso 5 s: el sistema imprime el listado con los productos reciclados, junto con sus precios, en el periodo de tiempo solicitado. 
+
+curso alterno:
+Paso alternativo 4: las fechas ingresadas por el operador son invalidas. El sistema informa el error. Fin del CU. 
+
+Postcondicion:
+
+
+3.
+Nombre del caso de uso: actualizar monto
+
+Descripcion: este CU describe el evento en el cual el operador actualiza el monto a pagar por kilo de un tipo de material 
+
+Actores: operador 
+
+Precondiciones: -
+
+Curso normal ( a = Accion del Actor y s = Accion del Servidor):
+Paso 1 a: el operador solicita la opcion actualizar monto 
+Paso 2 s: el sistema solicita el ingreso del tipo de material a actualizar 
+Paso 3 a: el operador ingresa el tipo de material
+Paso 4 s: el sistema valida dato ingresado 
+Paso 5 s: el sistema solicita el ingreso del nuevo monto 
+Paso 6 a: el operador ingresa el nuevo monto 
+Paso 7 s: el sistema pide confirmacion de la accion 
+Paso 8 a: el operador confirma la accion 
+Paso 9 s: el sistema actualiza el monto del tipo de material
+ 
+curso alterno:
+Paso alternativo 4: el tipo de material ingresado no es valido. Se informa al operador. Vuelve al paso 2. 
+Paso alternativo 8: el operador rechaza la accion. Fin del CU
+
+Postcondicion: el monto por kilo del tipo de material ingresado es actualizado.

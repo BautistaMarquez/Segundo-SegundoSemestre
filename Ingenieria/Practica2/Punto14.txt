@@ -1,0 +1,158 @@
+Problema 14: Manejo de tarjetas de crédito
+
+La gerencia del banco donde trabajamos nos pide realizar un subsistema para el manejo de las tarjetas de crédito SIVA.
+El sistema podrá ser operado únicamente por el personal de área comercial y por el gerente de la sucursal. En ambos
+casos las funcionalidades solo serán habilitadas con autenticación previa.
+
+El registro del personal en el sistema no es necesario implementarlo, ya que las credenciales son obtenidas del sistema
+central del banco. Entonces, para autenticarse, el usuario debe ingresar sus credenciales (las mismas que usa para otros
+servicios del banco) y estas son corroboradas por el sistema del banco central (al cual nos comunicamos por intranet),
+enviándonos un token de autenticación válido en caso de ser correctas.
+
+Una vez autenticado, todo el personal debe poder dar de alta una nueva tarjeta y dar de baja una existente. Para dar de
+alta se requiere nombre completo, DNI y CUIT del titular. Luego, se debe seleccionar un tipo de tarjeta (Básica o Gold).
+Para dar de alta la tarjeta la persona debe ser cliente del banco y no podrá darse de alta una tarjeta si la persona es
+morosa en el sistema SIVA (externo al banco). Para esto, nuestro sistema debe comunicarse con el SIVA y verificar la
+morosidad de la persona con el DNI. En el mismo momento, el sistema SIVA nos dará un número de tarjeta nuevo.
+
+Para dar de baja una tarjeta, simplemente se debe ingresar el número de tarjeta y el sistema la debe eliminar de la base
+de datos del banco.
+
+El gerente, además, podrá pedir un listado de las operaciones realizadas entre dos fechas. Para esto el sistema le pedirá
+que ingrese ambas fechas y le mostrará un listado. No debe ser posible ingresar fechas futuras al presente, ni tampoco
+que la fecha de inicio sea mayor a la fecha de fin.
+
+
+
+Resolucion
+Rol de usuarios: 
+    empleados
+    gerente   
+    usuarios 
+
+Historias de usuario:
+    iniciar sesion (se utiliza un sistema externo, se realiza comunicacion por intranet)
+    cerrar sesion
+    subir tarjeta (cliente del banco y no puede ser morosa (sistema externo))
+    bajar tarjeta (se ingresa un numero de tarjeta VALIDO y se elimina)
+    pedir listado (no se pueden ingresar fechas futuras, ni una de inicio mayor a la de fin)
+
+
+Reglas de negocio:
+
+
+1.
+Id: iniciar sesion
+Título: como usuario quiero iniciar sesion para acceder al sistema 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (iniciar sesion):
+Escenario 1: inicio exitoso
+DADO las credenciales son validas y las condiciones con el servidor externo son optimas 
+CUANDO el usuario ingrese juan, lopez, 9999 y oprima "iniciar sesion"
+ENTONCES el sistema envia las credenciales al servidor externo, espera respuesta, recibe el token de autenticacion valida y confirma el inicio
+
+Escenario 2: inicio fallido por credenciales invalidas 
+DADO las credenciales son invalidas y las condiciones con el servidor externo son optimas 
+CUANDO el usuario ingrese juan, lopez, 3232324 y oprima "iniciar sesion"
+ENTONCES el sistema envia las credenciales al servidor externo, espera respuesta, recibe el token de autenticacion invalido e informa "credenciales invaldas" 
+
+Escenario 3: incio fallido por fallo con el servidor externo (consultar)
+DADO las condiciones con el servidor externo no son optimas
+CUANDO el usuario ingrese juan, lopez, 3232324 y oprima "iniciar sesion" 
+ENTONCES el sistema no logra enviar las credenciales al servidor externo e informa un error 
+
+
+2. 
+Id: cerrar sesion
+Título: como usuario quiero cerrar sesion para realizar otra actividad 
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (cerrar sesion):
+Escenario 1: cerrado exitoso
+DADO el click en cerrar sesion
+CUANDO el usuario oprima "cerrar sesion"
+ENTONCES el sistema finaliza la sesion del usuario
+
+
+3. 
+Id: subir tarjeta
+Título: como empleado quiero subir la tarjeta para tener un nuevo cliente
+Reglas de Negocio:
+    la persona debe ser cliente del banco
+    no puede darse de alta a morosos en el sistema SIV
+
+
+Reverso: 
+Criterios de Aceptación (subir tarjeta):
+Escenario 1: subida exitosa
+DADO el dni 6000 corresponde a un cliente, las condiciones con el servidor externo son optimas y el cliente no es moroso
+CUANDO el empleado ingrese juan lopez, 6000, 360005, gold y oprima "subir"
+ENTONCES el sistema se comunica con el servidor externo, espera respuesta, recibe el numero de tarjeta nuevo e informa "Subida exitosa"
+
+Escenario 2: subida fallida por cliente no registrado
+DADO el dni 1111 no corresponde a un cliente 
+CUANDO el empleado ingrese juan lopez, 1111, 360005, gold y oprima "subir" 
+ENTONCES el sistema informa en pantalla "El dni ingresado no pertenece a un cliente del banco"
+
+Escenario 3: subida fallida por cliente moroso
+DADO el dni 6000 corresponde a un cliente, las condiciones con el servidor externo son optimas y el cliente es moroso
+CUANDO el empleado ingrese juan lopez, 6000, 360005, gold y oprima "subir"
+ENTONCES el sistema se comunica con el servidor externo, espera respuesta, e informa "el dni ingresado pertenece a un moroso"
+
+Escenario 3: subida fallida por fallo con el servidor externo
+DADO el dni 2000 corresponde a un cliente y las condiciones con el servidor externo no son optimas
+CUANDO el empleado ingrese juan lopez, 2000, 360005, gold y oprima "subir"
+ENTONCES el sistema no logra comunicarse con el servidor externo e informa un error
+
+4.
+Id: bajar tarjeta     
+Título: como empleado quiero bajar una tarjeta para terminar mi trabajo
+Reglas de Negocio:
+
+
+Reverso: 
+Criterios de Aceptación (bajar tarjeta):
+Escenario 1: baja exitosa
+DADO el numero de tarjeta 1000 valido 
+CUANDO el empleado ingrese 1000 y oprima "bajar"
+ENTONCES el sistema realiza la baja e informa "baja exitosa"
+
+Escenario 2: baja fallida
+DADO el numero de tarjeta 3000 invalido
+CUANDO el empleado ingrese 3000 y oprima "bajar"
+ENTONCES el sistema informa "numero de tarjeta invalido"
+
+
+5.
+Id: pedir listado 
+Título: como gerente quiero pedir el listado para completar mi trabajo
+Reglas de Negocio:
+    no debe ser posible ingresar fechas futuras 
+    no debe ser posible ingresar una fecha de inicio mayor a la de fin
+
+Reverso: 
+Criterios de Aceptación (pedir listado):
+Escenario 1: pedido exitoso
+DADO las fechas 11/10/20 y 22/05/21 validas
+CUANDO cuando el gerente ingrese las fechas 11/10/20 y 22/05/21 y oprima "listado"
+ENTONCES el sistema mostrara en pantalla las operaciones realizadas en el periodo entre esas fechas 
+
+Escenario 2: pedido fallido por fecha futura 
+DADO la fechas 11/12/26 invalida
+CUANDO cuando el gerente ingrese las fechas 11/10/22 y 11/12/26 y oprima "listado"
+ENTONCES el sistema informa en pantalla "fechas invalidas, fecha final futura"
+
+Escenario 3: pedido fallido por fechas inconexas
+DADO las fechas 22/05/21 y 11/10/20 invalidas 
+CUANDO cuando el gerente ingrese las fechas 22/05/21 y 11/10/20 y oprima "listado" 
+ENTONCES el sistema informa "fechas invalidas, corriga el orden"
+
+Escenario 4: pedido fallido por fechas invalidas (consultar) 
+DADO las fechas 22/05/21 y 11/10/30 invalidas 
+CUANDO cuando el gerente ingrese las fechas 22/05/21 y 11/10/30 y oprima "listado" 
+ENTONCES el sistema informa "fecha invalida, verifique los datos ingresados"
