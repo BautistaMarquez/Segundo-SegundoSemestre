@@ -13,3 +13,16 @@ Punto 6:
 .Punto7:
     .Es una pregunta GENERAL pero no se si los actores que partician de CU que son invocados son actores del CU que invoca (ej: sistema bancario)
     .ADELANTAR CUOTAS: El cliente debe poseer al menos un prestamo que este por el sexto mes? (o seria un caso en los pasos, osea que el cliente no posea prestamos)
+
+.Punto8: 
+    .COBRAR IMPUESTO: preguntar si como hice lo del 1er vencimiento esta bien 
+    .VER ESTADISTICAS: preguntar paso alternativo 8
+    .CONFIRMAR TRANSACCIONES: preguntar paso alternativo 5
+
+.Punto10:
+    .solicitar turno: consultar tema del mensaje de "cupo no disponible"
+    .registrar llegada: hay que buscar si tiene un turno de alguna manera especial?
+
+.Punto11:
+    .cargar empleado: me genera la misma duda practicamente que en el solicitar turno
+    .avisar regularizacion: la misma duda que el cargar empleado

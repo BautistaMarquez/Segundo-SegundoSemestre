@@ -22,119 +22,138 @@ recuperar los datos de la factura o el requerimiento para registrar los pagos de
 
 
 Analisis:
-Actores:
+Actores: empleado - gerente - central de pago
 
-casos de uso:
+casos de uso: cobrar impuesto - registrar pagos - ver estadísticas - recuperar datos - confirmar transacciones
+
 
 
 
 1.
-Nombre del caso de uso: 
+Nombre del caso de uso: cobrar impuesto
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el empleado de la sucursal realiza el cobro de un impuesto
 
-Actores:
+Actores: empleado 
 
-Precondiciones:
+Precondiciones: - 
 
 Curso normal (a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: el empleado selecciona la opcion "cobrar impuesto"
+paso 2 s: el sistema solicita el ingreso del codigo del pago electronico
+paso 3 a: el empleado ingresa el codigo 
+paso 4 s: el sistema ejecuta el CU "recuperar datos"
+paso 5 s: el sistema verifica que el 2do vencimiento no este vencido 
+paso 6 s: el sistema verifica que el 1er vencimiento no este vencido 
+paso 7 s: si el 1er vencimiento esta vencido
+paso 7.1 s: el sistema le suma a el monto original el recargo correspondiente 
+paso 8 s: el sistema cobra el monto original 
 
 curso alterno:
+paso alternativo 4: la recuperacion de datos falla. Se informa el error. Fin del CU 
+paso alternativo 5: el 2do vencimiento esta vencido por lo tanto no se puede realizar el cobro. Se informa el error. Fin del CU
 
-Postcondicion:
+Postcondicion: el impuesto es cobrado al cliente
 
 
 2.
-Nombre del caso de uso: 
+Nombre del caso de uso: recuperar datos 
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el sistema, mediante la central de cobro realiza la recuperacion de datos de la factura
 
-Actores:
+Actores: central de cobro 
 
-Precondiciones:
+Precondiciones: se debe haber ejecutado el CU "cobrar impuesto"
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 s: el sistema solicita conexion con la central de cobro enviando el token
+paso 2 a: la central de cobro verifica el token enviado
+paso 3 a: la central de cobro acepta la conexion y solicita el codigo de pago electronico
+paso 3 s: el sistema envia el codigo de pago electronico 
+paso 4 a: la central de cobro verifica el codigo ingresado 
+paso 5 a: la central de cobro recupera los datos de la factura y los envia al sistema 
+paso 6 s: el sistema recibe los datos de la factura correspondiente al codigo ingresado
 
 curso alterno:
+paso alternativo 2: el token es invalido. Se informa el error. Fin del CU.
+paso alternativo 4: el codigo es invalido. Se informa el error. Fin del CU. 
 
 Postcondicion:
 
 
 3.
-Nombre del caso de uso: 
+Nombre del caso de uso: registrar pagos 
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el gerente realiza el registro de los impuestos pagos en el dia
 
-Actores:
+Actores: gerente 
 
-Precondiciones:
+Precondiciones: - 
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: el gerente selecciona la opcion "registrar pagos"
+paso 2 s: el sistema solicita el ingreso de la clave maestra 
+paso 3 a: el gerente ingresa la clave maestra 
+paso 4 s: el sistema verifica la clave ingresada 
+paso 5 s: el sistema recupera las transacciones del dia 
+paso 6 s: el sistema ejecuta el CU "confirmar transacciones"
+paso 7 s: el sistema registra las transacciones recuperadas como enviadas 
 
 curso alterno:
+paso alternativo 4: la clave ingresada no es correcta. Se informa el error. Fin del CU. 
+paso alternativo 5: las transacciones del dia ya se han enviado. Se informa el error. Fin del CU.
+paso alternativo 6: la confirmacion de transacciones falla. Se informa el error. Fin del CU. 
 
-Postcondicion:
+
+Postcondicion: las transacciones del dia son registradas como enviadas
 
 
 4.
-Nombre del caso de uso: 
+Nombre del caso de uso: confirmar transacciones
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el sistema realiza la confirmacion de las transacciones del dia utilizando la central de cobro 
 
-Actores:
+Actores: central de cobro
 
-Precondiciones:
+Precondiciones: se debe haber ejecutado el CU "registrar pagos"
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 s: el sistema solicita la conexion a la central de cobro y le envia el token
+paso 2 a: la central de cobro verifica el token 
+paso 3 a: la central de cobro confirma la conexion y solicita las transacciones
+paso 4 s: el sistema realiza el envio de las transacciones
+paso 5 a: la central de cobro confirma la recepcion de las transacciones
+paso 6 s: el sistema finaliza la conexion con la central de cobro 
 
 curso alterno:
+paso alternativo 2: el token es invalido. Se informa el error. Fin del CU. 
+paso alternativo 5: la recepcion de las transacciones es fallida. Se informa el error. Fin del CU.
 
-Postcondicion:
+Postcondicion: las transacciones del dia estan listas para ser confirmadas por el sistema 
 
 
 5.
-Nombre del caso de uso: 
+Nombre del caso de uso: ver estadísticas
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el gerente realiza el visado de las estadísticas de los cobros en un rango de fechas
 
-Actores:
+Actores: gerente
 
-Precondiciones:
-
-Curso normal ( a = Accion del Actor y s = Accion del Sistema):
-
-curso alterno:
-
-Postcondicion:
-
-
-6.
-Nombre del caso de uso: 
-
-Descripcion:
-
-Actores:
-
-Precondiciones:
+Precondiciones: -
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: el gerente selecciona la opcion "ver estadísticas"
+paso 2 s: el sistema solicita el ingreso de la clave maestra
+paso 3 a: el gerente ingresa la clave solicitada 
+paso 4 s: el sistema verifica la clave
+paso 5 s: el sistema solicita el ingreso del rango de fechas 
+paso 6 a: el gerente ingresa el rango de fechas deseado 
+paso 7 s: el sistema verifica que el rango de fechas sea valido 
+paso 8 s: el sistema muestra las estadisticas solicitadas
 
 curso alterno:
+paso alternativo 4: la clave maestra ingresada es invalida. Se informa el error. Fin del CU. 
+paso alternativo 7: el rango de fechas no es valido. Se informa el error. Fin del CU. 
+paso alternativo 8: no se han realizado cobros en el rango ingresado. Se informa el error. Fin del CU.  
 
-Postcondicion:
-
-
-7.
-Nombre del caso de uso: 
-
-Descripcion:
-
-Actores:
-
-Precondiciones:
-
-Curso normal ( a = Accion del Actor y s = Accion del Sistema):
-
-curso alterno:
-
-Postcondicion:
+Postcondicion: las estadisticas han sido mostradas en pantallada 

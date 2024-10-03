@@ -22,74 +22,111 @@ implementación dado que algunas funcionalidades son parecidas a las solicitadas
 
 
 Analisis:
-Actores:
+Actores: secretaria - servidor externo - empleado 
 
-casos de uso:
+casos de uso: cargar empleado - asociar obra social - verificar morosidad - avisar regularizacion
 
 
 
 1.
-Nombre del caso de uso: 
+Nombre del caso de uso: cargar empleado 
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual la secretaria realiza la carga en el sistema de un nuevo empleado
 
-Actores:
+Actores: secretaria
 
-Precondiciones:
+Precondiciones: -
 
 Curso normal (a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: la secretaria selecciona la opcion "cargar empleado"
+paso 2 s: el sistema solicita el ingreso del dni, apellido, nombre, edad y domicilio del nuevo empleado
+paso 3 a: la secretraria realiza el ingreso de los datos solictados 
+paso 4 s: el sistema verifica que el nuevo empleado no figure en la base de sumariados
+paso 5 s: el sistema confirma la carga del nuevo empleado 
 
 curso alterno:
+paso alternativo 4: el nuevo empleado aparece en la base de sumariados. Se informa la situacion. Fin del CU.
 
-Postcondicion:
+Postcondicion: el nuevo empleado es cargado en el sistema 
 
 
 2.
-Nombre del caso de uso: 
+Nombre del caso de uso: asociar obra social
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual la secretaria realiza la asociacion de la obra social a un empleado 
 
-Actores:
+Actores: secretaria 
 
-Precondiciones:
+Precondiciones: -
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: la secretaria selecciona la opcion "asociar obra social"
+paso 2 s: el sistema solicita el ingreso del dni del empleado
+paso 3 a: la secretaria ingresa el dni 
+paso 4 s: el sistema verifica el dni ingresado
+paso 5 s: el sistema ejecuta el CU "verificar morosidad" 
+paso 6 s: el sistema verifica el resultado obtenido 
+paso 7 s: el empleado no es moroso, por lo tanto el sistema le asocia la obra social e imprime el carnet  
+
 
 curso alterno:
+paso alternativo 4: el dni ingresado no pertenece al de un empleado registrado. Se informa el error. Fin del CU.
+paso alternativo 5: la verificacion falla. Se informa el error. Fin del CU. 
+paso alternativo 7: el empleado es moroso. Se informa la situacion e imprime el codigo de inicio de tramite. Fin del CU. 
 
-Postcondicion:
+Postcondicion: el empleado es asociado a la obra social.
 
 
 3.
-Nombre del caso de uso: 
+Nombre del caso de uso: avisar regularizacion
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el empleado realiza el aviso de la regularizacion de su morosidad
 
-Actores:
+Actores: empleado 
 
-Precondiciones:
+Precondiciones: - 
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: el empleado selecciona la opcion "avisar regularizacion"
+paso 2 s: el sistema solicita el ingreso del dni y codigo de inicio de tramite
+paso 3 a: el empleado ingresa su dni y su codigo de inicio de tramite
+paso 4 s: el sistema verifica el dni ingresado 
+paso 5 s: el sistema verifica el codigo ingresado 
+paso 6 s: el sistema ejecuta el CU "verficar morosidad"
+paso 7 s: el sistema verifica el resultado obtenido
+paso 8 s: el empleado no es moroso, el sistema asocia la obra social e imprime el carnet 
 
 curso alterno:
+paso alternativo 4: el dni ingresado no pertenece al de un empleado registrado. Se informa el error. Fin del CU.
+paso alternativo 5: el codigo ingresado es invalido. Se informa el error. Fin del CU.
+paso alternativo 6: la verificacion falla. Se informa el error. Fin del CU. 
+paso alternativo 8: el empleado es moroso. Se informa. Fin del CU.
 
-Postcondicion:
+Postcondicion: el empleado regularizado, es asociado a la obra social.
 
 
 4.
-Nombre del caso de uso: 
+Nombre del caso de uso: verificar morosidad
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el sistema verifica la morosidad de un empleado mediante un servidor externo
 
-Actores:
+Actores: servidor externo
 
-Precondiciones:
+Precondiciones: debe haber sido ejecutado el CU "asociar obra social" o el CU "avisar regularizacion"
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 s: el sistema solicita conexion con el servidor externo
+paso 2 a: el servidor externo confirma la conexion y solicita el dni del empleado 
+paso 3 s: el sistema envia el dni 
+paso 4 a: el servidor externo verifica si el dni ingresado pertenece a un moroso 
+paso 5 a: el servidor externo envia el resultado de la verificacion al sistema 
+paso 6 s: el sistema recibe el resultado enviado por el servidor externo
+paso 7 s: el sistema finaliza la conexion con el servidor externo
 
 curso alterno:
+paso alternativo 2: el servidor externo rechaza la conexion. Se informa el error. Fin del CU.
 
-Postcondicion:
+Postcondicion: se obtuvo el resultado de la verificacion de la morosidad del empleado
 
 
 5.

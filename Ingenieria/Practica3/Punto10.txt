@@ -16,119 +16,145 @@ encarga de sumar los puntos.
 
 
 Analisis:
-Actores:
+Actores: persona - usuario - servidor externo - secretaria
 
-casos de uso:
+casos de uso: registrar persona - iniciar sesion - cerrar sesion - solicitar turno - sumar puntos - registrar llamada
 
 
 
 1.
-Nombre del caso de uso: 
+Nombre del caso de uso: registrar persona 
 
-Descripcion:
+Descripcion: este caso de uso explica el modo en que una persona se  registra en al sistema.
 
-Actores:
+Actores: persona
 
-Precondiciones:
+Precondiciones: -
 
-Curso normal (a = Accion del Actor y s = Accion del Sistema):
+Curso normal ( a = Accion del Actor y s = Accion del Servidor):
+Paso 1 a: la persona selecciona la opcion registrar alumno.
+Paso 2 s: el sistema solicita que ingrese su nombre, apellido, dni y mail. 
+Paso 3 a: la persona ingresa los datos requeridos. 
+Paso 4 s: el sistema verifica los datos ingresados, verifica que no exista una usuario el mail ingresado. 
+Paso 5 s: el sistema registra el alta del nuevo usuario.
+paso 6 s: el sistema genera y envia al mail ingresado la contraseña
 
 curso alterno:
+Paso alternativo 4: Ya existe un usuario asociado al mail ingresado. Se informa el error. Fin del CU.
 
-Postcondicion:
+Postcondicion: Se registro a la persona.
+
 
 
 2.
-Nombre del caso de uso: 
+Nombre del caso de uso: iniciar sesion 
 
-Descripcion:
+Descripcion: especifica el modo en que el usuario inicia sesion
 
-Actores:
+Actores: usuario 
 
-Precondiciones:
+Precondiciones: El persona debe usuario en el sistema previamente.
 
-Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el usuario selecciona la opcion de "Iniciar seion"
+paso 2 s: el sistema solicita nombre de usuario y contraseña. 
+paso 3 a: el usuario ingresa su nombre de usuario y contraseña.
+paso 4 s: el sistema verifica los datos ingresados.
+paso 5 s: el sistema registra la sesion iniciada y le otorga los permisos al usuario.
 
 curso alterno:
+Paso alternativo 4 s: el usuario o la contraseña no son validas, el sistema informa que los datos son invalidos. Vuelve al paso 2.
 
-Postcondicion:
+Postcondicion: La sesion esta iniciada, el usuario y se le habilita la opcion de inscribir a carreras.
 
 
 3.
-Nombre del caso de uso: 
+Nombre del caso de uso: cerrar sesion
 
-Descripcion:
+Descripcion: especifica el modo en que el usuario cierra sesion
 
-Actores:
+Actores: usuario 
 
-Precondiciones:
+Precondiciones: El usuario debe tener una sesion iniciada 
 
-Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+Curso normal (a = Accion del Actor y s = Accion del Servidor):
+paso 1 a: el usuario selecciona la opcion de "cerrar sesion"
+paso 2 s: el sistema solicita la confirmacion.
+paso 3 a: el usuario confirma la operacion.
+paso 4 s: el sistema cierra la sesion del usuario y le inhabilita los permisos. 
 
 curso alterno:
+paso alternativo 3: el usuario rechaza la operacion. Fin del caso de uso.
 
-Postcondicion:
+Postcondicion: la sesion ha sido cerrada.
+
 
 
 4.
-Nombre del caso de uso: 
+Nombre del caso de uso: solicitar turno 
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el cliente realiza la reserva de un turno 
 
-Actores:
+Actores: usuario 
 
-Precondiciones:
+Precondiciones: el usuario debe tener una sesion iniciada
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: el usuario selecciona la opcion "solicitar turno" 
+paso 2 s: el sistema solicita el ingreso de la fecha, hora y actividad deseada 
+paso 3 a: el usuario ingresa los datos solicitados 
+paso 4 s: el sistema verifica los datos ingresados 
+paso 5 s: el sistema verifica que exista cupo para la actividad deseada en la fecha y horario ingresado 
+paso 6 s: el sistema registra el turno
 
 curso alterno:
+paso alternativo 5: no hay cupos disponibles. Se informa "Cupo no disponible". Fin del CU.
 
-Postcondicion:
+Postcondicion: se registro la reserva del turno correspondiente
 
 
 5.
-Nombre del caso de uso: 
+Nombre del caso de uso: registrar llegada
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual la secretaria registra la llegada de un cliente
 
-Actores:
+Actores: secretaria
 
-Precondiciones:
+Precondiciones: -
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 a: la secretaria solicita la opcion "registrar llegada" 
+paso 2 s: el sistema solicita el ingreso del dni del cliente 
+paso 3 a: la secretaria ingresa el dni 
+paso 4 s: el sistema verifica que el dni pertenezca a un usuario 
+paso 5 s: si el usuario habia solicitado un turno previamente
+paso 5.1 s: el sistema ejecuta el CU "sumar puntos" 
+paso 6 s: se registra la llegada del cliente 
 
 curso alterno:
+paso alternativo 4: el dni ingresado no pertenece al de un usuario del gym. Se informa el error. Fin del CU.
+paso alternativo 5.1: la suma de puntos falla. Se informa el error. Fin del CU.
 
-Postcondicion:
+Postcondicion: se registro la llegada del cliente
 
 
 6.
-Nombre del caso de uso: 
+Nombre del caso de uso: sumar puntos 
 
-Descripcion:
+Descripcion: este CU describe el evento en el cual el sistema suma puntos a los clientes mediante un servidor externo 
 
-Actores:
+Actores: servidor externo
 
-Precondiciones:
-
-Curso normal ( a = Accion del Actor y s = Accion del Sistema):
-
-curso alterno:
-
-Postcondicion:
-
-
-7.
-Nombre del caso de uso: 
-
-Descripcion:
-
-Actores:
-
-Precondiciones:
+Precondiciones: se debe haber ejecutado el CU "registrar llegada"
 
 Curso normal ( a = Accion del Actor y s = Accion del Sistema):
+paso 1 s: el sistema solicita conexion al servidor 
+paso 2 a: el servidor externo confirma la conexion y solicita el dni y actividad 
+paso 3 s: el sistema envia el dni y la actividad del turno 
+paso 4 a: el servidor externo realiza la suma de puntos al dni enviado 
+paso 5 s: el sistema finaliza la conexion con el servidor externo
 
 curso alterno:
+paso alternativo 2: el servidor rechaza la conexion. Se informa el error. Fin del CU.
 
-Postcondicion:
+Postcondicion: se le sumaron los puntos correspondientes al cliente.
