@@ -14,44 +14,241 @@ factura del comercio que la confeccionó.
 
 Resolucion
 Rol de usuarios: 
-    personas
-    afiliados    
+    persona
+    afiliado    
 
 Historias de usuario:
     afiliar persona 
     afiliar pareja 
     afiliar hijo 
-    otorgar ortoncia (solo una, el afiliado debe ser menor de 15 años, debe estar afiliado hace nueve meses, debe presentarse historia clinica)
-    otorgar Plantilla (dos por año, debe presentarse la indicacion del profesional y factura del comercio que la confeccionó)
-    otorgar anteojo (tres meses de antiguedad como afiliado, un par cada 18 meses)
-    otorgar Internación(debe estar afiliado)
-    otorgar consulta (debe estar afiliado, 2 por mes)
+    solicitar ortoncia (solo una, el afiliado debe ser menor de 15 años, debe estar afiliado hace nueve meses, debe presentarse historia clinica)
+    solicitar Plantilla (dos por año, debe presentarse la indicacion del profesional y factura del comercio que la confeccionó)
+    solicitar anteojo (tres meses de antiguedad como afiliado, un par cada 18 meses)
+    solicitar Internación(debe estar afiliado)
+    solicitar consulta (debe estar afiliado, 2 por mes)
 
 Reglas de negocio:
     para afiliar a un hijo, debe ser menor a 18 años 
     para afiliar a una persona, debe poseer una tarjeta valida 
     el pago del mes anterior debe estar asentado para poder tener las prestaciones
 
-
+{Los primeros entonces podrian a ver estado mejor escritos}
 1.
-Id: 
-Título: 
-Reglas de Negocio:
+Id: afiliar persona 
+Título: como persona quiero afiliarme para obtener los beneficios 
+Reglas de Negocio: la persona debe poseer una tarjeta de credito con fondos
 
 
 Reverso: 
-Criterios de Aceptación ():
-Escenario 1: 
+Criterios de Aceptación (afiliar persona):
+Escenario 1: afiliacion exitosa
+DADO la persona posee una tarjeta con fondos suficientes 
+CUANDO la persona ingrese los datos de la tarjeta y oprima "afiliar"
+ENTONCES el sistema realiza el pago, registra a la persona en el sistema y le otorga su numero de afiliado
+
+Escenario 2: afiliacion fallida por falta de tarjeta //me parece muy boludo
+DADO la persona no posee una tarjeta 
+CUANDO la persona oprima "afiliar"
+ENTONCES el sistema informa que debe ingresar los datos de una tarjeta valida 
+
+Escenario 3: afiliacion fallida por fondos insuficientes 
+DADO la persona posee una tarjeta con fondos insuficientes
+CUANDO la persona ingrese los datos de la tarjeta y oprima "afiliar"
+ENTONCES el sistema informa que el pago no fue realiza por fondos insuficientes
+
+2.
+Id: afiliar pareja 
+Título: como afiliado quiero afiliar a mi pareja para que obtenga los beneficios
+Reglas de Negocio: -
+
+
+Reverso: 
+Criterios de Aceptación (afiliar pareja):
+Escenario 1: afiliacion exitosa 
+DADO los datos de la pareja ingresada 
+CUANDO el afiliado ingrese los datos de la pareja e oprima "afiliar"
+ENTONCES el sistema registra a la pareja en el sistema y le otorga su numero de afiliado
+
+Escenario 2: - Podria ser no ingresa los datos (?)
 DADO 
 CUANDO 
 ENTONCES 
 
-Escenario 2: 
-DADO 
-CUANDO 
-ENTONCES 
+
+3.
+Id: afiliar hijo
+Título: como afiliado quiero afiliar a mi hijo para que obtenga los beneficios
+Reglas de Negocio: el hijo debe ser menor a 18 años
+
+
+Reverso: 
+Criterios de Aceptación (afiliar hijo):
+Escenario 1: afiliacion exitosa
+DADO la edad del hijo ingresada es menor a 18
+CUANDO el afiliado ingrese los datos del hijo y oprima "afiliar hijo"
+ENTONCES el sistema registra al hijo en el sistema y le otorga su numero de afiliado
+
+Escenario 2: afiliacion fallida por edad mayor a la permitida 
+DADO la edad del hijo de mayor o igual a 18
+CUANDO el afiliado ingrese los datos del hijo y oprima "afiliar hijo"
+ENTONCES el sistema informa que para afiliar a un hijo, este debe ser menor de 18 años.
 
 Escenario 3: 
 DADO 
 CUANDO 
 ENTONCES 
+
+4.
+Id: solicitar ortoncia 
+Título: como afiliado quiero solicitar una ortodoncia para que mi hijo la obtenga
+Reglas de Negocio: 
+    - se otorga una ortodoncia por afiliado 
+    - el afiliado debe ser menor de 15 años
+    - el afiliado debe poseer al menos 9 meses de antiguedad
+    - debe presentarse historia clinica
+    - el pago del mes anterior debe estar asentado
+
+
+Reverso: 
+Criterios de Aceptación (solicitar ortodoncia):
+Escenario 1: solicitud exitosa 
+DADO el afiliado posee el pago del mes anterior asenttado, nunca recibio una ortodoncia, es menor de 15 años, posee los 9 meses de antiguedad necesarios y presento la historia clinica
+CUANDO el afiliado ingrese la historia clinica y oprima "solicitar ortodoncia"
+ENTONCES el sistema reconoce la solicitud e informa al afiliado que su solicitud ha sido aceptada 
+
+Escenario 2: solicitud fallida por falta de historia clinica
+DADO el afiliado posee el pago del mes anterior asenttado, nunca recibio una ortodoncia, es menor de 15 años, posee los 9 meses de antiguedad necesarios y no presento la historia clinica
+CUANDO el afiliado oprima "solicitar ortodoncia"
+ENTONCES el sistema informa que se necesita presentar la historia clinica para obtener una ortodoncia
+
+Escenario 3: solicitud fallida por antiguedad insuficiente
+DADO el afiliado posee el pago del mes anterior asenttado, nunca recibio una ortodoncia, es menor de 15 años y no posee los 9 meses de antiguedad necesarios
+CUANDO el afiliado oprima "solicitar ortodoncia"
+ENTONCES el sistema informa que se necesita de al menos 9 meses de antiguedad para obtener una ortodoncia
+
+Escenario 4: solicitud fallida por edad superior a la maxima permitida
+DADO el afiliado posee el pago del mes anterior asenttado, nunca recibio una ortodoncia y no es menor de 15 años
+CUANDO el afiliado oprima "solicitar ortodoncia"
+ENTONCES el sistema informa que no se le puede otorgar una ortodoncia a un afiliado mayor de 15 años
+
+Escenario 5: solicitud fallida por ortodoncia ya reconocida
+DADO el afiliado posee el pago del mes anterior asenttado y recibio recibio una ortodoncia
+CUANDO el afiliado oprima "solicitar ortodoncia"
+ENTONCES el sistema informa que ya se le ha reconocido una ortodoncia al afiliado
+
+Escenario 6: solicitud fallida por pago no asentado
+DADO el afiliado no posee el pago del mes anterior asenttado
+CUANDO el afiliado oprima "solicitar ortodoncia"
+ENTONCES el sistema informa que no posee el pago del mes anterior asentado.
+
+5.
+Id: solicitar Plantilla
+Título: como afiliado quiero solicitar una plantilla para disfrutar de ella
+Reglas de Negocio:
+    - un afiliado puede obtener 2 plantillas por año calendario
+    - debe presentarse la factura del comercio
+    - debe presentarse la indicacion profesional
+    - el pago del mes anterior debe estar asentado
+
+
+Reverso: 
+Criterios de Aceptación (solicitar plantilla):
+Escenario 1: solicitud exitosa 
+DADO el afiliado posee el pago del mes anterior asentado, la cantidad de solicitudes de plantillas es menor a 2, presento la factura del comercio y presento la indicacion profesional
+CUANDO el afiliado ingrese la factura del comercio, la indicacion profesional y oprima "solicitar plantilla"
+ENTONCES el sistema aumenta en uno la cantidad de plantillas solicitas del afiliado, reconoce la solicitud e informa al afiliado que su solicitud ha sido aceptada 
+
+Escenario 2: solicitud fallida por falta de indicacion profesional
+DADO el afiliado posee el pago del mes anterior asentado, la cantidad de solicitudes de plantillas es menor a 2, presento la factura del comercio y no presento la indicacion profesional
+CUANDO el afiliado ingrese la factura del comercio y oprima "solicitar plantilla"
+ENTONCES el sistema informa que se debe ingresar la indicacion profesional 
+
+Escenario 3: solicitud fallida por falta de factura del comercio
+DADO el afiliado posee el pago del mes anterior asentado, la cantidad de solicitudes de plantillas es menor a 2 y no presento la factura del comercio
+CUANDO el afiliado oprima "solicitar plantilla"
+ENTONCES el sistema informa que se debe ingresar la factura del comercio 
+
+Escenario 4: solicitud fallida por cantidad de plantillas igual a 2 
+DADO el afiliado posee el pago del mes anterior asentado y la cantidad de solicitudes de plantillas es igual a 2
+CUANDO el afiliado oprima "solicitar plantilla"
+ENTONCES el sistema informa que el afiliado ya ha realizado las dos solicitudes de plantillas permitidas por año calendario
+
+Escenario 5: solicitud fallida por pago no asentado
+DADO el afiliado no posee el pago del mes anterior asenttado
+CUANDO el afiliado oprima "solicitar plantilla"
+ENTONCES el sistema informa que no posee el pago del mes anterior asentado.
+
+6.
+Id: solicitar anteojos
+Título: como afiliado quiero solicitar un anteojo para ver joya 
+Reglas de Negocio:
+    - el afiliado debe tener 3 meses de antiguedad 
+    - se otorga un par cada 18 meses 
+    - el afiliado debe poseer el pago del mes anterior asentado
+
+Reverso: 
+Criterios de Aceptación (solicitar anteojos):
+Escenario 1: solicitud exitosa
+DADO el afiliado posee el pago del mes anterior asentado, posee al menos 3 meses de antiguedad como afiliado y la cantidad de solicitudes de anteojos es igual a 0
+CUANDO el afiliado oprima "solicitar anteojos"
+ENTONCES el sistema aumenta la cantidad de solicitudes de anteojos del afiliado en 1, reconoce la solicitud e informa al afiliado que su solicitud ha sido aceptada
+
+Escenario 2: solicitud fallida por cantidad de solicitudes igual a 1
+DADO el afiliado posee el pago del mes anterior asentado, posee al menos 3 meses de antiguedad como afiliado y la cantidad de solicitudes de anteojos es igual a 1
+CUANDO el afiliado oprima "solicitar anteojos"
+ENTONCES el sistema informa que el afiliado ya ha solicitado un par de anteojos en los ultimos 18 meses
+
+Escenario 3: solicitud fallida por antiguedad menor a 3 meses
+DADO el afiliado posee el pago del mes anterior asentado y no posee al menos 3 meses de antiguedad como afiliado
+CUANDO el afiliado oprima "solicitar anteojos"
+ENTONCES el sistema informa que el afiliado debe poseer un antiguedad de al menos 3 meses para realizar la solicitud
+
+Escenario 4: solicitud fallida por pago no asentado
+DADO el afiliado no posee el pago del mes anterior asenttado
+CUANDO el afiliado oprima "solicitar anteojos"
+ENTONCES el sistema informa que no posee el pago del mes anterior asentado
+
+7.
+Id: solicitar internacion
+Título: como afiliado quiero solicitar una internacion para no morir
+Reglas de Negocio: 
+    - el afiliado debe poseer el pago del mes anterior asentado
+
+
+Reverso: 
+Criterios de Aceptación (solicitar internacion):
+Escenario 1: solicitud exitosa
+DADO el afiliado posee el pago del mes anterior asentado 
+CUANDO el afiliado oprima "solicitar internacion"
+ENTONCES el sistema reconoce la solicitud e informa al afiliado que su solicitud ha sido aceptada
+
+Escenario 2: solicitud fallida por pago no asentado
+DADO el afiliado no posee el pago del mes anterior asenttado
+CUANDO el afiliado oprima "solicitar internacion"
+ENTONCES el sistema informa que no posee el pago del mes anterior asentado
+
+
+8.
+Id: solicitar consulta medica 
+Título: como afiliado quiero solicitar una consulta medica para chequear mi estado 
+Reglas de Negocio:
+    - el afiliado puede realizar 2 solicitudes por mes 
+    - el afiliado debe poseer el pago del mes anterior asentado
+
+
+Reverso: 
+Criterios de Aceptación (solicitar consulta medica ):
+Escenario 1: solicitud exitosa 
+DADO el afiliado posee el pago del mes anterior asentado y la cantidad de solicitudes de consultas medicas es menor a 2 
+CUANDO el afiliado oprima "solicitar consulta medica"
+ENTONCES el sistema aumenta la cantidad de solicitudes de consulta medica del afiliado en 1, reconoce la solicitud e informa al afiliado que su solicitud ha sido aceptada
+
+Escenario 2: solicitud fallida por cantidad de solicitudes igual a 2 
+DADO el afiliado posee el pago del mes anterior asentado y la cantidad de solicitudes de consultas medicas es igual a 2
+CUANDO el afiliado oprima "solicitar consulta medica"
+ENTONCES el sistema informa que el afiliado ya ha realizado las dos solicitudes permitidas del mes 
+
+Escenario 3: solicitud fallida por pago no asentado
+DADO el afiliado no posee el pago del mes anterior asenttado
+CUANDO el afiliado oprima "solicitar internacion"
+ENTONCES el sistema informa que no posee el pago del mes anterior asentado
