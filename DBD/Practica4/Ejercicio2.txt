@@ -1,0 +1,55 @@
+1. 
+select a.especie, a.años, a.calle, a.nro, l.nombreL 
+from arbol a natural join poda p natural join podador pd natural join localidad l 
+where ((pd.nombre = "Juan") and (pd.apellido = "Perez")) and ((pd.nombre = "Jose") and (pd.apellido = "Garcia")) 
+
+2. 
+select pd.dni, pd.nombre, pd.apellido, pd.fnac, l.nombreL 
+from podador pd natural join localidad l natural join poda p 
+where (p.fecha betwenn 01/01/2023 and 31/12/2013) 
+
+3. (Recordar el LEFT JOIN si lleva ON)
+select a.especie, a.años, a.calle, a.nro, l.nombreL 
+from arbol a natural join localidad l left join poda p on (a.nroArbol = p.nroArbol)
+where p.codPoda is null 
+
+4. 
+select a.especie, a.años, a.calle, a.nro, l.localidad
+from arbol a inner join poda p on (a.nroArbol = p.nroArbol)
+where (p.fecha betwenn 01/01/2022 and 31/12/2022)
+except 
+select a.especie, a.años, a.calle, a.nro, l.localidad
+from arbol a inner join poda p (a.nroArbol = p.nroArbol)
+where (p.fecha betwenn 01/01/2023 and 31/12/2023)
+
+5. 
+select pd.dni, pd.nombre, pd.apellido, pd.fnac, l.nombreL 
+from podador pd inner join localidad l on (pd.codigoPostalVive = l.codigoPostal) inner join poda p on (pd.dni = p.dni)
+where (pd.apellido like "%ata%") and (p.fecha betwenn 01/01/2024 and 31/12/2024)
+order by pd.apellido pd.nombre
+
+6.
+select pd.dni, pd.nombre, pd.apellido,pd.telefono, pd.fnac 
+from podador pd inner join poda p on (pd.dni = p.dni) inner join arbol a on (p.nroArbol = a.nroArbol)
+where (a.especie = "conifera")
+expect
+select pd.dni, pd.nombre, pd.apellido,pd.telefono, pd.fnac 
+from podador pd inner join poda p on (pd.dni = p.dni) inner join arbol a on (p.nroArbol = a.nroArbol)
+where (a.especie <> "conifera")
+
+7.
+select a.especie 
+from arbol a inner join localidad l on (a.codigoPostal = l.codigoPostal)
+where (l.nombreL = "La Plata") 
+intersect 
+select a.especie 
+from arbol a inner join localidad l on (a.codigoPostal = l.codigoPostal)
+where (l.nombreL = "Salta") 
+
+8.
+delete from podador where dni = 22234566;
+
+9. (entiendo que en este si iria el distinct es una duda que tengo que resolver) (Consulta esto, lo hice viendo en chatGPT)
+select l.nombreL, l.descripcion, l.#habitantes 
+from localidad l 
+where ((select count(*) from arbol a where (a.codigoPostal = l.codigoPostal)) < 100) 

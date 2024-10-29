@@ -1,0 +1,77 @@
+1.
+select p.dni, a.legajo, p.apellido, p.nombre 
+from persona p inner join alumno a on (p.dni = a.dni)
+where (a.año_ingreso < 2014)
+
+2.
+select p.dni, prof.matricula, p.apellido, p.nombre 
+from persona p inner join profesor prof on (p.dni = prof.dni) inner join profesor_curso profc on (prof.dni = profc.dni) inner join curso c on (c.cod_curso = profc.cod_curso) 
+where (c.duracion > 100)
+order by p.dni 
+
+3.
+select p.dni, p.apellido, p.nombre, p.genero, p.fecha_nacimiento 
+from persona p inner join alumno_curso on ac (p.dni = ac.dni) inner join curso c on (c.cod_curso = ac.cod_curso)
+where (c.nombre = "Diseño de bases de datos") and (ac.año = 2023)
+
+4. CONSULTAR 
+select p.dni, p.apellido, p.nombre, ac.calificacion 
+from persona p inner join alumno_curso ac on (p.dni = ac.dni)
+where ac.calificacion in (select ac.calificacion from persona p inner join profesor_curso profc on (p.dni = profc.dni) inner join curso c on (c.cod_curso = profc.cod_curso) inner join alumno_curso ac on (c.cod_curso = ac.cod_curso) where (p.nombre = "Juan") and (p.apellido = "Garcia") and (ac.calificacion > 8))
+order by p.apellido p.nombre
+
+otra opcion seria en el inner join usar dos veces la tabla persona y "enlazarla con el prof" nose si se puede, se me ocurrio despues de hacer esta opcion podria funcionar
+
+Seguna opcion: 
+select p.dni, p.apellido, p.nombre, ac.calificacion 
+from persona p inner join alumno_curso ac on (p.dni = ac.dni) inner join curso c on (c.cod_curso = ac.cod_curso) inner join profesor_curso profc on (profc.cod_curso = c.cod_curso) inner join alumno_curso ac on (c.cod_curso = ac.cod_curso) inner join persona p2 (p2.dni = profc.dni) 
+where (p.nombre = "Juan") and (p.apellido = "Garcia") and (ac.calificacion > 8)
+order by p.apellido p.nombre
+
+5.
+select p.dni, p.apellido, p.nombre, prof.matricula 
+from persona p inner join profesor prof on (p.dni = prof.dni) inner join titulo_profesor titprof (prof.dni = titprof.dni)
+group by p.dni, p.apellido, p.nombre, prof.matricula 
+having count(titprof.cod_titulo) > 3  //AL PARECER ESTO SE PUEDE, sino iria el count en el select. CONSULTAR!
+order by p.apellido, p.nombre 
+
+6.
+select p.dni, p.apellido, p.nombre, sum(c.duracion) as cantidad_de_horas avg(c.duracion) as promedio
+from persona p inner join profesor_curso profc (p.dni = profc.dni) inner join curso c (c.cod_curso = profc.cod_curso)
+group by d.dni, p.apellido, p.nombre 
+
+7. CONSULTAR
+select c.nombre, c.descripcion 
+from curso c inner join alumno_curso a on (curso.cod_curso = a.cod_curso)
+where (a.año = 2024)
+order by c.cod_curso, c.nombre, c.descripcion 
+having max(a) 
+union 
+select c.nombre, c.descripcion 
+from curso c inner join alumno_curso a on (curso.cod_curso = a.cod_curso)
+where (a.año = 2024)
+order by c.cod_curso, c.nombre, c.descripcion 
+having min(a) 
+
+8. 
+select p.dni, p.apellido, p.nombre, a.legajo
+from persona p inner join alumno a on (p.dni = a.dni) inner join alumno_curso ac on (a.dni = ac.dni) inner join curso c (c.cod_curso = ac.cod_curso)
+where (c.nombre like "%BD%") and (ac.año = 2022)
+except 
+select p.dni, p.apellido, p.nombre, a.legajo
+from persona p inner join alumno a on (p.dni = a.dni) inner join alumno_curso ac on (a.dni = ac.dni) inner join curso c (c.cod_curso = ac.cod_curso)
+where (ac.año = 2023) 
+
+9.
+insert into persona (DNI, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero) values (24321432, rodriguez, juan, 13/06/1988, soltero, hombre)
+insert into profesor (DNI (fk), Matricula, Nro_Expediente) values (24321432, 0110, 2345)
+insert into titulo-profesor (Cod_Titulo (fk), DNI (fk), Fecha) values (25, 24321432, 10/12/2006)
+(Entiendo que como dice asignarle el titulo con codigo = 25 ya existe y solamente debo asignarselo)
+
+10. CONSULTAR
+update persona set estado_civil = "Divorciado" where (dni = (select dni from alumno where legajo = "2020/09"))
+
+11.
+delete from alumno_curso where (alumno_curso.dni = 30568989) 
+delete from alumno where (alumno.dni = 30568989)
+delete from persona where (persona.dni = 30568989)
