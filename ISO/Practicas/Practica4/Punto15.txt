@@ -1,0 +1,5 @@
+a.Para los batch usaria FCFS y para los Interactivos RR 
+
+b.para la planificacion, le asignaria una mayor prioridad a la cola de los procesos Interactivos obviamente. Una planificacion por prioridades. 
+
+consultar

@@ -1,0 +1,8 @@
+Habria que usar RR, si no se quiere inanicion para empezar y utilizando la tecnica de envejecimiento 
+Planteo: 
+    Q0: RR de Q = 4
+    Q1: RR de Q = 8
+    Q2: RR de Q = 16 
+
+y que cada vez que supere el Q baje un nivel, con lo cual me aseguro de dar respuesta a procesos cortos entiendo que serian I/O  y dejando a los procesos mas largos en colas inferiores pero utilizando la tecnica de envejecimiento para evitar la inanicion. 
+

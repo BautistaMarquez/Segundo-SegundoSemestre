@@ -1,0 +1,10 @@
+a. Se refiere a la cantidad de recursos y datos específicos que un proceso utiliza y mantiene en un procesador durante su ejecución. Esto incluye el contexto de ejecución del proceso
+
+b. Esto esta relacionado con la capacidad de especificar en que nucleo de CPU se puede ejecutar un proceso. De esta manera se puede forzar a un proceso a ejecutarse es un procesador o grupo de procesadores. 
+
+c. Para evitar Context Switch supongo,entiendo que evitar "mover" es algo importante esto sobre todo en procesos ligados a E/S el cual va a tener muchas interrupciones, si lo cambiaramos de procesador por cada vez que realiza una E/S entiendo que se perderia eficiencia. Capaz en procesos sin tantas interrupciones no seria algo tan grave y se aprovecharian mejor los procesadores evitando sobrecargar alguno de estos. (por esto y mas cosas es que se usa la afinidad de proceso)
+
+d. Si, se puede cambiar la afinidada facilmente. Desde el administrador de tareas. Asi como tambien se puede modificar su prioridad. 
+
+e.El balanceo de carga (load balancing) es una técnica que busca distribuir de manera equitativa y eficiente la carga de trabajo entre varios recursos de un sistema, como procesadores, servidores, o nodos en una red, para optimizar el rendimiento y evitar la sobrecarga de alguno de ellos. Con esto se busca mejorar el rendimiento, maximizar la utilizacion de recursos y minimizar la inanicion y los cuellos de botella.
+Esto es muy utilizado en sistemas multiprocesador, para distribuir los procesos o hilos entre los procesadores disponibles para que todos trabajen de forma equilibrada.

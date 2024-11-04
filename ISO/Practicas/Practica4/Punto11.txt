@@ -1,0 +1,7 @@
+A.
+En RR: Entiendo que si el Q es muy corto y se tiene muchos procesos tambien se puede tardar en atender la I/O, por lo que entendi el Q no afecta al I/O asique en eso no influye, no veo que haya nada muy determinante entre variable y fijo. Se tienen muchos cambios de contexto tambien, pero bueno eso es algo inevitable en cierto punto. Tambien se da que los procesos ligados a I/O no utilizan su Q completo y se quedan esperando por algun recurso, esto es algo ineficiente supongo. 
+
+
+B.
+En SRTF: entiendo que se puede generar inanicion, y que un proceso con una rafaga de CPU larga "tarde" en atender la I/O y obviamente beneficia a procesos con rafagas de CPU cortas, los cuales entiendo serian procesos ligados a I/O. 
+

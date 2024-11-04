@@ -1,0 +1,3 @@
+a. Entiendo que se asocian con los homogeneos, fuertemente acoplados 
+b. significa que no hay un procesador maestro, todos son "iguales", el SO puede asignar procesos de manera equitativa a cualquier procesador y cada procesador gestiona sus propias tareas de manera independiente, pero tambien puede colaborar con otros procesadores
+c. Se tiene un proceso que actua como controlador principal del sistema, este asigna y distribuye las tareas a los demas procesadores y supervisa el funcionamiento general del sistema. Esto simplifica la gestion pero puede generar un cuello de botella. Ademas que el sistema tiene una gran dependencia del procesador maestro

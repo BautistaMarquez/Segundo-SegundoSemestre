@@ -1,0 +1,119 @@
+2. Procesos:
+(a) Investigue y detalle para que sirve cada uno de los siguientes comandos. (Puede que
+algún comando no venga por defecto en su distribución por lo que deberá instalarlo):
+i. top
+ii. htop
+iii. ps
+iv. pstree
+v. kill
+vi. pgreppkillkillall
+vii. killall
+viii. renice
+ix. xkill
+x. atop
+
+(b) Observe detenidamente el siguiente código. Intente entender lo que hace sin necesidad
+de ejecutarlo.
+#i n cl u d e <s t d i o . h>
+#i n cl u d e <s y s / t y p e s . h>
+#i n cl u d e <u ni s t d . h>
+i n t main ( v oid ) {
+i n t c ;
+pid_t pid ;
+p r i n t f ( " Comienzo . : \ n " ) ;
+f o r ( c = 0 ; c < 3 ; c++ )
+{
+pid = f o r k ( ) ;
+}
+p r i n t f ( " P r oce s o \n " ) ;
+r e t u r n 0 ;
+}
+i. ¿Cuántas líneas con la palabra “Proceso” aparecen al final de la ejecución de este
+programa?.
+ii. ¿El número de líneas es el número de procesos que han estado en ejecución?.
+Ejecute el programa y compruebe si su respuesta es correcta, Modifique el valor
+del bucle for y compruebe los nuevos resultados.
+
+(c) Vamos a tomar una variante del programa anterior. Ahora, además de un mensaje,
+vamos a añadir una variable y, al final del programa vamos a mostrar su valor. El
+nuevo código del programa se muestra a continuación.
+#i n cl u d e <s t d i o . h>
+#i n cl u d e <s y s / t y p e s . h>
+#i n cl u d e <u ni s t d . h>
+i n t main ( v oid ) {
+i n t c ;
+i n t p=0;
+pid_t pid ;
+f o r ( c = 0 ; c < 3 ; c++ )
+{
+pid = f o r k ( ) ;
+}
+p++;
+p r i n t f ( " P r oce s o %d\n " , p ) ;
+r e t u r n 0 ;
+}
+i. ¿Qué valores se muestran por consola?.
+ii. ¿Todas las líneas tendrán el mismo valor o algunas líneas tendrán valores distintos?.
+iii. ¿Cuál es el valor (o valores) que aparece?. Ejecute el programa y compruebe si su
+respuesta es correcta, Modifique el valor del bucle for y el lugar dónde se incrementa
+la variable p y compruebe los nuevos resultados.
+
+(d) Comunicación entre procesos:
+i. Investigue la forma de comunicación entre procesos a través de pipes.
+ii. ¿Cómo se crea un pipe en C?.
+iii. ¿Qué parametro es necesario para la creación de un pipe?. Explique para que se
+utiliza.
+iv. ¿Qué tipo de comunicación es posible con pipes?
+
+(e) ¿Cuál es la información mínima que el SO debe tener sobre un proceso?¿En que estructura de datos asociada almacena dicha información?
+(f) ¿Qué significa que un proceso sea “CPU Bound” y “I/O Bound”? -
+(g) ¿Cuáles son los estados posibles por los que puede atravesar un proceso? -
+(h) Explique mediante un diagrama las posibles transiciones entre los estados. -
+(i) ¿Que scheduler de los mencionados en 1 f se encarga de las transiciones?  -
+
+
+
+a.
+i. top: muestra información detallada sobre los procesos y el uso de recursos del sistema, como CPU, memoria y carga del sistema.
+
+ii. htop: es una versión mejorada y más interactiva de top para monitorear procesos y el uso de recursos del sistema. Proporciona una interfaz más visual y colorida, que facilita la lectura y la interacción con los datos en tiempo real. Es especialmente útil para administradores de sistemas y desarrolladores que necesitan controlar el rendimiento del sistema y gestionar procesos.
+
+x. atop: permite ver en tiempo real y registrar el uso de recursos del sistema (CPU, memoria, disco, red, etc.). A diferencia de top y htop, atop no solo muestra los procesos en ejecución, sino que también ofrece una visión integral del rendimiento general del sistema, y permite guardar historiales de uso para análisis posterior. Es ideal para detectar cuellos de botella y problemas de rendimiento a nivel de sistema o de aplicaciones específicas.
+
+vi. pgreppkillkillall: entiendo que con el pgrep se busca procesos en ejecucion cuyo nombre o atributos coinciden con el criterio especificado [parametro] y luego con el pkill se le envia señales y/o con el killall se finaliza la ejecucion a todos, los procesos anteriormente especificados
+
+viii. renice: se utiliza para cambiar la prioridad de ejecución de uno o más procesos que ya están en ejecución, lo que afecta su acceso a la CPU.(Los valores de nice van de -20 (máxima prioridad) a 19 (mínima prioridad).)
+    sintaxis: renice [nuevo_nice] -p [PID]
+    .en vez de -p, se puede usar -u y el nombre de usuario para cambiar la prioridad de todos los procesos de ese usuario (peligroso supongo) y con -g el de un grupo de procesos 
+
+ix. xkill: se utiliza para finalizar o "matar" ventanas de aplicaciones que están congeladas o no responden en un entorno de escritorio basado en X Window System (la base de muchas interfaces gráficas en Linux). este se escribe solo, sin parametros 
+
+b. 
+i.Van a aparecer 8 lineas, ya que en la primera iteracion se crea un hijo, en la segunda se crean 2 hijos mas (1 por proceso) y en la tercera se crean 4 hijos mas entonces al salir del for son 8 los procesos que ejecutan el printf. 8 procesos = 1 Padre y 7 hijos 
+
+ii.Si, eso es lo que representa el numero de lineaas 
+
+c.
+i. todos van a mostrar 1, ya que la var se incrementa posterior al for por lo cual todos los procesos solo incrementar la var una vez igualmente entiendo que si el ultimo hijo que se cree recibe internamente con el valor ya actualizado por asi decir no es que si el padre ya la aumento en 1 el hijo la va a recibir en 0 
+
+ii. si, todas las lineas tendran el mismo valor.
+
+iii. deberia mostrar Procesos, 1 
+
+(Ahora que entendi es funcionamiento del Fork, no es tan complejo la verdad)
+
+d.
+i.Los pipes son una forma de comunicación inter-procesos (IPC, por sus siglas en inglés) que permite la transferencia de datos entre dos procesos. Se utilizan comúnmente para pasar datos desde un proceso de producción (escritor) a un proceso de consumo (lector) de manera unidireccional.
+
+ii. En C, un pipe se crea utilizando la función pipe().
+
+iii.Parámetro: La función pipe() toma como parámetro un array de enteros de dos elementos. Este array se utiliza para almacenar los descriptores de archivo para los extremos de lectura y escritura del pipe.
+    Uso:
+        pipefd[0]: Descriptor de archivo para el extremo de lectura del pipe.
+        pipefd[1]: Descriptor de archivo para el extremo de escritura del pipe.
+    El sistema utiliza estos descriptores de archivo para permitir que los procesos se comuniquen entre sí, donde los datos escritos en pipefd[1] se pueden leer desde pipefd[0].    
+
+iiii. Los pipes permiten una comunicación unidireccional entre procesos. Esto significa que los datos fluyen en una sola dirección: desde el proceso escritor al proceso lector.
+
+e. 
+La información se almacena en la PCB, en esta los datos mas importantes que se almacenan son: PID, estado del proceso, PC y prioridad, registro de CPU (puntero de pila, registros generales, etc), info sobre el espacio de direcciones del proceso, info de control de E/S y propietario del proceso. 

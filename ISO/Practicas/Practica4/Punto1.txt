@@ -1,0 +1,38 @@
+1. Responda en forma sintética sobre los siguientes conceptos:
+(a) Programa y Proceso.
+(b) Defina Tiempo de retorno (TR) y Tiempo de espera (TE) para un Job.
+(c) Defina Tiempo Promedio de Retorno (TPR) y Tiempo promedio de espera (TPE)
+para un lote de JOBS.
+(d) ¿Qué es el Quantum?
+(e) ¿Qué significa que un algoritmo de scheduling sea apropiativo o no apropiativo (Preemptive o Non-Preemptive)?
+(f) ¿Qué tareas realizan?:
+i. Short Term Scheduler
+ii. Long Term Scheduler
+iii. Medium Term Scheduler
+(g) ¿Qué tareas realiza el Dispatcher?
+
+a. 
+.Programa: Un programa es una secuencia de instrucciones, estatico y no tiene pc, este existe desde que se edita hasta que se borra 
+.Proceso:  Un proceso es una instancia de ejecución de un programa, dinamico y tiene pc, este existe desde que se lo ejecuta hasta que termina 
+
+b.
+tiempo de retorno: tiempo que transcurre entre que el proceso llega al sistema hasta que se completa su ejecucion 
+tiempo de espera: tiempo que el proceso se encuentra en el sistema esperando, es decir que pasa sin ejecutarse (TR - Tcpu) 
+
+c.
+es el tiempo promedio, se calcula como cualquier promedio 
+
+d. 
+periodo de tiempo definido 
+
+e. 
+apropiativo:  el proceso en ejecucion puede ser interrumpido y llevado a la cola de listos
+no apropiativo: una vez que un proceso esta en estado de ejecucion, continua hasta que termina o se bloquea por algun evento (e.j. I/O)
+
+f.
+short: determina que proceso pasara a ejecutarse 
+long: admite nuevos procesos a memoria
+Medium: realiza el swpping entre el disco y la memoria cuando el SO lo determina 
+
+g.
+el Dispatcher realiza el cambio del contexto entre el proceso saliente de la CPU y el proceso entrante (seleccionado por el short)

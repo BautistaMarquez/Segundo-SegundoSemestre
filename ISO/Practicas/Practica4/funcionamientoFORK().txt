@@ -1,0 +1,1 @@
+El fork() crea un hijo, este hijo ya directamente se ejecuta concurrentemente a la vez que el padre y sigue ejecutando el codigo despues de la llamada a fork(), sin necesidad del execve() (esta instruccion es por si quiero que el hijo ejecuta OTRA COSA). Si esta en un bucle el hijo sigue tambien el bucle 

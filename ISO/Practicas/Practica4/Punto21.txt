@@ -1,0 +1,1 @@
+Si el Q se aumenta sin limites, los procesos si no tienen E/S van a completar su ejecucion en un solo Q lo cual haria que pierda el sentido tener el Q ya que justamente su funcion es limitar el tiempo de CPU de un procesos para poder "repartirlo de este caso" en este caso, con el Q infinito, seria lo mimo que usar el algoritmo FCFS o FIFO. 

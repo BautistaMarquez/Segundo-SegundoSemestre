@@ -1,0 +1,44 @@
+3. Para los siguientes algoritmos de scheduling:
+FCFS (Fisrt Coome First Served)
+SJF (Shortest Job First)
+Round Robin
+Prioridades
+(a) Explique su funcionamiento mediante un ejemplo.
+(b) ¿Alguno de ellos requiere algún parámetro para su funcionamiento?
+(c) Cual es el mas adecuado según los tipos de procesos y/o SO.
+(d) Cite ventajas y desventajas de su uso.
+4. Para el algoritmo Round Robin, existen 2 variantes:
+Timer Fijo
+Timer Variable
+(a) ¿Qué significan estas 2 variantes?
+(b) Explique mediante un ejemplo sus diferencias.
+(c) En cada variante ¿Dónde debería residir la información del Quantum?
+
+.FCFS = FIFO: Cuando hay que elegir un proceso para ejecutar, se selecciona el mas viejo. Esto no favorece a ningun tipo de proceso, pero en principio se podria decir que los CPU Bound terminan al comenzar su primer rafaga, mientras que los I/O Bound no. 
+
+.SJF (Shortest Job First): Utiliza una politica nonpreemptive que selecciona el proceso con la rafaga mas corta, el calculo se basa en la ejecucion previa (osea en un historial), los procesos cortos se colocan por delante de los largos, esto puede generar inanicion en los procesos largos.
+
+.Round Robin (RR): Su politica esta basada en un reloj, utiliza Quantums (Q): esta es la medida que determina cuanto tiempo podra usar el procesador cada proceso, si es pequeño puede generar overhead de conxtex switch y si es grande puede generar inanicion o perder eficiencia (supongo) o tambien tener tiempos muertos, cuando un proceso es expulsado de la CPU es colocado al final de la Ready Queue y se selecciona otro (FIFO circular). 
+Existe un "contador" que indica las unidades de CPU en las que el proceso se ejecuto. Cuando el mismo llega a 0 el proceso es expulsado, este contador puede ser Global o local (PCB), existen dos tipos de variantes con respecto al valor inicial del "contador" cuando un proceso es asignado a la CPU: Timer variabe o Timer fijo 
+
+.Round Robin con Timer Variable: El "contador" se inicializa en Q (contador := Q) cada vez que un proceso es asignado a la CPU, este es el mas utilizado y es el utilizado por el simulador.
+
+.Round Robin con Timer fijo: El "contador" se inicializa en Q cuando su valor es cero:
+    .If (contador == 0) contador = Q; 
+    .Se puede ver como un valor de Q compartido entre los procesos. 
+
+.Explicacion sobre los timer: Si el Q (Quantum) es = 4, en el RR con timer fijo se realizan los Context Switch cuando termina el Quantum exclusivamente, en cambio en el variable eso no importa ya que si un proceso corto en el tiempo = 2 otro puede empezar en ese momento y tener el procesador hasta ek tiempo = 6, en el fijo en el tiempo = 4 deberia dejar el procesador.
+
+.Prioridades: cada proceso tiene un valor que representa su prioridad -> menor valor = mayor prioridad. Se selecciona el proceso de mayor prioridad de los que se encuentran en la Ready Queue, existe una Ready Queue por cada nivel de prioridad, esto puede llegar a causar inanicion en procesos de baja prioridad, como solucion se deberia permitir a un procesos cambiar su prioridad durante su ciclo de vida (Aging o Penalty), puede ser un algoritmo apropiativo o no.
+
+.SRTF (Shortest Reaming Time First): Version apropiativo de SJF, selecciona el proceso al cual le resta menos tiempo de ejecucion en su siguiente rafaga, esto favorece a los I/O bound.
+
+Algoritmos de planificacion - CPU + I/O:
+    .ciclo de vida de un proceso: uso de CPU + operaciones de I/O.
+    .Cada dispositivo tiene su cola de procesos en espera -> un Scheduler por cada cola.
+    .Se considera I/O independiente de la CPU (DMA,PCI, etc.), -> uso de CPU y operaciones de I/O en simultaneo. 
+    Criterios de desempate: 
+    .Orden de aplicacion: 
+        .Orden de llegada de los procesos 
+        .PID de los procesos 
+    .Siempre se mantiene la misma politica 

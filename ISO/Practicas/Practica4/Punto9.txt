@@ -1,0 +1,7 @@
+Inannicion: condición donde un proceso o hilo queda en un estado de espera indefinida sin poder acceder a los recursos que necesita para avanzar. 
+Esto se puede dar en:
+    .SJF
+    .RR (con tiempos de Q grande? creo que no cuenta)
+    .Algoritmo de prioridades (procesos con prioridad baja)
+    .SRTF
+Para evitarla, solo se que hay una tecnica en el Algoritmo de prioridades, que es por X tiempo aumentar la prioridad en 1 del proceso, en RR seria disminuir el Q. 
