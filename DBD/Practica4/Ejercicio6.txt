@@ -1,0 +1,61 @@
+1. 
+select nombre, stock, precio 
+from repuesto 
+order by precio, nombre 
+
+2.
+select r.nombre, r.stock, r.precio 
+from repuesto r inner join repuestoreparacion rp on (r.codrep = rp. codrep) inner join reparacion repa on (rp.nroreparac = repa.nroreparac) 
+where (repa.fecha between 01/01/2023 and 31/12/2023) 
+
+except 
+
+select r.nombre, r.stock, r.precio 
+from repuesto r inner join repuestoreparacion rp on (r.codrep = rp. codrep) inner join reparacion repa on (rp.nroreparac = repa.nroreparac) inner join tecnico t on (repa.codtec = t.codtec)
+where (t.nombre = "Jose Gonzalez") 
+
+3. 
+select t.nombre, t.especialidad 
+from tecnico t 
+order by t.nombre ASC 
+
+except 
+
+select t.nombre, t.especialidad 
+from tecnico t inner join reparacion on (t.codtec = r.codtec)
+order by t.nombre ASC  //entiendo que este order by no haria falta, deberia consultarlo  
+
+4. 
+select t.nombre, t.especialidad 
+from tecnico t inner join reparacion on (t.codtec = r.codtec)
+where (r.fecha between 01/01/2022 and 31/12/2022)
+
+intersect 
+
+select t.nombre, t.especialidad 
+from tecnico t 
+order by t.nombre ASC 
+
+//LOS HICE MALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 
+
+5. 
+select r.nombre, r.stock, count(distinct repa.codtec) //me cuenta las lineas null? 
+from repuesto r left join repuestoreparacion rp on (r.codrep = rp.codrep) left join reparacion repa (rp.codrep = repa.codrep)
+group by r.nombre, r.stock
+
+6. //consultar
+select distinct t.nombre, t.especialidad
+from tecnico t inner join reparacion repa on (t.codtec = repa.codtec)
+group by cod.tec, t.nombre, t.especialidad
+having count(*) >=all(select count (*) as cantidad_reparaciones
+                from tecnico t inner join reparacion repa on (t.codtec = repa.codtec) 
+                group by cod.tec, t.nombre, t.especialidad)
+union 
+select distinct t.nombre, t.especialidad
+from tecnico t inner join reparacion repa on (t.codtec = repa.codtec)
+group by cod.tec, t.nombre, t.especialidad
+having count(*) <=min(select count (*) as cantidad_reparaciones
+                from tecnico t inner join reparacion repa on (t.codtec = repa.codtec) 
+                group by cod.tec, t.nombre, t.especialidad)
+
+7.

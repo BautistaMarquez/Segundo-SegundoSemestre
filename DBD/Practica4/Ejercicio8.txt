@@ -1,0 +1,81 @@
+1. 
+select distinct i.dni, i.nombre, i.apellido, i.email 
+from integrante i 
+    inner join inscripcion ins on (i.codigoE = ins.codigoE) 
+    inner join torneoPesca tp on (tp.codTorneo = ins.codTorneo)
+where (tp.fecha between 01/01/2023 and 31/12/2023) and (i.ciudad = "La Plata")
+
+2.
+select e.nombreE, e.descripcionE 
+from equipo e 
+    inner join inscripcion ins on (e.codigoE = ins.codigoE)
+    inner join torneoPesca tp on (ins.codTorneo = tp.codTorneo)
+where (tp.fecha between 01/01/2020 and 31/12/2020)
+
+except
+
+select e.nombreE, e.descripcionE 
+from equipo e 
+    inner join inscripcion ins on (e.codigoE = ins.codigoE)
+    inner join torneoPesca tp on (ins.codTorneo = tp.codTorneo)
+where (tp.fecha < 01/01/2020) and (tp.fecha > 31/12/2020) 
+
+3.
+select  i.dni, i.nombre, i.apellido, i.email, i.ciudad 
+from integrante i 
+    inner join inscripcion ins on (ins.codigoE = i.codigoE)
+    inner join torneoPesca tp on (tp.codTorneo = ins.codTorneo)
+    inner join laguna l on (l.nroLaguna = tp.nroLaguna)
+where (l.nombreL = "La Salada, Coronel Granada") 
+
+except 
+
+select i.dni, i.nombre, i.apellido, i.email, i.ciudad 
+from integrante i
+    inner join inscripcion ins on (ins.codigoE = i.codigoE) 
+    inner join torneoPesca tp on (tp.codTorneo = ins.codTorneo)
+where (tp.fecha between 01/01/2023 and 31/12/2023) 
+
+//No tenes porque usar al equipo aunque te diga que su equipo no tenga inscripciones, ya que el intengrante posee el codigo. 
+
+4.
+select e.nombreE, e.descripcionE 
+from equipo e
+    inner join integrante i on (e.codigoE = i.codigoE)
+group by e.codigoE, e.nombreE, e.descripcionE 
+having count(*) > 4
+order by e.nombreE
+
+5.
+select e.nombreE, e.descripcionE 
+from equipo e 
+where not exists (
+    select *
+    from laguna l 
+    where not exists (
+        select * 
+        from inscripcion ins inner join torneoPesca tp on (ins.codTorneo = tp.codTorneo)
+        where (l.nroLaguna = tp.nroLaguna) and (ins.codigoE = e.codigoE)
+    )
+)
+
+6.
+delete from equipo where codigoE = 10000
+
+7.
+lagunas 
+-
+lagunas asociadas a torneos 
+
+8.
+equipos con torneos a disputarse en 2024 
+- 
+equipos con inscripciones a torneos en 2023 
+
+9.
+select distinct i.dni, i.nombre, i.apellido, i.ciudad, i.email 
+from integrante i 
+    inner join inscripcion ins on (ins.codigoE = i.codigoE)
+    inner join torneoPesca tp on (tp.codTorneo = ins.codTorneo)
+    inner join laguna l on (l.nroLaguna = tp.nroLaguna)
+where (ins.gano = true) and (l.nombreL = "Laguna de Chascomus)

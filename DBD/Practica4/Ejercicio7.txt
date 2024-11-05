@@ -1,0 +1,66 @@
+1. 
+select c.nombre, c.anioFundacion 
+from club c inner join ciudad ci on (c.codigoCiudad = ci.codigoCiudad) left join estadio e on (c.codigoClub = e.codigoClub)
+where (ci.nombre = "La Plata") and (e.codigoEstadio is null)
+//El is NULL es valido, no?
+
+2. 
+select c.nombre 
+from club c 
+
+except 
+
+select c.nombre 
+from club c inner join clubJugador cj on (c.codigoClub = cj.codigoClub) inner join jugador j (cj.dni = j.dni) inner join ciudad ci (j.codigoCiudad = ci.codigoCiudad)
+where (ci.nombre = "Berisso") 
+
+3.
+select distinct j.dni, j.nombre, j.apellido 
+from jugador j inner join clubJugador cj (j.dni = cj.dni) inner join club c (cj.codigoClub = c.codigoClub)
+where (c.nombre = "Gimnasia y Esgrima de La Plata")
+
+4.
+select distinct j.dni, j.nombre, j.apellido 
+from jugador j inner join clubJugador cj (j.dni = cj.dni) inner join club c (cj.codigoClub = c.codigoClub) inner join ciudad ci (c.codigoCiudad = ci.codigoCiudad)
+where (ci.nombre = "Cordoba") and (j.edad > 28)
+
+5. //RECORDAR PONER EL AS
+select c.nombre, avg(j.edad) as edadPromedio
+from jugador j inner join clubJugador cj (j.dni = cj.dni) inner join club c (cj.codigoClub = c.codigoClub) 
+where (cj.hasta is null) //is null ya que actualmente esta en el club
+group by c.codigoClub, c.nombre, j.dni, j.edad 
+
+6.
+select j.nombre, j.apellido, j.edad, count(distinct c.nombre) 
+from jugador j inner join clubJugador cj (j.dni = cj.dni) inner join club c (cj.codigoClub = c.codigoClub) 
+group by j.dni, j.nombre, j.apellido, c.codigoClub, c.nombre 
+
+7.
+select c.nombre 
+from club c 
+
+except 
+
+select c.nombre 
+from club c inner join clubJugador cj on (c.codigoClub = cj.codigoClub) inner join jugador j (cj.dni = j.dni) inner join ciudad ci (j.codigoCiudad = ci.codigoCiudad)
+where (ci.nombre = "Mar Del Plata") and (cj.hasta is not null)
+
+8. 
+select j.nombre, j.apellido 
+from jugador j 
+where not exists (
+    select * 
+    from club c inner join ciudad ci on (c.codigoCiudad = ci.codigoCiudad)
+    where (ci.nombre = "Cordoba") and not exists (
+        select * 
+        from clubJugador cj 
+        where (cj.codigoClub = c.codigoClub) and (cj.dni = j.dni) 
+    )
+) 
+//Si NO existen relaciones entre el ClubJugador (el cual es el Jugador de "arriba") con el club (el cual es de Cordoba), el club se va a mostrar por lo cual esto ya haria que el jugador NO se muestre, si no se muestra ningun club es que el jugador jugo en TODOS LOS CLUBES DE CORDOBA. 
+
+9.
+insert into club (codigoClub, nombre, anioFundacion, codigoCiudad(FK)) values (1234, "Estrella de Berisso", 1921, ?) Como obtengo esa FK? entiendo que no puedo hacer un select y de esa manera obtener el codigo de berisso. Tambien deberia ver si existe la ciudad de Berisso.
+POSIBLE ALTERNATIVA. Preguntar! 
+insert into club (codigoClub, nombre, anioFundacion, codigoCiudad(FK)) values (1234, "Estrella de Berisso", 1921, 
+Select codigoCiudad from ciudad where nombre = "Berisso")

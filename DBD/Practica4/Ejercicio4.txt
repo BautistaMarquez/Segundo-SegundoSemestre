@@ -23,9 +23,9 @@ order by p.apellido p.nombre
 otra opcion seria en el inner join usar dos veces la tabla persona y "enlazarla con el prof" nose si se puede, se me ocurrio despues de hacer esta opcion podria funcionar
 
 Seguna opcion: 
-select p.dni, p.apellido, p.nombre, ac.calificacion 
-from persona p inner join alumno_curso ac on (p.dni = ac.dni) inner join curso c on (c.cod_curso = ac.cod_curso) inner join profesor_curso profc on (profc.cod_curso = c.cod_curso) inner join alumno_curso ac on (c.cod_curso = ac.cod_curso) inner join persona p2 (p2.dni = profc.dni) 
-where (p.nombre = "Juan") and (p.apellido = "Garcia") and (ac.calificacion > 8)
+select distinct p.dni, p.apellido, p.nombre, ac.calificacion 
+from persona p inner join alumno_curso ac on (p.dni = ac.dni) inner join profesor_curso profc on (profc.cod_curso = ac.cod_curso) inner join persona p2 (p2.dni = profc.dni) 
+where (p.nombre = "Juan" and p.apellido = "Garcia") and (ac.calificacion > 8)
 order by p.apellido p.nombre
 
 5.
