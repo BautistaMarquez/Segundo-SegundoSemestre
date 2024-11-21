@@ -1,0 +1,11 @@
+4.- Fragmentación
+Ambos métodos de particiones presentan el problema de la fragmentación:
+-Fragmentación Interna (Para el caso de Particiones Fijas)
+-Fragmentación Externa (Para el caso de Particiones Dinámicas)
+a. Explique a que hacen referencia estos 2 problemas
+b. El problema de la Fragmentación Externa es posible de subsanar. Explique una
+técnica que evite este problema.  
+
+a. ya esta 
+b. utilizando la tecnica de compactacion: esta consiste en mover los procesos en memoria para reunir todos los espacios libres en un único bloque contiguo. Esto permite liberar un área de memoria lo suficientemente grande como para acomodar nuevos procesos o ampliar el espacio de procesos ya existentes. Esta tecnica es costosa.
+ 

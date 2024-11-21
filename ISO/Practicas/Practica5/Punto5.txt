@@ -1,0 +1,12 @@
+5.- Paginación
+a. Explique como trabaja este método de asignación de memoria.
+b. ¿Qué estructuras adicionales debe poseer el SO para llevar a cabo su
+implementación?
+c. Explique, utilizando gráficos, como son transformadas las direcciones lógicas en
+físicas.
+d. En este esquema: ¿Se puede producir fragmentación (interna y/o externa)? 
+
+a,b. La memoria se divide en porciones de igual tamaño llamadas MARCO, el espacio de direcciones de los procesos se divide en porciones de igual tamaño denominadas PAGINAS, El SO mantiene una tabla de paginas para cada proceso, la cual contiene el marco donde se encuentra cada pagina.
+La paginacion bajo demanda es una tecnica eficiente de manejar esta estrategia -> Thrashing.
+
+d.Solamente puede generarse fragmentación interna.

@@ -1,0 +1,24 @@
+17. Dados los siguientes métodos de administración de espació de un archivo:
+Asignación contigua
+Asignación enlazada
+Asignación indexada
+(a) Describa como trabaja cada uno.
+(b) Cite ventajas y desventajas de cada uno.
+
+
+.Asignacion continua: los archivos se almacenan en bloques CONTINUOS esto quiere decir uno al lado del otro, el problema de esto es la fragmentacion externa, como la cantidad de bloques es finita debido a la fragmentacion externa se podria dar el caso que no se pueda "almacenar" un archivo debido a que no existe el suficiente espacio continuo. Para solucionar esto esta la compactacion, que ya sabemos es muy costosa, ademas tiene el problema de si queremos incrementar el tamaño de un archivo y no tenemos lugar. 
+    .Se requiere una pre-asignacion: se debe conocer el tamaño del archivo durante su creacion. 
+    .El archivo puede ser leido con una unica operacion. 
+    .Se utiliza FAT (file Allocation Table) el cual es simple ya que posee una sola entrada que incluye bloque de inicio y longitud para identificar el archivo. 
+
+
+.Asignacion enlazada: esta asignacion se basa en bloques individuales enlazados, cada bloque tiene un puntero al proximo bloque del archivo, tambien utiliza FAT en este no existe la fragmentacion externa al usar punteros, util para acceso secuencial (no random), de esta forma los archivos pueden crecer bajo demanda ya que no se requieren bloques contiguos, ademas se pueden consolidar los bloques (poner uno al lado del otro) para garantizar cercania de los bloques de un mismo archivo. 
+
+.Asignacion indexada: en esta asignacion, la FAT contiene un puntero al bloque indice, este bloque indice NO contiene datos propios del archivo, sino que contiene un indice a los bloques que lo componen, la asignacion tambien es en base a bloques individuales, el acceso "random" a un archivo es eficiente y en este caso la FAT posee una unica entrada con la direccion del bloque de indices (dentro de este bloque estan los punteros al resto de bloques). 
+    .Una variante de esta ultima es la asignacion por secciones, en la cual a cada entrada en el bloque indice  se agrega el campo longitud, el indice apunta al primer bloque de un conjunto almacenado de manera contigua. Se podria decir es una "union" de las dos anteriores.
+
+    .Otra variante es la asignacion por niveles de indireccion(el mas complejo): En este existen bloques directos de datos y tambien otros bloques considerados como bloques indices (estos apuntan a varios bloques de datos), pueden existir varios niveles de indireccion (ej nivel 1 de indireccion: existe un bloque indice que posee punteros a varios bloques de datos, si fuera de nivel 2 habria un bloque indice que posee punteros a 2 bloques indices los cuales estos SI poseen punteros a bloques de datos).  
+    Esta variante se conforma de I-NODOs los cuales poseen 9 direcciones a los bloques de datos, organizadas por: 7 bloques de direccionamiento directo, 1 de direccionamiento indirecto simple y 1 de direccionamiento indirecto doble. 
+    Si cada bloque es de 1 KB y cada direccion usada para referenciar un bloque es de 32 bits:
+        cantidad de referencias a bloques contiene un bloque de disco = 1 KB / 32 bits = 256 direcciones
+        tamaño maximo de un archivo = (7 + 256 + 256 a la 2) * 1 KB = 65799 KB = 64,25 MB 

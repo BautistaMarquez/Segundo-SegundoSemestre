@@ -1,0 +1,11 @@
+2. Técnicas de E/S Describa como trabajan las siguientes técnicas de E/S
+E/S programada
+E/S dirigida por interrupciones
+DMA (Acceso Directo a Memoria) 
+
+
+E/S programada: En este tipo de E/S la CPU tiene control directo sobre la E/S, controla el estado, comandos para leer y escribir y transfiere los datos. La CPU espera que el componente de E/S complete la operacion. De esta forma se desperdician ciclos de CPU. En este tipo de E/S es necesario hacer polling del dispositivo para desterminar el estado del mismo (listo para recibir comandos, ocupado, error) se realiza un ciclo de "busy-wait" para realizar la E/S esto puede llegar a ser muy costoso si la espera es muy larga.
+
+E/S dirigida por interrupciones: En este tipo de E/S se soluciona el problema de la espera de la CPU, la CPU no repite el chequeo sobre el dispositivo, el procesador continua la ejecucion de instrucciones y el componente de E/S envia una interrupcion cuando termina.
+
+DMA: En este tipo un componente de DMA controla el intercambio de datos entre la memoria y el dispositivo. El procesador es interrumpido luego de que el bloque entero fue transferido. Esta DMA es programada por la CPU.

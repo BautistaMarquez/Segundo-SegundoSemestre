@@ -1,0 +1,30 @@
+13.- Memoria Virtual
+a- Describa que beneficios introduce este esquema de administración de la
+memoria.
+b- ¿En que se debe apoyar el SO para su implementación?
+c- Al implementar está técnica utilizando paginación por demanda, las tablas de
+paginas de un proceso deben contar con información adicional además del marco
+donde se encuentra la página. ¿Cuál es está información? ¿ Porque es necesaria? 
+
+a.
+Esta permite que un sistema ejecute programas que requieren mas memoria de la que fisicamente tiene disponible. Esto amplia la memoria disponible, facilita la multiprogramacion, mejora la gestion de memoria, permite la ejecucion de programas mas gradnes y da soporte para swapping y paginacion entre otros beneficios. 
+
+b. 
+El SO debe apoyarse en: 
+La MMU, para traducir las direcciones de memoria virtual 
+La tabla de paginas, para saber donde se encuentra cada pagina de un proceso sea cual sea la memoria 
+Memoria secundaria, para almacenar de forma temporal las paginas que no caben en memoria RAM 
+Entre otras.
+
+c. 
+Bit de presencia(V): indica si la página está actualmente cargada en la memoria física o si está en almacenamiento secundario (disco). Cuando el proceso intenta acceder a una página y este bit indica que la página no está en memoria (causando un page fault), el sistema operativo puede entonces cargar la página desde el disco y actualizar el bit de presencia. Esto permite al SO saber si necesita traer la página desde el disco antes de permitir el acceso.
+
+Bit de modificacion(M): Este bit indica si la página ha sido modificada desde que fue cargada en la memoria.Cuando el sistema necesita intercambiar (swap) una página modificada fuera de la memoria, el dirty bit ayuda a saber si es necesario escribir los cambios en el disco. Si la página no ha sido modificada, se puede descartar sin necesidad de escribirla, ahorrando tiempo y operaciones de E/S.
+
+Bit de acceso(R): Este bit indica si la página ha sido accedida recientemente (lectura o escritura).Ayuda a los algoritmos de reemplazo de páginas (como LRU, que depende del acceso reciente de las páginas) a identificar qué páginas se han utilizado recientemente y cuáles no, lo que permite tomar decisiones más informadas sobre cuáles páginas pueden ser intercambiadas.
+
+Bit de permiso: Estos bits definen los permisos de acceso de la página, como lectura, escritura o ejecución.Permiten al sistema operativo proteger la memoria y controlar cómo puede ser utilizada cada página.
+
+Bit de ubicacion en el disco: Este campo almacena la dirección o ubicación en el disco duro donde se guarda la página cuando no está en memoria. Al recibir un page fault en una página que no está en memoria, el sistema operativo necesita saber en qué parte del almacenamiento secundario está ubicada para cargarla de nuevo en memoria.
+
+Identificador de propiedad: Puede incluir identificadores que indican a qué proceso o segmento pertenece la página. Esto ayuda al SO a asociar la página con su propietario, permitiendo una administración correcta y evitando que otros procesos accedan a la memoria no autorizada.

@@ -1,0 +1,15 @@
+3. Al trabajar con particiones fijas, los tamaños de las mismas se pueden considerar:
+.Particiones de igual tamaño.
+.Particiones de diferente tamaño.
+Cite ventajas y desventajas de estos 2 métodos.
+
+Particiones de igual tamaño: 
+Como ventajas: generan simplicidad en la administracion, una menor sobrecarga administrativa y una asignacion rapida 
+Como desventajas: fragmentacion interna, poca flexibilidad, ineficiencia con procesos grandes 
+
+Particiones de diferente tamaño
+Como ventajas: mejor adaptacion a procesos de distintos tamaños, mayor flexibilidad, mejor aprovechamiento de memoria 
+Como desventajas: complejidad en la administracion, mayor tiempo en la asignacion, fragmentacion externa 
+
+Entre muchas otras obviamente ademas de que las particiones de diferente tamaño obviamente pueden tener fragmentacion interna, ademas de que estas suposiciones son para "la primera insercion de procesos" pero para la segunda ya las particiones estan definidos y el proceso debe estar en estas particiones.
+

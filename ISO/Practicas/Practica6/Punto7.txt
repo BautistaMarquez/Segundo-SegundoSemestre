@@ -1,0 +1,7 @@
+7. Describa mediante un ejemplo los pasos mínimos que se suceden desde que un proceso genera un requerimiento de E/S hasta que el mismo llega al dispositivo. 
+Ej: Guardar un archivo en un HDD
+1. El proceso solicita la operacion mediante una syscall (write())
+2. El SO recibe la solicitud a traves de la syscall. La syscall "genera el context switch" y el kernel valida parametros (id, cantidad de datos y los prepara para ser procesados).
+3.El planificador de E/S del SO determina cuando y como se ejecutara la operacion, dependiendo de la prioridad del proceso y la carga actual del sistema.
+4. El SO traduce la solicitud en comandos especificos para el dispositivo. Si el archivo esta en un sistema de archivos, el kernel utiliza el driver correspondiente para interpretar la ubicacion del archivo y sus bloques en disco. 
+

@@ -1,0 +1,16 @@
+18.- Tamaño de la Página:
+La selección del tamaño de la página influye de manera directa sobre el
+funcionamiento de la memoria virtual. Compare las siguientes situaciones con respecto
+al tamaño de página, indicando ventajas y desventajas:
+- Un tamaño de página pequeño.
+- Un tamaño de página grande. 
+
+La pagina pequeña pequeña posee fragmentacion interna baja a diferencia de la pagina grade. 
+El temaño de la tabla de paginas es pequeño con paginas grandes. 
+La frecuencia de fallos de paginas es menor con paginas grandes. 
+El costo de fallos de pagina es mas alto con paginas grandes. 
+La flexibilidad de asignacion es mas alta con paginas pequeñas. 
+
+Páginas pequeñas son ideales para sistemas con memoria limitada o aplicaciones con accesos dispersos y variables a memoria.
+Páginas grandes son mejores para aplicaciones con acceso secuencial a grandes cantidades de datos, como bases de datos o sistemas multimedia.
+El tamaño de página óptimo depende del equilibrio entre minimizar el desperdicio de memoria (fragmentación) y maximizar la eficiencia en el acceso y la gestión de memoria.

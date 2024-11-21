@@ -1,0 +1,39 @@
+19 .- Asignación de marcos a un proceso (Conjunto de trabajo o Working Set):
+Con la memoria virtual paginada, no se requiere que todas las páginas de un proceso
+se encuentren en memoria. El SO debe controlar cuantas páginas de un proceso
+puede tener en la memoria principal. Existen 2 políticas que se pueden utilizar:
+- Asignación Fija
+-Asignación Dinámica.
+a. Describa como trabajan estas 2 políticas
+b.Dada la siguiente tabla de procesos y las paginas que ellos ocupan, y
+teniéndose 40 marcos en la memoria principal, cuantos marcos le corresponderían
+a cada proceso si se usa la técnica de Asignación Fija:
+i- Reparto Equitativo
+ii- Reparto Proporcional
+
+a.
+La asignacion de marco se puede realizar de dos modos: 
+Asignacion fija: a cada proceso se le asigna una cantidad arbitraria de marco. A su vez para el reparto se puede usar: 
+Reparto equitativo: se asgina la misma cantidad de marcos a cada proceso -> M DIV P 
+reparto proporcional: se asignan marcos en base a la necesidad que tiene cada proceso -> Vp * M / Vt (Se multiplica la cantidad de marcos disponibles por el tamaño del proceso / el tamaño total de los procesos)
+
+Asignacion dinamica: los procesos se van cargando en forma dinamica de acuerdo a la cantidad de marcos que necesiten 
+
+b. 
+Entiendo que seria: 
+
+i.
+10 marcos por cada proceso 
+
+ii.
+40 * 15/63 = 9.5 = 10 
+
+40 * 20/63 = 12.6 = 13 
+
+40 * 20/63 = 12.6 = 12 
+
+40 * 8/63 = 5 = 5
+
+
+c. 
+Entiendo que la mejor seria la de reparto proporcional, ya que le asigna mas marcos a los procesos que mas lo necesitan y viceversa al tercer proceso le "saque" un marco para que de la cantidad de marcos, entiendo que es lo que se debe hacer. Capaz que hay una regla a seguir para la "quita" de marcos. 

@@ -1,0 +1,19 @@
+26.- Considere un sistema cuya memoria principal se administra mediante la técnica de paginación por demanda que utiliza un dispositivo de paginación, algoritmo de reemplazo global LRU y una política de asignación que reparte marcos equitativamente entre los procesos. El nivel de multiprogramación es actualmente, de 4.
+Ante las siguientes mediciones:
+a. Uso de CPU del 13%, uso del dispositivo de paginación del 97%.
+b. Uso de CPU del 87%, uso del dispositivo de paginación del 3%.
+c. Uso de CPU del 13%, uso del dispositivo de paginación del 3%.
+Analizar:
+- ¿Qué sucede en cada caso?
+- ¿Puede incrementarse el nivel de multiprogramación para aumentar el uso
+de la CPU?
+- ¿La paginación está siendo útil para mejorar el rendimiento del sistema?
+
+a. 
+Entiendo que esto se daria porque los procesos tienen pocos marcos asignados, por lo cual aunque la politica de reemplazo sea global se tendria hiperpaginacion, entiendo que una solucion seria aumentar el nivel de multiprogramacion o darle una cantidad mayor de marcos a los procesos. Al aumentar el nivel de multiprogramacion habrian mas marcos para realizar los reemplazos. En este caso la paginacion no esta siendo un util ya que estaria causando un cuello de botella dado la poca cantidad de marcos que tiene cada proceso, esto entiendo podria ser ya que la memoria es pequeña. Tambien podria aumentarse la memoria fisica. 
+
+b. 
+Entiendo que esto es un estado correcto, esta funcionando bien ya que se esta aprovechando bien la CPU y el porcentaje del uso del dispositivo es bajo por lo cual los procesos cuentan con una cantidad de marcos adecuada. En este caso obviamente si 
+
+c. 
+Entiendo que el nivel de multiprogramacion es bajo, los procesos podrian estar esperando E/S y la CPU este en un estado ocioso en este caso se podria aumentar el nivel de multiprogramacion para que hayan mas procesos funcionando a la vez.En este caso tambien, pero se deberia aumentar el nivel de multiprogramacion. No se esta aprovechando al maximo.

@@ -1,0 +1,10 @@
+1.- Explique a que hacen referencia los siguientes términos:
+.Dirección Lógica o Virtual
+.Dirección Física
+
+.Direccion logica: Es una direccion que enmascara o abstrae una direccion fisica, esta referencia a una localidad en memoria, se la debe traducir a una direccion fisica 
+
+.Direccion fisica: Es la direccion real. Es con la que se accede efectivamente a memoria, esta representa la direccion absoluta en memoria principal.
+
+.La CPU trabaja con direcciones logicas. Para acceder a la memoria se deben transformar en direcciones fisicas. El mapeo entre direcciones virtuales y fisicas se realiza mediante hardware -> MMU
+

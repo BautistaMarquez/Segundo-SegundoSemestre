@@ -1,0 +1,32 @@
+16.- Como se vio en el ejercicio anterior, la tabla de páginas de un proceso puede
+alcanzar un tamaño considerablemente grande, que incluso, no podría almacenarse
+de manera completa en la memoria real. Es por esto que el SO también realiza
+paginación sobre las tablas de paginas.
+Existen varios enfoques para administrar las tablas de páginas:
+- Tablas de páginas de 1 nivel.
+- Tablas de páginas de 2 niveles.
+- Tablas de páginas invertidas.
+Explique brevemente como trabajan estos enfoques e indique como se realiza la
+transformación de la dirección virtual en dirección física. 
+
+.Tabla de paginas de 1 nivel: 
+En este esquema, hay una única tabla de páginas para cada proceso, que mapea directamente las páginas virtuales a los marcos físicos.
+Este esquema funciona con el numero de pagina virtual (indice en la tabla de paginas) y desplazamiento dentro de la pagina (offset). El sistema utiliza el numero de pagina virtual para buscar en la tabla de paginas la direccion base del marco fisico y luego el offset se suma a la direccion base del marco para obtener la direccion fisica final 
+
+.Tabla de paginas de 2 niveles:
+Para reducir el tamaño de las tablas de páginas en memoria, se dividen en niveles jerárquicos. 
+Este esquema funciona dividiendo a la direccion virtual en tres partes: 
+Indice de nivel 1: Apunta a una tabla de páginas de nivel superior.
+Indice de nivel 2: Apunta a la entrada en la tabla de nivel inferior.
+Offset: Ubicación exacta dentro de la página. 
+En este esquema el indice de nivel 1 selecciona la tabla de nivel 2 correspondiente y el indice de nivel 2 se utiliza para acceder a la entrada que apunto al marco fisico. El offset se suma al marco fisico para calcular la direccion fisica final. 
+
+.Tabla de paginas invertidas: 
+En lugar de una tabla de páginas por proceso, se utiliza una única tabla compartida para todo el sistema. Esta tabla contiene entradas para cada marco físico, y cada entrada indica qué página virtual (de qué proceso) está almacenada en ese marco.
+En este esquema para traducir una direccion virtual, se realiza una busqueda en la tabla de paginas invertida, esta busqueda utiliza el numero de pagina virtual y un identificador del proceso para encontrar la entrada correspondiente, una vez encontrada la entrada, se determina el marco fisico que contiene la pagina virtual. El offset se suma al marco fisico para obtener la direccion fisica final. 
+
+En todos los enfoques, el proceso de traducción sigue estos pasos básicos:
+1.División de la dirección virtual: En componentes (VPN y offset).
+2.Consulta de la tabla de páginas
+3.Obtención de la dirección del marco físico: La tabla de páginas devuelve el marco físico asociado al VPN.
+4.Cálculo de la dirección física: Se suma el offset al inicio del marco físico para obtener la dirección física completa.

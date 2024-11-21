@@ -1,0 +1,11 @@
+9.- Segmentación
+a- Explique como trabaja este método de asignación de memoria.
+b- ¿Qué estructuras adicionales debe poseer el SO para llevar a cabo su
+implementación?
+c- Explique, utilizando gráficos, como son transformadas las direcciones lógicas en
+físicas.
+d- En este esquema: ¿Se puede producir fragmentación (interna y/o externa)? 
+
+a. Se puede ver a la Segmentación como una mejora de la paginacion (esta no posee fragmentación interna, pero si externa), en esta modelo la tabla de segmentos ademas de tener la direccion de inicio del mismo, tiene la longitud o limite. Las direcciones logicas constan de dos partes, un numero de segmento s y un desplazamiento d dentro del segmento (0 < d < limite)
+
+c. dibujo pag 15 exp P5 

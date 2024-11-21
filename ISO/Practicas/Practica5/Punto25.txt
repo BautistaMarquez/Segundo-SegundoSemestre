@@ -1,0 +1,36 @@
+25.- Hiperpaginación (Trashing)
+a. ¿Qué es?
+b. ¿Cuáles pueden ser los motivos que la causan?
+c. ¿Cómo la detecta el SO?
+d. Una vez que lo detecta, ¿qué acciones puede tomar el SO para eliminar este
+problema? 
+
+a. Un sistema esta en thrashing cuando pasa mas tiempo paginando que ejecutando procesos, como consecuencia hay una baja importante de performance en el sistema. 
+
+b. Un alto grado de multiprogramacion, un algoritmo de reemplazo local y pocos marcos por procesos. 
+
+c.Entiendo que monitoreando el uso de la CPU 
+
+d. 
+
+Ciclo del Trashing
+
+1- El kernel monitorea el uso de la CPU.
+2- Si hay baja utilización aumenta el grado de
+multiprogramación.
+3- Si el algoritmo de reemplazo es global,
+pueden sacarse frames a otros procesos.
+4- Un proceso necesita más frames. Comienzan
+los page-faults y robo de frames a otros
+procesos.
+5- Por swapping de páginas, y encolamiento en
+dispositivos, baja el uso de la CPU.
+6- Vuelve a 1. 
+
+1- Cuando se decrementa el uso de la CPU,
+el scheduler long term aumenta el grado
+de multiprogramación.
+2- El nuevo proceso inicia nuevos pagefaults, y por lo tanto, más actividad de
+paginado.
+3- Se decrementa el uso de la CPU
+4- Vuelve a 1-.

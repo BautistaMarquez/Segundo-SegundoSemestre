@@ -1,0 +1,37 @@
+2.- En la técnica de Particiones Múltiples, la memoria es divida en varias particiones y
+los procesos son ubicados en estas, siempre que el tamaño del mismo sea menor o
+igual que el tamaño de la partición.
+Al trabajar con particiones se pueden considerar 2 métodos (independientes entre si):
+.Particiones Fijas
+.Particiones Dinámicas
+a. Explique como trabajan estos 2 métodos. Cite diferencias, ventajas y
+desventajas.
+b. ¿Qué información debe disponer el SO para poder administrar la memoria con
+estos métodos?
+c. Realice un gráfico indicado como realiza el SO la transformación de direcciones
+lógicas a direcciones físicas. 
+
+a.
+Particiones fijas: La memoria se divide en particiones o regiones de tamaño fijo, estos tamaños pueden ser iguales o diferentes. estos alojan un unico proceso.
+Esta genera fragmentacion interna.
+
+Particiones Dinamicas: Las particiones varian en tamaño y numero, alojan un proceso cada una, cada particion se genera en forma dinamica del tamaño justo que necesita el proceso. 
+Esta genera fragmentacion externa. 
+
+b. (scado de GPT)
+Particiones fijas: 
+El SO necesita:
+    numero de Particiones
+    tamaño de cada particion
+    mapa de ocupacion 
+    asignacion de procesos: seguimiento de que proceso esta en cada particion cuando estan en uso 
+    meotodo de asignacion 
+    fragmentacion interna: control de la memoria no utilizada dentro de una particion que esta asignada a un proceso 
+
+Particiones Dinamicas:
+El SO necesita:
+    tamaño y posicion de cada bloque libre
+    tamaño y posicion de cada bloque ocupado 
+    tabla de segmentos o lista de huecos 
+    meotodo de asignacion 
+    fragmentacion externa

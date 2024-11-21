@@ -1,0 +1,25 @@
+14.- Fallos de Página (Page Faults):
+a- ¿Cuándo se producen?
+b- ¿Quién es responsable de detectar un fallo de página?
+c- Describa las acciones que emprende el SO cando se produce un fallo de página. 
+
+a.
+Un fallo de página ocurre cuando un proceso intenta acceder a una página que no está cargada en la memoria física (RAM). Esto sucede en sistemas con memoria virtual y paginación por demanda, donde solo se cargan en memoria las páginas que son necesarias en un momento dado.
+
+b.
+El hardware, específicamente la Unidad de Gestión de Memoria (MMU), es quien detecta el fallo de página. Cuando el proceso intenta acceder a una dirección virtual cuya página correspondiente no está en la memoria física, la MMU genera una excepción de fallo de página. El sistema operativo (SO) es notificado de esta excepción y asume la responsabilidad de manejar el fallo.
+
+c.
+1. Identificar la Página Requerida: 
+
+2. Verificar la Validez del Acceso:
+
+3. Localizar la Página en el Almacenamiento Secundario:
+
+4. Seleccionar un Marco de Memoria para la Página:
+
+5. Escribir la Página Reemplazada al Disco (si es necesario):
+
+6. Cargar la Página Solicitada en Memoria:
+
+7. Reiniciar la Instrucción del Proceso:

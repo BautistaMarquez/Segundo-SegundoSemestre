@@ -1,0 +1,18 @@
+18. Gestión de espacio libre. Dados los siguientes métodos de gestión de espacio libre en un disco:
+Lista Ligada
+Agrupamiento
+Recuento
+(a) Describa como trabajan estos métodos.
+(b) Cite ventajas y desventajas de cada uno
+
+
+.Tabla de bits (Estaba en la teoria): Este metodo utiliza un vector con 1 bit por cada bloque de disco, si el bit es = 0 significa bloque libre, si el bit es = 1 significa bloque en uso. 
+    .Como ventaja tiene la facilidad para encontrar un bloque o grupo de bloques libres. 
+    .Como desventaja el tamaño del vector en memoria ya que este es igual a tamaño disco bytes / tamaño bloque en sistema archivo 
+        ej: disco 16 GB con bloques de 512 btes -> 32 MB 
+
+.Lista ligada(Bloques encadenados): Se tiene un puntero al primer bloque libre. Cada bloque tiene un puntero al siguiente bloque libre. Esto resulta ineficiente para la busqueda de bloques libres ya que hay que realizar varias operaciones de E/S para obtener un grupo libre. Ademas de que tiene problemas con la perdida de un enlace y se hace dificil encontrar bloques libres consecutivos.
+
+.Agrupamiento(Indexacion): Esta es una variante de "bloques libres encadenados", ya que el primer bloque libre contiene las direcciones de N bloques libres. Las N-1 primeras direcciones son bloques libres y la N-esima direccion referencia a otro bloque con N direcciones de bloques libres.
+
+.Recuento: Esta es una variante de la indexacion. Esta estrategia considera las situaciones de que varios bloques contiguos pueden ser solicitados o liberados a la vez (en especial con asignacion continua). En lugar de tener N direcciones libres (indice) se tiene: la direccion del primer bloque libre y los N bloques libres contiguos que le siguen (#bloque, N siguientes bloques libres). Esto busca achicar estructuras pero se hace muy compleja de mantener. La idea utilizada para el indice es la misma que se usa para la indexada por secciones. 

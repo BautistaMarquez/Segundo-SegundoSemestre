@@ -1,0 +1,5 @@
+10. Describa en forma sintética, cómo es la organización física de un disco, puede utilizar gráficos para mayor claridad.
+
+Un disco se divide en platos, estos platos normalmente poseen 2 superficies una de cada lado del plato, estos platos/caras estan divididos en sectores y finalmente estos sectores se dividen en pistas entre las pistas(de 512 bytes o 4 KB) y sectore existen gaps de separacion.  
+Ademas de poseer un cabezal de lectura/escritura: Este es un brazo mecanico que accede a los datos en las pistas y sectores moviendose radialmente.
+    Un cilindro N: Son todas las N-esimas pistas de todas las caras.

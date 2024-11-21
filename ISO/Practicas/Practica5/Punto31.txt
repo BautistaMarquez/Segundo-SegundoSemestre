@@ -1,0 +1,20 @@
+a. 
+A = {6,5,4,3,1}
+B = {6,4,3,1}
+
+b.
+A = {5,6,1}
+B = {5,1,6} 
+
+c. 
+Si D > M habra trashing
+con D: demanda total de frames
+con M: cantidad de frames disponibles
+
+Yo entiendo que las paginas de A son distintas que las de B. Por lo tanto en el inciso A, la demanda seria = 9 tendriamos trashing con 8 y 6 frames. Si se supone que las paginas son iguales entonces la demanda seria = 5, entonces no tendriamso trashing. 
+ 
+d. 
+Entiendo que la taza de fallos es de 6 = 60%, ya que suceden fallos en la insercion de las paginas: 1,2,3,4,5,1
+
+e. 
+Aumentar la cantidad de marcos entiendo ya que la taza de fallos esta por encima del limite superior.

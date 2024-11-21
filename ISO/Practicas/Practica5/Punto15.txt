@@ -1,0 +1,34 @@
+15.- Direcciones:
+a. Si se dispone de una espacio de direcciones virtuales de 32 bits, donde cada
+dirección referencia 1 byte:
+
+i. ¿Cuál es el tamaño máximo de un proceso (recordar “espacio virtual”)?
+
+ii. Si el tamaño de pagina es de 512Kb. ¿Cuál es el número máximo de
+paginas que puede tener un proceso?
+
+iii. Si el tamaño de pagina es de 512Kb. y se disponen de 256 Mb. de
+memoria real ¿Cuál es el número de marcos que puede haber?
+
+iv. Si se utilizaran 2 Kb. para cada entrada en la tabla de páginas de un
+proceso: ¿Cuál seria el tamaño máximo de la tabla de páginas de cada
+proceso? 
+
+i. 
+El espacio de direcciones virtuales es de 2 a la 32 direcciones, donde cada dirección referencia 1 byte.
+Por lo tanto, el tamaño máximo de un proceso (en el espacio virtual) es: 2 a la 32bytes = 64GB 
+
+ii. 
+Si el tamaño de pagina es de 512kb = 512 * 1024 bytes = 2 a la 19 bytes. Para calcular el numero de paginas, dividimos el tamaño total del espacio virtual entre el tamaño de cada pagina: 
+    Entonces hacemos 2 a la 32/ 2 a la 19 = 2 a la 13 que da como resultado 8192 paginas. 
+
+iii. 
+El tamaño de memoria real disponible es 256MB = 256 * 1024 * 1024 bytes = 2 a la 28 bytes. Dado que el tamaño de cada marco es igual al de cada pagina dividimos el tamaño de memoria real disponible por el tamaño del marco: 
+    Entonces hacemos 2 a la 28/ 2 a la 19 = 2 a la 9 que da como resultado 512 marcos 
+
+iv. 
+Cada entrada en la tabla de páginas ocupa 2KB = 2 * 1024 bytes = 2048bytes 
+El numero maximo de paginas que puede tener un proceso seria 8192, entonces el tamaño maximo de la tabla de paginas se calcula como: 
+    Tamaño maximo de la tabla de paginas = numero maximo de paginas * tamaño de cada entrada. 
+    Tamaño maximo de la tabla de paginas = 8192 * 2048 = 16.777.216 bytes 
+    Tamaño maximo de la tabla de paginas = 16MB 

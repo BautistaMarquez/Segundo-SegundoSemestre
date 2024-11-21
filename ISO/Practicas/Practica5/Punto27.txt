@@ -1,0 +1,14 @@
+27.- Considere un sistema cuya memoria principal se administra mediante la técnica
+de paginación por demanda. Considere las siguientes medidas de utilización:
+- Utilización del procesador: 20%
+- Utilización del dispositivo de paginación: 97,7%
+- Utilización de otros dispositivos de E/S: 5%
+Cuales de las siguientes acciones pueden mejorar la utilización del procesador:
+a. Instalar un procesador mas rápido
+b. Instalar un dispositivo de paginación mayor
+c. Incrementar el grado de multiprogramación
+d. Instalar mas memoria principal
+e. Decrementar el quantum para cada proceso 
+
+Incrementar el grado de multiprogramación (c) para que hayan mas procesos y se aproveche mas el procesador pero esto tendria que estar acompañado de instalar mas memoria principal (d) para disminuir la utilización del dispositivo de paginacion y evitar el trashing y obviamente instalar un dispositivo de paginacion mayor (b) haria disminuir el porcentaje de uso, al mismo tiempo que instalar un procesador mas rapido (a) pero ya son cosas que no tienen tanto sentido.
+Obviamente si tenemos un problema de trashing dado el alto porcentaje de uso del dispositivo, decrementar el quantum no es una buena idea ya que eso generaria mas fallos de paginas. 

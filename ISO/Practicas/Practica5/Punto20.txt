@@ -1,0 +1,26 @@
+20.- Reemplazo de páginas (selección de una victima):
+ ¿Qué sucede cuando todos los marcos en la memoria principal están usados por las
+páginas de los procesos y se produce en fallo de página? El SO debe seleccionar una
+de las páginas que se encuentra en memoria como victima, y ser reemplazada por la
+nueva página que produjo el fallo.
+Considere los siguientes algoritmos de selección de victimas básicos:
+- LRU (reemplaza la pagina que no fue referenciada por mas tiempo)
+- FIFO (trata a los frames en uso como una cola circular)
+- OPT (Optimo) (Selecciona la pagina cuyo proxima referencia se encuentra mas lejana a la actual) iMPOSIBLE DE SABER EN LA VIDA REAL
+- Segunda Chance 
+    Se utiliza un bit adicional -> bit de referencia, cuando la pagina se carga en memoria el bit R se pone en 0 y cuando la pagina es referenciada el bit R se pone en 1. La victima se busca en orden FIFO. Se selecciona la primer pagina cuyo bit R esta en 0 y mientras se busca la victima cada bit R que tiene valor 1, se cambia a 0.
+
+a- Clasifique estos algoritmos de malo a bueno de acuerdo a la tasa de fallos de
+página que se obtienen al utilizarlos.
+b- Analice su funcionamiento. ¿Como los implementaría?
+c- Sabemos que la pagina a ser reemplaza puede estar modificada. ¿Qué acciones
+debe llevar el SO cuando se encuentra ante esta situación?
+
+
+c.
+Descarga asincronica de paginas: El SO reserva uno o varios marcos para la descarga asincronica de paginas, cuando es necesario descargar una pagina modificada: 
+    .La pagina que provoco el fallo se coloca en un frame designado a la descarga asincronica. 
+    .El SO envia la orden de descargar asincronicamente la pagina modificada mientras continua la ejecucion de otro proceso. 
+    .El frame de descarga asincronica pasa a ser el que contenia a la pagina victima que ya se descargo correctamente. 
+
+Entiendo que siempre se tiene un frame libre para realizar la descarga. Si se llenan todos los frames se debe liberar uno. (VIENDO EL EJ)

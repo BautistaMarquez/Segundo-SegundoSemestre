@@ -1,0 +1,1 @@
+Se sectoriza a la memoria en partes del mismo tamaño, en una son particiones y en la otra son marcos. 

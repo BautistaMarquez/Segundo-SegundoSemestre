@@ -1,0 +1,19 @@
+5. Drivers
+(a) ¿Qué son?
+(b) ¿Qué funciones mínimas deben proveer?
+(c) ¿Quién determina cuales deben ser estas funciones? 
+
+.Contienen el codigo dependiente del dispositivo, manejan un tipo dispositivo, traducen los requerimientos abstractos en los comandos para el dispositivo (Escribe sobre los registros del controlador, acceso a la memoria mapeada, encola requerimientos), comunmente las interrupciones generadas por los dispositivos son atendidas por funciones provistas por el driver. 
+.Funciona como interfaz entre el SO y el HARDWARE, estos forman parte del espacio de memoria del Kernel (en general se cargan como modulos, ya que se cargan dinamicamente), los fabricantesc de HW implementan el driver en funcion de una API especificada por el SO (open,close,read,write,etc.), para agregar nuevo HW solo basta indicar el driver correspondiente sin necesidad de cambios en el Kernel. 
+Ej Linux:
+    3 tipos de dispositivos:
+    .Caracter: E/S programada o por interrupciones
+    .Bloque: DMA 
+    .Red: Ports de comunicaciones 
+
+b.
+Debe poseer al menos las operaciones de:
+    .init_module: para instalarlo. 
+    .cleanup_module: para desinstalarlo.
+
+c. El fabricante del dispositivo es quien determina las funciones que el driver debe realizar, este proporciona la documentacion tecnica y los requisitos para que el hardware pueda ser utilizar correctamente. Tambien suele proporcionar controladores para sistemas operativos especificos.

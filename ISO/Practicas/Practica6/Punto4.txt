@@ -1,0 +1,6 @@
+4. Enuncie las metas que debe perseguir un SO para la administración de la entrada salida. 
+
+.Generabilidad: Manejar todos los dispositivos E/S de una manera uniforme.
+.Interfaz Uniforme: entiendo va de la mano con la Generabilidad.+
+.Eficiencia: Ya que los dispositivos E/S pueden resultar lentos con respecto a la memoria y CPU, el uso de la multiprogramacion permite que un proceso espere por la finalizacion de su E/S mientras que otro proceso se ejecuta. 
+.Planificacion: Organizacion de los requerimientos a los dispositivos. Ej: planificacion de requerimientos a disco para minimizar tiempos.

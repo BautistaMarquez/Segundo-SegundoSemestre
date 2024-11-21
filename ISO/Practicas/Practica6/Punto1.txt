@@ -1,0 +1,14 @@
+1. Dispositivos
+(a) Los dispositivos, según la forma de transferir los datos, se pueden clasificar en 2 tipos:
+Orientados a bloques
+Orientados a flujos
+Describa las diferencias entre ambos tipos.
+(b) Cite ejemplos de dispositivos de ambos tipos.
+(c) Enuncie las diferencias que existen entre los dispositivos de E/S y que el SO debe
+considerar.
+
+a. 
+Dispositivos orientados a bloques: Transfieren datos en bloques de tamaño fijo generalmente predefinidas, estos permiten acceso aleatorio lo que significa que se puede leer o escribir en cualquier parte del dispositivo sin necesidad de procesar secuencialmente toda la informacion. Estos son ideales para almacenar grandes cantidades de datos y operaciones donde el acceso directo es prioritario. Ej: HDDs, SSDs, USBs, Tarjetas de memoria.
+ 
+Dispositivos orientados a flujos: Transfieren datos como un flujo continuo, sin particiones definidas ni bloques estructurados, generalmente son de acceso secuencial. Se utilizan para comunicaciones y e/s continuas, como en transmisiones de audio o escritura en la consoloa.
+Ej: Teclados, ratones, dispositivos de audio.

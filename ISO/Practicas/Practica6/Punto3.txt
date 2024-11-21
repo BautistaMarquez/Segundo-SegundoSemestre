@@ -1,0 +1,8 @@
+3. La tecnica de E/S programa puede trabajar de dos formas:
+E/S mapeada
+E/S aislada
+Indique como trabajan estas 2 técnicas. 
+
+E/S mapeada: en esta tecnica, los dispositivos y memoria comparten el espacio de direcciones, la E/S es como escribir/leer en la memoria, ademas no hay instrucciones especiales para E/S debido a que ya se dispone de muchas instrucciones para la memoria.
+
+E/S aislada: en esta tecnica, los dispositivos E/S tienen direcciones separadas de las direcciones de memoria principal y se accede a ellos a traves de instrucciones especificas del procesador( IN / OUT ). La CPU diferencia facilmente entre accesos a memoria y accesos a E/S. Cada dispositivo tiene asignada una o mas direcciones de puertos en el espacio de E/S, estas direcciones identifican al dispositivo y permiten la interaccion con la CPU. 

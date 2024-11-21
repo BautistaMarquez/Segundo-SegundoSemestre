@@ -1,0 +1,46 @@
+Capacidad de un HDD: 
+La capacidad de un disco esta dada por el producto de:
+Cantidad de caras: W
+Cantidad de pistas: X
+Cantidad de sectores por pista: Y
+Tamaño de sector: Z
+capadidad = W * X * Y * Z
+
+Tiempo de acceso a un HDD: 
+.Seek time (posicionamiento): tiempo que tarda en posicionarse la cabeza en el cilindro
+
+.Latency time (latencia): tiempo que sucede desde que la cabeza se posiciona en el cilindro hasta que el sector en cuestion pasa por debajo de la misma. si este tiempo no se conoce, se considera que es igual a lo que tarda el disco en dar media vuelta.
+ejemplo disco de 5400 RPM → 5400 vueltas → 1’ = 60” = 60000 ms, 1/2 vuelta → x = 5,5 ms. 
+
+.Transfer time (transferencia): tiempo de transferencia del sector (bloque) del disco a la memoria
+
+.Almacenamiento secuencial: seek + latency + (tiempo transferencia bloque * #bloques)
+.Almacenamiento aleatorio: (seek + latency + tiempo transferencia bloque) * #bloques  
+
+Prefijos: nos permiten representan numeros largos de manera mas reducida.
+    prefijos binarios: nos permiten crear multiplos binarios (basados en potencias de 2), En la practica se adopta este sistema.
+    Equivalencias: 
+        kilobyte(KB) 10 a la 3 = 2 a a la 10 (Sistema internacional)
+        kibibyte(KiB) 2 a la 10 (Prefijo binario)
+        /* Esto es igual para MB(2 a la 20), GB(2 a la 30) y TB(2 a la 40) */
+
+Calculos de tiempos de acceso a un HDD 
+El seek time es el parametro que mas influye en el tiempo de acceso al disco. Minimizar el tiempo de seek implica una menor distancia de recorrido por el brazo. 
+
+Algoritmos de planificacion en un HDD: 
+    objetivo: minimizar el movimiento de la cabeza 
+    como: ordenando logicamente los requerimientos pendientes al disco, considerando el num de cilindro de cada requerimiento. En caulquier momento se pueden encolar nuevos movimientos. La atencion de requerimientos a pistas duplicadas se resuelven segun el algoritmo de planificacion. 
+        FCFS: se atienden de manera separada (tantas veces como se requieran) Por ej, si tengo {10, 40, 70, 10}, al 10 lo atiendo 2 veces.
+        SSTF/SCAN/LOOK/C-SCAN/C-LOOK: se atienden de manera consecutiva. 
+
+        .FCFS: Se atienden los requerimientos por orden de llegada. 
+        .SSTF: Selecciona el requerimiento que requiere el menor movimiento del cabezal
+        .SCAN: barre el disco en una disco en una direccion atendiendo los requerimientos pendientes en esa ruta hasta llegar a la ultima pista del disco y cambia la direccion. 
+        .LOOK: se comporta igual que el SCAN pero no llega hasta la ultima pista del disco sobre la direccion actual sino que llega hasta el ulitmo requerimiento de la direccion actual. 
+        .C-SCAN: se comporta igual que el SCAN pero restringe la atencion en un solo sentido. Al llegar a la ultima pista del disco en el sentido actual vuelve a la pista del otro extremo (salto -> no se cuentan los movimientos) y sigue barriendo en el mismo sentido.
+        .C-LOOK: se comporta igual que el LOOK pero restringe la atencion en un solo sentido. Al llegar a la ultima pista de los requerimientos en el sentido actual vuelve a la primer pista mas lejana del otro extremo (salto → no se cuentan los movimientos) y sigue barriendo en el mismo sentido.
+
+Algoritmos - Atencion de PF: los fallos de pagina tienen mayor prioridad con respecto al resto de requerimientos, por lo tanto son atendidos inmediatamente despues del requerimiento que se esta atendiendo actualmente. 
+La logica de atencion de multiples PF se maneja segun el algoritmo de planificacion. En todos los algoritmos, los movimientos utilizados para atender estos requerimientos especiales deben ser contados. 
+
+Ejemplos de enunciados con PF. 

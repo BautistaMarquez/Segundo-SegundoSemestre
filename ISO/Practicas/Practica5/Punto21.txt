@@ -1,0 +1,15 @@
+21.- Alcance del reemplazo
+Al momento de tener que seleccionar una pagina victima, el SO puede optar por 2
+políticas a utilizar:
+. Reemplazo local
+. Reemplazo global
+a. Describa como trabajan estas 2 políticas.
+b. ¿Es posible utilizar la política de “Asignación Fija” de marcos junto con la política
+de “Reemplazo Global? Justifique. 
+
+a. 
+Reemplazo global: el fallo de pagina de un proceso puede reemplazar la pagina de cualquier proceso 
+Reemplazo local: el fallo de pagina de un proceso solo puede reemplazar sus propias paginas
+
+b. Entiendo que no ya que la asignacion fija le da una cantidad fija de paginas por procesos por lo cual no se le puede "quitar" una pagina a un proceso debido a una fallo de pagina. 
+(Viendo en GPT) SI SE PUEDE, aunque sean contradictorias se pueden complementar aunque no sea recomendable. 
