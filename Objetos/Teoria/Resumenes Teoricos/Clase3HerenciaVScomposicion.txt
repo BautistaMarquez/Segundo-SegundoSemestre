@@ -1,0 +1,11 @@
+.Herencia total: debo conocer todo el codigo que se hereda -> reutilizacion de caja blanca. Es util para extender la funcionalidad del dominio de aplicacion
+.Composicion de objetos: los objetos se componen en forma dinamica -> reutilizacion de caja negra. 
+    .Los objetos pueden reutilizarse a traves de su interfaz(sin conocer el codigo)
+    .A traves de las relaciones de composicion se pueden delegar responsabilidades entre los objetos 
+
+.Herencia VS Composicion de objetos: 
+    .Las clases y objetos creados mediante herencia estan estrechamente acoplados ya que cambiar algo en la superclase afecta directamente a la/las subclases.
+    .Las clases y objetos creados a traves de la composicion estan debilmente acoplados, lo que significa que se pueden cambiar mas facilmente los componentes sin afectar el objeto contenedor.
+
+.Por ejemplo: crear un stack con una interfaz de arraylist esta mal ya que esta es VOLUMINOSA, hay mensajes que debemos anular o redefinir. Puede ser que esto sea lo que estaba mal en el set, que se referia el profe. Mejor usar composicion! Sumado a esto, el decir que una pila es una arraylist, obviamente no es cierto esto es importante para tener en cuenta!!
+En cambio componen con arraylist para contener una coleccion de objetos de la pila es una opcion de implementacion que permite ocultarla publicamente. Esto permite el reuso y mantiene el encapsulamiento.

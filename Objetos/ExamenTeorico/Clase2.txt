@@ -1,0 +1,39 @@
+.Un objeto conoce a otro porque: 
+    .Es su responsabilidad mantener a ese otro objeto en el sistema (tiene un, conoce a)
+    .Necesita delegarle trabajo (enviarle mensajes)
+
+.Un objeto conoce a otro cuando:
+    .Tiene una referencia en una variable de instancia
+    .Le llega una referencia como parametro.
+    .Lo crea
+    .Lo obtiene enviando mensajes a otros que conoce.
+
+.Tener en cuenta el THIS (un objeto que habla solo)
+
+.Reutilizar comportamiento repetido.
+
+.Para saber si dos variables apuntan al mismo objeto utilizo "==". == es un operador, no puede definirse.
+
+.Cuando declaramos el tipo de una variable, el compilador controla que solo "enviemos a esa variable" mensajes acorde a ese tipo.
+.Cuando asignamos un objeto a una variable, el compilador controla que su clase sea “compatible” con el tipo de la variable.
+
+.Interfaz: es una clase que define un tipo, y también implementa los métodos correspondientes. nos permite declarar tipos sin tener que ofrecer implementación (desacopla tipo e implementación).
+.Una clase puede implementar varias interfaces
+
+.Decimos que un objeto conoce a muchos, pero en realidad conoce a una colección, que tiene referencias a esos muchos.
+
+.Envidia vs delegacion, delegar metodos par que no suceda la envidia.
+
+.Method Lookup: busca al metodo y puede subir al padre para encontrarlo.
+
+.Polimorfismo: 
+    .Objetos de distintas clases son polimórficos con respecto a un mensaje, si todos lo entienden, aun cuando cada uno lo implemente de un modo diferente.
+    .Cuando dos clases Java implementan una interfaz, se vuelven polimórficas respecto a los métodos de la interfaz.
+
+Polimorfismo bien aplicado
+• Permite repartir mejor las responsabilidades (delegar)
+• Desacopla objetos y mejora la cohesión (cada cual hace lo suyo)
+• Concentra cambios (reduce el impacto de los cambios)
+• Permite extender sin modificar (agregando nuevos objetos)
+• Lleva a código más genérico y objetos reusables
+• Nos permite programar por protocolo, no por implementación

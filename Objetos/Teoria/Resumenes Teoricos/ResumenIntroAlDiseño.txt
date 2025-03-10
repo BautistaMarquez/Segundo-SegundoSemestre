@@ -1,0 +1,55 @@
+Modelo del dominio: Este se encuentra en la capa de la logica de negocio, junto a los servicios. 
+
+.Identificacion de clases conceptuales: identificar las clases conceptuales vinculadas al escenario con el que se trabaja. Para esto se pueden identificar de forma normal o usando una Lista de categorias de clases conceptuales. 
+
+.Lista de categorias: categorizamos las clases no mas que eso. 
+
+.Frases nominales: Al igual que en Ingenieria. EJ: El cliente selecciona un libro para agregarlo al carrito. Algunas frases nominales son clases conceptuales candidatas, algunas podrian hacer referencia a clases conceptuales y algunas podrian ser atributos de clases conceptuales. 
+
+Pasos para construir un modelo de dominio:
+    .Listar los conceptos(clases y atributos) candidatos.
+    .Graficarlos en modelo de dominio.
+    .Agregar atributos a los conceptos.
+    .Agregar asosiaciones entre los conceptos. 
+
+.Es parecido a ingenieria el modo de pensarlo, aparecen actores y casos de uso. Los enunciados deben ser pensados como los de ingenieria.
+
+.Conceptos candidatos: conforman desde las clases hasta sus atributos. Se leen en el enunciado. ejemplo: nombre, precio, fecha, cliente.
+
+    .De estos conceptos candidatos primero sacamos las clases.
+
+.Agregar atributos: Se identifican los atributos que son necesarios para satisfacer los requerimientos de información de los casos de uso en desarrollo. En un modelo deberian ser, preferiblemente, atributos simples o tipos de datos primitivos. 
+
+.LAS RELACIONES ENTRE CLASES CONCEPTUALES DEBEN MODELARSE CON ASOCIACIONES
+
+.Atributo como claves: La mejor manera de expresar que un concepto utiliza a otro es, nuevamente, con una asociación; no con un atributo como claves. Por ejemplo: relacionar las clases CARRITO y PRODUCTO con una asociacion CONTIENE en vez de tener un idProducto en CARRITO.
+
+.Es mejor crear una clase, en vez de tener un atributo complejo por asi decir. ES IMPORTANTE VER LAS COSAS CLARAS, ES MEJOR QUE ESTE TODO BIEN DEFINIDO POR DEMAS, SI ES NECESARIO. ejemplo: la copia de un libro, debe ser una clase separada al libro (como en DBD).
+
+.Agregar asociaciones: 
+    .Céntrese en aquellas asociaciones para las que se necesita conservar el conocimiento de la relación durante algún tiempo(asociaciones “necesito-conocer”). 
+    .Es más importante identificar clases conceptuales que identificar asociaciones.
+    .Demasiadas asociaciones tienden a confundir un modelo del dominio en lugar de aclararlo. Su descubrimiento puede llevar tiempo,con beneficio marginal. 
+
+.CONTRATOS DE LAS OPERACIONES:
+    .Contratos: son una forma de describir el comportamiento en un sistema de forma de detallada.
+        .Describen pre y post condiciones.
+
+    .Secciones en un contrato: 
+        .Operacion: se detalla el nombre de la operación y los parámetros
+        .Pre-condiciones: : Suposiciones relevantes sobre el estado del sistema o de los objetos del Modelo del Dominio, antes de la ejecución de la operación. SE ASUMEN VALIDAS.
+        .Post-condiciones: el estado del sistema o de los objetos del Modelo del Dominio, después de que se complete la ejecución de la operación. SON DECLARATIVAS.
+    
+    .Test de unidad: 
+        .Los contratos son una antesala a los test de unidad. 
+        .Definen los requerimientos en términos de pre y post condiciones.
+        .Las pre-condiciones dan una idea del fixture del test.
+        .Las post-condiciones dan una idea de las verificaciones del test (los assert).
+
+
+.Crear diagramas de interacción que muestran cómo los objetos se comunican con el objetivo de cumplir con los requerimientos capturados en la etapa de análisis.
+
+.A partir de los diagramas de interacción, diseñar diagramas de clases representando las clases que serán implementadas.
+
+
+

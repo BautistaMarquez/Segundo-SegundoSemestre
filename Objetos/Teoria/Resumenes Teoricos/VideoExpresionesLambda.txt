@@ -1,0 +1,12 @@
+.Son metodos anonimos(no tienen nombre, no pertenencen a ninguna clase)
+.son utiles para:
+    .parametrizar lo que otros objetos deben hacer 
+    .decirle a otros objetos que me avisen cuando pase algo (callbacks)
+
+ej de parametrizar:
+    clientes.iterator().forEachReamining(c -> c.pagarLasCuentas()); (Lo que esta dentro de los parentesis seria la LAMBDA)
+    el LAMBDA puede tener mas de un parametro y mas de una instruccion
+
+ej de callbacks: 
+    JButton button = new JButton ("Click Me!");
+    button.addActionListener(e -> this.handleButtonAction(e)); ( button = e )

@@ -1,0 +1,59 @@
+Video1: 
+testear: asegurarme tanto como sea posible que el programa esta libre de errores/fallos 
+testeamos para encontrar los errores antes que lo haga el usuario.
+"cuanto antes testiemos mejor"
+no hay que dejar todo el testing para el final, esto es un problema muy comun ya que hay que considerar todas las posibilidades y cuanto mas cosas haya que considerar mas detalles se nos pueden escapar
+es normal que el test sea muy repetitivo.
+no alcanza con "programar bien", es normal tener errores y bugs en los codigos 
+tipos de test: 
+    .funcionales, no funcionales, de unidad, de integracion, de regresion, punta a punta, automatizados,etc  
+. nosotros vamos a hablar de TESTS AUTOMATIZADOS DE UNIDAD los cuales son un tipo de TEST FUNCIONALES
+
+test de unidad: 
+    .asegura que la unidad minima de nuestro programa funciona correctamente, y aislada de otras unidades (es nuestro caso la unidad de test es el metodo)
+    .testear un metodo es confirmar que el mismo acepta el rango esperado de entradas, y que retorna el valor esperado en cada caso 
+
+test automatizados: 
+    .se utiliza software para guiar la ejecucion de los tests y controlar los resultados 
+    .requiere que diseñemos, programemos y mantengamos programas "tests" (objetos de pruebas)
+    .para esto usamos herramientas que resuelven gran parte del trabajo 
+
+
+Video2:
+jUnit: 
+    .es un framework, en java, para automatizar la ejecucion de test de unidad 
+    .ayuda a escribir test utiles
+    .cada test se ejecuta independientemente de otros
+    .detecta,recolecta y reporta errores y problemas
+    .Hay versiones de Unit para distintos lenguajes 
+
+Anatomia de un test suite jUnit: 
+    .Una clase de test por cada clase a testear 
+    .Un metodo que prepara lo que necesitan los tests 
+    .Uno o varios metodos de test por cada metodo a testear 
+
+.importante los label (@) ej: @BeforeEach donde "se prepara" el objeto y @Test por los metodos "testeadores"
+.Los Test se ejecutan de FORMA INDEPENDIENTE 
+.importante importar lo que necesitamos de jUnit
+
+Instrucciones que se utilizan para testear: 
+    .assertEquals: sintaxis => assertEquals("Juan", persona.getNombre());
+    .assertNotEquals
+    .assertNull y notNull 
+    .assertSame
+    .assertTrue y assertFalse
+
+
+Video3: 
+.importante testear temprano y frecuentemente 
+.importante testear tanto como sea el riesgo del artefacto 
+
+estrategia general:
+    .pensar que podria variar y que pueda causar un error o fallo 
+    .elegir valores de prueba para maximizar las chances de encontrar errores haciendo la menor cantidad de pruebas posibles.
+    .nos enfocamos en dos estrategias:
+        .Particiones equivalentes:
+            .definicion: conjunto de casos que prueban lo mismo o revelan el mismo bug. Asumo que si un ej de una particion pasa el test, los otros tambien lo haran.Entonces elijo uno.
+        .Valores de borde:
+            .buscamos en los bordes, ya que frecuentemente es donde suceden los fallos. 
+            .a veces no es tan facil encontrar estos bordes.

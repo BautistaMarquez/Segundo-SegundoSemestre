@@ -1,0 +1,57 @@
+Colecciones: 
+    -Recordar que una coleccion puede cambiar luego de obtenerla 
+    -Las colecciones(List,SET,Map,Queue) son interfaces
+
+Generics y polimorfismo: 
+    -Las colecciones admiten cualquier objeto en su contenido 
+    -Contenido homogeneo da lugar a polimorfismo
+-Explicacion del set (Un nuevo tipo de coleecion). Se utiliza con booleans por lo que entiendo. Los set no tienen get por posicion solo first y end entiendo.
+Operaciones frecuentes en colecciones 
+compareTo => resultado negativo = el primero es menor, 0 = son iguales, positivo = el primero es mayor 
+Usar sort con un comparador como parametro para ordenar un List
+Formas de recorrer colecciones:
+(for)
+-Todas las colecciones entienden iterator(), este encapsula como recorrer una coleccion y el estado de un recorrido. 
+(for each)
+
+Streams:
+    Expresiones lambda(clausuras/closures):
+    -son metodos anonimos(no tienen nombre, no pertenecen a ninguna clase) son utiles para: parametrizar lo que otros objetos deben hacer y decirle a otros objetos que me avisen cuando pase algo (callbacks)
+    Sintaxis: (parámetros, separados, por, coma) -> { cuerpo lambda } ej: c -> c.esMoroso() --- (alumno1,alumno2) ->
+    Double.compare(alumno1.getPromedio(), alumno2.getPromedio())
+    1. parametros: se puede indicar el tipo opcionalmente, sino lo infiere y los parentesis son opcionales si solo es un parametro 
+    2. cuerpo de lambda: si solo tiene una unica linea no hace falta llaves y el return es implicito sino es necesario usar llaves y return.
+
+-Podemos expresar lo que queremos de una forma mas abstracta y declarativa. 
+-Las operaciones se combinan para formar pipelines 
+-Cada operacion produce un resultado, pero NO modifica la fuente. 
+-Consumibles: Los elementos se procesan de forma secuencial y se descartan después de ser consumidos
+-La forma más frecuente de obtenerlos es vía el mensaje stream() a una colección
+
+Streams pipelines: para su construccion se encadenan varios mensajes:
+    -Una fuente de donde se obtienen los elementos
+    -cero o mas operaciones intermedias, que devuelven un nuevo stream
+    -operaciones terminales, que retornan un resultado. 
+    -La operación terminal guía el proceso. Las operaciones intermedias son Lazy: se calculan y procesan solo cuando es necesario, es decir, cuando se realiza una operación terminal que requiere el resultado.
+Algunos mensajes (operaciones): filter,map,limit,sorted
+operaciones terminales: count | sum average, findAny | findFirst, collect, anyMatch | allMatch | noneMatch, min | max. 
+
+Optional: se utiliza para representar un valor que podría estar presente o ausente en un resultado. son una forma de manejar la posibilidad de valores nulos de manera más segura y explícita. Algunos metodos de streams devuelven un optional para representar el resultado. Este posee metodos para manipular y obtener el valor de manera segura. 
+
+filter(): funciona como una condicion. ej: .filter(alumno -> alumno.getAnioIngreso() == 2020)
+map(): nos da un stream que transforma cada elemento de entrada aplicando una función que indiquemos, recibe un elemento del stream y devuelve un objeto. ej: .map(fact -> fact.getCuit())
+sorted(): Se usa para ordenar los elementos de la secuencia en un orden específico. Se puede usar para ordenar elementos en orden natural (si son comparables) o se debe proporcionar un comparador personalizado para especificar cómo se debe realizar la ordenación
+ej: .sorted((a1, a2)-> Double.compare(a1.getPromedio(), a2.getPromedio()))
+collect(): es una operacion terminal, es un “reductor” que nos permite obtener un objeto o colección de objetos a partir de los elementos del stream, recibe como parametro un objeto Collector. ej: .collect(collectors.counting())
+findFirst(): es una operacion terminal, devuelve un optional con el primer elemento del Stream si existe.Tambien puedo usar orElse() que devuelve el valor contenido en el Optional si esta presente. Si el Optional esta vacio, entonces orElse() devuelve el valor predeterminado proporcionado como argumento. ej: .filter(alumno -> alumno.getNombre().startsWith("M"))
+                                                .findFirst()
+                                                    .orElse(null);
+Cuando NO es necesario usar stremas: 
+Siempre que me sea posible voy a usar alguna construccion de mas alto nivel ya que son mas consicas y estan optimizadas y probadas. Sin embardo es importante reconocer que en algunos casos NO es la opcion optima, ejemplos como: ordenar una coleccion y que se mantenga ordenada por un criterio, quiero eliminar los elementos que cumplen una condicion, cuando no requiero recorrer secuencialmente porque el algoritmo no lo requiere. 
+
+Importante recordar:
+    -Tener cuidado con las colecciones de otro, son una invitacion a romper el encapsulamiento.
+    -Observar la estrategia de diseño de encapsular lo que varia/molesta
+    -Seguir investigando los protocolos de las colecciones, de los streams(no hablamos de reduce), y de collectors.
+    -NO QUEREMOS REINVENTAR LA RUEDA. 
+    

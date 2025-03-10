@@ -1,0 +1,34 @@
+Herencia: mecanismo que permite a una clase "heredar" estructura y comportamiento de otra clase. 
+.Preguntarse "es un" es la regla para identificar usos adecuados de herencia. Si suena bien en el lenguaje del dominio, es probable que sea un uso adecuado. 
+.Especializar: crear una subclase especializando una clase existente.
+
+.Una clase abstracta captura comportamiento y estructura que sera comun a otras clases. 
+
+.Generalizar: introducir una superclase que abstrae aspectos comunes a otras, suele resultar en una clase abstracta. 
+
+Situaciones de uso de herencia
+• Subclasificar para especializar
+    • La subclase extiende métodos para especializarlos
+    • Ambas clases concretas
+• Herencia para especificar
+    • La superclase es una combinación de métodos concretos y abstractos (clase abstracta)
+    • La subclase implementa los métodos abstractos
+• Subclasificar para extender
+    • La subclase agrega nuevos métodos
+
+Situaciones de uso de herencia (feas)
+• Heredar para construir
+    • Heredo comportamiento y estructura, pero cambio el tipo (no-es-un)
+    • Se debe evitar, aunque nos vamos a cruzar con ejemplos (en código de otros)
+    • Si es posible, reemplazar por composición
+• Subclasificar para generalizar (no es lo mismo que generalización)
+    • La subclase reimplementa métodos para hacerlos más generales
+    • Solo tiene sentido si no puedo reordenar la jerarquía (para especializar)
+• Subclasificar para limitar
+    • La subclase reimplementa un método para que deje de funcionar / limitarlo
+    • Solo tiene sentido si no puedo reordenar la jerarquía (para especializar)
+• Herencia indecisa (subclasificación por varianza)
+    • Tengo dos clases con un mismo tipo, y algunos métodos compartidos
+    • No puedo decidir cuál es la subclase y cual la superclase
+    • Resolverlo buscando una superclase común (generalización)
+

@@ -1,0 +1,14 @@
+Heuristicas para asignar responsabilidades 
+
+    .experto: asignar responsabilidades al experto en informacion (la clase que tiene la informacion necesaria para realizar la responsabilidad). Para cumplir con su responsabilidad, un objeto puede requerir de informacion que se encuentra dispersa en diferentes clases expertos en informacion "parcial".
+
+    .creador: asignar a al clase B la responsabilidad de crear una instancia de la clase A si: 
+        .B usa a objetos A en forma exclusiva.
+        .B contiene objetos A (agregacion, composicion)
+        .B tiene los datos para incializar objetos A.
+    
+    .Bajo acoplamiento: el acoplamiento es una medida de dependencia de un objeto con otros. Es bajo si mantiene pocas relaciones con otros objetos. El alto acoplamiento dificulta el entendimiento y complica la propagacion de cambios en el diseño. 
+        .Se debe asignar responsabilidad de manera que el acoplamiento se mantenga lo mas bajo posible.
+    
+    .Alta cohesion: asignar responsabilidades de manera que la cohesion se mantenga lo mas fuerte posible. La cohesion es una medida de la fuerza con la que se relacionan las responsabilidades de un objeto, y la cantidad de ellas.
+        .El nivel de cohesion no se puede considerar de manera aislada a otras responsabilidades y otras Heuristicas, como experto y bajo acoplamiento. 

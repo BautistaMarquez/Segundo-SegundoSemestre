@@ -1,0 +1,26 @@
+Frases nominales: Conjunto de palabras en una oración que funciona como un sustantivo. Este conjunto puede consistir de un único sustantivo (núcleo) o de más de una palabra en el que el sustantivo es el núcleo.
+
+.Todo el tema del modelo del dominio, es como un super desarrollo para explicar como hacer un UML que la verdad me parece ultra paja e innecesario pq son cosas que ya entiendo y hago de forma inconsiente cuando desarrollo el UML directamente. Por lo cual medio que lo ignoro. 
+
+Contratos: son una forma de describir el comportamiento en un sistema en forma detallada. Describen pre y post condiciones. 
+Ejemplo
+• Operación: contratar servicio por única vez ( c: Cliente, fecha: Date, s: Servicio)
+• Pre-condición:
+• la fecha es una fecha válida para el contexto.
+• Post-condición
+• el cliente posee una contratación por única vez para el servicio s y la fecha indicada.
+
+Contratos – Test de Unidad
+• Los contratos son una antesala a los test de unidad.
+• Definen los requerimientos en términos de pre y post
+condiciones.
+• Las pre-condiciones dan una idea del fixture del test.
+• Las post-condiciones dan una idea de las verificaciones del test
+(los assert).
+
+
+Del análisis al diseño
+• Crear diagramas de interacción que muestran cómo los objetos se comunican con el objetivo de cumplir con los requerimientos capturados en la etapa de análisis.
+• A partir de los diagramas de interacción, diseñar diagramas de clases representando las clases que serán implementadas.
+
+Crear diagramas de interacción requiere la aplicación de Principios o Heurísticas para la Asignación de Responsabilidades.

@@ -1,0 +1,48 @@
+.Heuristicas para asignacion de responsabilidades:Los objetos poseen responsabilidades, hacer (algo por si mismo, iniciar una accion en otros objetos, controlar o coordinar actividades en otros objetos) y conocer (para hacer) (sus datos privados,sus objetos relacionados, cosas derivables o calculables) con esta informacion existen 4 formas de definir a los objetos: 
+    .Experto: Expresa la intuición de que los objetos hacen cosas relacionadas con la información que tienen. "Es el objeto responsable".
+    .Creador: una clase B es creador de una clase A si: B usa objetos A en forma exclusiva, B contiene objetos A o B tiene los datos para incializar objetos A.
+    .Bajo Acoplamiento: el acoplamiento es una medida de dependecia de un objeto con otros. Es bajo si mantiene pocas relaciones con otros objetos. Esta no se puede considerar de manera aislada a otras heuristicas, sino que debe incluirse como principio de diseño que influye en la eleccion de la asignacion de responsabilidades.
+    .Alta cohesion: la cohesion es una medida de la fuerza con la que se relacionan las responsabilidades de un objeto, y la cantidad de ellas. El nivel de cohesion no se puede considerar de manera aislada a otras responsabilidades y heuristicas. Ventaja: clases mas faciles de mantener, entender y reutilizar.
+    COHESION = "Realizar pequeñas acciones por objetos y no que un objeto realice todo"
+
+.Modelo de diseño:
+    .del analisis al diseño: los casos de uso sugieren los eventos del sistema que se muestran en los diagramas de secuencia del sistema.
+
+.Diagramas de secuencia: 
+    .Crear un diagrama de secuencia por cada operacion asociada al caso de uso. Si este queda complejo, separarlo en diagramas menos complejos. Usar el CONTRATO DE LA OPERACION como punto de partida, pensar en objetos que colaboran para cumplir una tarea. Aplicar las (HAR) para obtener un mejor diseño.
+
+.Creacion de los diagramas de clases: 
+    .Identificar las clases que participan en los diagramas de interaccion y en el modelo de dominio. Graficarlas en un diagrama de clases, colocar los atributos presentes en el modelo de dominio, agregar nombres de metodos analizando los diagramas de interaccion, agregar tipos y visibilidad de atributos y metodos, agregar las asociaciones necesarias, agregar roles, navegabilidad, nombre y multiplicidad a las asociaciones.
+
+.Usar POLIMORFISMO, ejemplo crear una tarjeta la cual pueda ser gold,platino,etc. 
+.es MEJOR clasificar ESTADOS que clasificar objetos por SU ESTADO. osea en vez de pago y pago autorizado/pago no autorizado. hacemos PAGO - ESTADO - autorizado/no autorizado.
+
+.Las ENTIDADES del dominio tienen un identificador, son modificables y comparables por identidad. 
+.Los Value Object son comparables por CONTENIDO (igualdad estructural), no tienen identificador. Estos no viven por si mismos, necesitan una entidad base. Persisten adjunto a su base, no separadamente. Estos son INMUTABLES (no le defino setters). Una DIRECCION puede ser un value object ya que su direccion siempre sera la misma (a menos que cambien la numeracion).
+
+.EVITAR diseñar objetos que recorran largos caminos de estructura y envian mensajes a objetos "distantes".
+
+.Heuristicas para diseño "agil" (principios S O L I D): promueven alta cohesion y bajo acoplamiento.
+    .S (srp):Principio de responsabilidad unica. Una clase deberia cambiar por una sola razon. Deberia ser responsable de unicamente una tarea, y ser modificada por una sola razon (alta cohesion).
+    .O (ocp: The Open-Closed Principle):Entidades de software (clases, módulos, funciones, etc.) deberían ser “abiertas” para extensión, y “cerradas” para modificación.
+        .Abierto a extensión: ser capaz de añadir nuevas funcionalidades.
+        .Cerrado a modificación: al añadir la nueva funcionalidad no se debe cambiar el diseño existente.
+    .L (LSP: The Liskov Substitution Principle): Los objetos de un programa deben ser intercambiables por instancias de sus subtipos sin alterar el correcto funcionamiento del programa.
+    .I (ISP: The Interface-Segregation Principle): Las clases que tienen interfaces “voluminosas” son clases cuyas interfaces no son cohesivas.Las clases no deberían verse forzadas a depender de interfaces que no utilizan. Cuando creamos interfaces (protocolos) para definir comportamientos, las clases que las implementan, no deben estar forzadas a incluir métodos que no va a utilizar.
+    .D (DIP: The Dependency-Inversion Principle): 
+        .a. Los módulos de alto nivel de abstracción no deben depender de los de bajo nivel.
+        .b. Las abstracciones no deben depender de detalles. Los detalles deben depender de las abstracciones.
+        .Módulos de alto nivel: se refieren a los objetos que definen qué es y qué hace el sistema.
+        .Módulos de bajo nivel: no están directamente relacionados con la lógica de negocio del programa (no definen el dominio).
+        .Abstracciones: se refieren a protocolos (o interfaces) o clases abstractas.
+        .Detalles: son las implementaciones concretas, (cuál mecanismo de persistencia, etc).
+
+.REUSO DE CODIGO: HERENCIA VS COMPOSICION
+    .Las clases y los objetos creados mediante herencia están estrechamente acoplados ya que cambiar algo en la superclase afecta directamente a la/las subclases.
+    .Las clases y los objetos creados a través de la composición están débilmente acoplados, lo que significa que se pueden cambiar más fácilmente los componentes sin afectar el objeto contenedor.
+    .Ejemplo de un STACK que extiende a una ARRAYLIST, obviamente no tiene sentido para realizar el stack usamos una arraylist como atributo para contenera a los elementos y listo. El arrayList en si tiene muchos mensajes que el stack no utilizaria. (Interfaz voluminosa).
+    
+
+
+
+

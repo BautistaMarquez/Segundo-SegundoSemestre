@@ -1,0 +1,23 @@
+COLECCIONES
+    .Nunca se modifica una coleccion que obtengo de otro objeto.
+    .List,Set,Map,Queue (Interfaces)
+
+Si hago: private List<Item> items;
+        items = new ArrayList<>(); 
+        Es valido
+
+.Es todo muy practico y con ejemplos como que no hay cosas que no sepa, ni siquiera definiciones interesantes.
+
+Opereaciones sobre coleeciones 
+    .Ordenar colecciones - comparator. Implementar un metodo compare dentro del comparator de cada objeto para definir una forma de comparar instancias de una misma clase (Un alumno por la nota promedio por ej, el metodo seria compare(Alumno a1, Alumno a2) y la funcion un double.compare con los metodos que obtengan la nota promedio de los alumnos)
+    .Recorrer colecciones - iterator.
+
+STREAMS
+
+    .Expresiones Lambda. Metodos anonimos, utiles para parametrizar lo que otros objetos deben hacer y decirle a otros objetos que me avisen cuando pase algo (callbacks) clientes.forEach(c -> c.pagarLasCuentas());
+    .otro ejemplo: (alumno1, alumno2) -> Double.compare(alumno1.getPromedio(), alumno2.getPromedio());
+    .Operaciones intermedias y terminales. 
+
+Observaciones finales en la PPT:
+    .Ojo con las colecciones de otro, son una invitacion a romper el encapsulamiento. 
+    .Observar la estrategia de diseño de encapsular lo que varia/molesta

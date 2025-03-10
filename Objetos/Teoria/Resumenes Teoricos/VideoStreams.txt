@@ -1,0 +1,29 @@
+para usar streams necesitamos expresiones lambda
+las operaciones se combinan para formar pipelines
+strems:
+    .los elemenos de la colecciones "fluyen" de uno en uno por este stream (pipeline)
+    .cada operacion produce un resultado, pero no modifica la fuente (NO MODIFICAN LA COLECCION)
+    .la forma mas frecuente de obtenerlos e via el mensaje stream() a una coleccion
+    .como resultado se puede retornar otra coleccion o un valor 
+    . fuente => operaciones intermedias => operacion terminal => resultado (ESTRUCTURA DE STREAM)
+
+recordar siempre antes de los mensajes utilizar:
+    .nombreColeccion.stream()
+
+    ej de sintaxis completa:
+        List<String> col = palabras.stream().filter (p -> p.startsWith("L")).collect (collectors.toList());
+    otro ej:
+        long CantConsumidoresFinal = facturas.stream().filter(fact -> fact.esConsumidorFinal()).collect(Collectors.counting());
+            .nos devuelve la cantidad de facturas que pasaron el filtro
+
+mensajes posibles:
+    .filter() {operacion intermedia}
+        .ej: .filter (p -> p.startsWith("L"))
+    .collect() {operacion final}
+        .ej: .collect (collectors.toList())
+            tiene varios opciones despues del . no solamente el tolist y el collectors es el "que realiza la accion" 
+    .map() {operacion intermedia}
+        .ej: .map( factura -> factura.getCuit())  (nos quedamos unicamente con el resultado del getCuit)
+            .mapToDouble transforma lo que recibe en un double, ej: mapToDouble( cliente -> cliente.getDeuda())
+
+.El stream nos permite escribir mas facil, ahorrandonos iteradores y condicionales

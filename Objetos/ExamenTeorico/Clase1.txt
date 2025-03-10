@@ -1,0 +1,15 @@
+.Un objeto tiene identidad, conocimiento y comportamiento
+.El estado interno de un objeto determina su comportamiento. Este esta dado por propiedades basicas del objeto y por otros objetos con los cuales colabora para llevar a cabo sus responsabilidades. 
+.El estado interno de un objeto es privado, ya que ningun otro objeto puede accederlo. 
+.En general las variables son punteros a otros objetos con los cuales el objeto colabora
+.El comportamiento de un objeto indica que sabe hacer, osea cuales son sus responsabilidades.Se especifica a traves del conjunto de mensajes que el objeto sabe responder (protocolo).
+.La realizacion de cada mensaje se especifica a a traves de un metodo. Cuando un objeto recibe un mensaje responde activando el metodo asociado. El que envia el mensaje delega en el receptor la manera de resolverlo, que es privada del objeto. 
+.Para poder enviarle un mensaje a un objeto, hay que conocerlo. Al enviarle un mensaje a un objeto, este responde activando el metodo asociado a ese mensaje (siempre y cuando exista). 
+.METODO: es la contraparte funcional del mensaje. Expresa la forma de llevar a cabo la semantica propia de un mensaje particular (el como). Un metodo puede modificar el estado interno del objeto, enviarle mensajes a otros objetos y retornar y terminar.
+.Formas de conocimiento(de un objeto a otro): 
+    .Conocimiento interno: variables de instancia.
+    .Conocimiento externo: parametros.
+    .Conocimiento temporal: variables temporales.
+    .Ademas de las pseudo-variables (this o self).
+.Encapsulamiento: "es la cualidad de los objetos de ocultar los detalles de implementacion y su estado interno del mundo exterior".
+.Una clase es una descripción abstracta de un conjunto de objetos.

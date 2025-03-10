@@ -1,0 +1,38 @@
+UML
+    .Diagrama de caso de uso (Ingenieria)
+
+.Diagrama de clases (Lo que ya sabemos de la practica)
+    .Repasar y tener claro, supongo que es muy probable que nos tomen, pero es lo que ya se de la practica basicamente. 
+    -tipos UML: Integer, Real, Boolean, String
+    .Crete y abstract
+    .Relaciones 
+        .Asociaciones, herencia, implementacion, depedencia.
+    .Asosiacion = simple, agregacion y composicion.
+
+.Diagrama de objetos ?
+.Diagrama de paquetes ? 
+
+.Diagrama de sencuencia (TAMBIEN IMPORTANTE)
+    .Esto si tengo que practicarlo, no es dificil.
+    .Este muestra claramente como interactuan distintos objetos en un sistema a lo largo del tiempo.
+    .En un diagrama de secuencia los objetos se representan en la parte superior del diagrama y el tiempo avanza de arriba hacia abajo.
+    
+    .Las flechas horizontales muestran las interacciones entre los objetos, indicando que envia un mensaje a quien y en que orden.
+
+    .Activacion: se representa mediante una barra vertical sobre la linea de vida. 
+
+    .Las instancias se nombran ( nombreObjeto : Clase ) 
+
+    .Mesnaje a la misma instancia: crea una activacion nueva.
+
+    .corchetes en la sintaxis del mensaje indica que es opcional.
+
+    .CombinedFragment: permite representar la logica y las condiciones en la interaccion entre objetos. A traves de ellos se pueden especificar bloques para repeticion, opcionales y alternativos, entre otros. 
+        .opt: fragmento opcional: tiene un solo camino. Se ejecuta si esa condicion es verdadera. Caso particular de alt.
+
+        .alt: fragmento alternativo: tiene varias condiciones. Solo se ejecuta el fragmento cuya condición es verdadera.
+
+        .loop: Bucle: el fragmento puede ejecutarse varias veces, y la condición indica la base de la iteración.
+            -Mensaje de retorno: se dibuja con una línea discontinua que apunta desde el objeto receptor al objeto que envió el mensaje.su uso es opcional.
+
+        .ref: Referencia: se refiere a una interacción definida en otro diagrama. El marco abarca las líneas de vida involucradas en la interacción.

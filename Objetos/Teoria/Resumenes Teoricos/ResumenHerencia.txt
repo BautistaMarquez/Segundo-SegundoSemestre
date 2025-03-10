@@ -1,0 +1,23 @@
+.Herencia: public class CuentaCorriente extends CuentaBancaria{}
+
+.Vocabulario: CuentaCorriente es subclase de CuentaBancaria 
+
+-Preguntarse "es un" es la regla para identificar usos adecuados de herencia, ej: Una cuenta corriente es una cuenta.
+
+.Method Lookup con herencia: Cuando un objeto recibe un mensaje, se busca en su clase un método cuya firma se corresponda con el mensaje.  Si no lo encuentra, sigue buscando en la superclase de su clase, y en la superclase de esta ...
+
+.super: Solamente se utiliza para extender comportamiento heredado (reimplementar un método e incluir el comportamiento que se heredaba para él). Cuando super recibe un mensaje, la búsqueda de métodos comienza en la clase inmediata superior a aquella donde está definido el método que envía el mensaje (sin importar la clase del receptor).
+
+- En un método, "super y this" hacen referencia al objeto que lo ejecuta (al receptor del mensaje)
+
+.Especializar:crear una subclase especializando una clase existente. Puedo utilizar el metodo SUPER en el metodo de una subClase. 
+ej: public void extraer(double monto){
+    if(monto <= saldo){
+    super.extraer(monto)
+    }
+}
+
+ClaseAbstracta: Una clase abstracta captura comportamiento y estructura que será común a otras clases.
+
+Generalizar: Introducir una superclase que abstrae aspectos comunes a otras – suele resultar en una clase abstracta.
+
